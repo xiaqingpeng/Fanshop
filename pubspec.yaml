@@ -19,7 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-
+  
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
 # consider running `flutter pub upgrade --major-versions`. Alternatively,
@@ -54,7 +54,7 @@ dependencies:
   weui: ^0.0.8
   left_scroll_actions: ^2.1.0
   # 推送
-  jpush_flutter: ^2.2.2
+  # jpush_flutter: ^2.2.2
   # 图片压缩
   flutter_luban: ^0.1.11
   # 全局状态管理
