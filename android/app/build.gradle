@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.huawei.agconnect'
 
 android {
     compileSdkVersion 30
@@ -44,10 +45,24 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.kuangxianjiaoapp"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        
+        ndk {
+      
+            // abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64'// 'arm64-v8a',
+            abiFilters 'armeabi','armeabi-v7a', 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "795d12ec356deba0d14130d9", /*NOTE: JPush 上注册的包名对应的 Appkey.*/
+                JPUSH_CHANNEL: "developer-default", /*暂时填写默认值即可.*/
+        ]
+    
     }
 
     buildTypes {
@@ -65,4 +80,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'
 }
