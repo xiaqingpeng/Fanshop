@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/routers/routers.dart';
 import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
-import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
+// import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
 import 'package:kuangxianjiaoapp/view/jiguang_web_view.dart';
 import 'package:kuangxianjiaoapp/utils/platform.dart';
 
@@ -43,9 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     if (PlatformUtils.isAndroid) {
       return const JiGuangAndroidView();
     }
-    if (PlatformUtils.isIOS) {
-      return const JiGuangIosView();
-    }
+    // if (PlatformUtils.isIOS) {
+    //   return const JiGuangIosView();
+    // }
     return const JiGuangWebView();
   }
 }
