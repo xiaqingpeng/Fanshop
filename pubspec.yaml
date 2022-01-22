@@ -58,7 +58,7 @@ dependencies:
   # 图片压缩
   flutter_luban: ^0.1.11
   # 全局状态管理
-  provider: ^6.0.2
+  provider: ^4.3.2+3
   # 轮播图
   flutter_swiper: ^1.1.6
 
@@ -87,9 +87,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/login.jpeg
+   
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
