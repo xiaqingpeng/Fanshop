@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kuangxianjiaoapp/custom/custom.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
@@ -18,9 +19,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('注册'),
-      ),
+      appBar: CustomAppbar('注册', Theme.of(context).primaryColor),
       body: WeForm(
         children: [
           WeInput(

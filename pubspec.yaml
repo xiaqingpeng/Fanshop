@@ -58,7 +58,7 @@ dependencies:
   # 图片压缩
   flutter_luban: ^0.1.11
   # 全局状态管理
-  provider: ^4.3.2+3
+  provider: ^4.3.2+3 
   # 轮播图
   flutter_swiper: ^1.1.6
 

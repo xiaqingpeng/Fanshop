@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:kuangxianjiaoapp/custom/custom.dart';
 import 'package:kuangxianjiaoapp/viewmodel/login_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
@@ -49,9 +50,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('登录'),
-      ),
+      appBar: CustomAppbar('登录', Theme.of(context).primaryColor),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Padding(
