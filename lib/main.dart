@@ -3,11 +3,21 @@ import 'package:kuangxianjiaoapp/routers/routers.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
 import 'package:kuangxianjiaoapp/view/login_view.dart';
+import 'package:kuangxianjiaoapp/viewmodel/login_viewmodel.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_web_view.dart';
 // import 'package:kuangxianjiaoapp/utils/platform.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LoginViewmodel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
