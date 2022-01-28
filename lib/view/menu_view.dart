@@ -28,7 +28,9 @@ class _MenuViewState extends State<MenuView> {
               '确定退出登录嘛',
               onConfirm: () {
                 Navigator.of(context).popAndPushNamed('login');
-                SharedPreferencesUserUtils.setUserInfo("userInfo",{});
+                SharedPreferencesUserUtils.setUserInfo("userInfo",{
+                  "loginstatus": 0,
+                });
               },
             ),
             icon: const Icon(Icons.exit_to_app_sharp),

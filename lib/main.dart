@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/routers/routers.dart';
+import 'package:kuangxianjiaoapp/view/splash.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
-import 'package:kuangxianjiaoapp/view/user/login_view.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';
@@ -83,6 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // if (PlatformUtils.isIOS) {
     //   return const JiGuangIosView();
     // }
-    return const LoginView();
+    return const SplashView();
   }
 }

@@ -26,7 +26,7 @@ class _LoginViewState extends State<LoginView>
   late bool disable = true;
   @override
   void initState() {
-    loadData();
+   
     super.initState();
     tabController = TabController(length: 2, vsync: this);
     // 监听输入框正则校验
@@ -249,14 +249,7 @@ class _LoginViewState extends State<LoginView>
     );
   }
 
-  // 判断用户是否登录
-  void loadData() async {
-    final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
-    // print("获取到的用户信息为" + userInfo.toString());
-    if (userInfo['loginstatus'] == 1) {
-      Navigator.of(context).popAndPushNamed('menu');
-    }
-  }
+  
 
   // 密码登录
   void _loginByPassword() {
