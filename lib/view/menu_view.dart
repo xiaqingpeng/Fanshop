@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:weui/weui.dart';
 
 class MenuView extends StatefulWidget {
   const MenuView({Key? key}) : super(key: key);
@@ -17,10 +20,18 @@ class _MenuViewState extends State<MenuView> {
         Theme.of(context).primaryColor,
         [
           IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('theme');
-            },
+            onPressed: ()=>Navigator.of(context).pushNamed('theme'),
             icon: const Icon(Icons.settings),
+          ),
+          IconButton(
+            onPressed: () => WeDialog.confirm(context)(
+              '确定退出登录嘛',
+              onConfirm: () {
+                Navigator.of(context).popAndPushNamed('login');
+                SharedPreferencesUserUtils.setUserInfo("userInfo",{});
+              },
+            ),
+            icon: const Icon(Icons.exit_to_app_sharp),
           ),
         ],
       ),

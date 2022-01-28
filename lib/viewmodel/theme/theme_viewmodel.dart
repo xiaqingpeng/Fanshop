@@ -6,7 +6,6 @@ class ThemeViewmodel extends ChangeNotifier {
   get getColor {
     return _color;
   }
-
   void setColor(int index) {
     if (index > themes.length - 1) return;
     _color = index;
