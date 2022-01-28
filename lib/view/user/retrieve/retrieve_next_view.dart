@@ -62,16 +62,14 @@ class _RetrieveNextViewState extends State<RetrieveNextView> {
               type: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChange: (value) => verificationcode.text = value),
-          Container(
-            child: WeButton(
-              '下一步',
-              loading: Provider.of<RetrieveNextViewmodel>(context).getIsLogin,
-              theme: WeButtonType.warn,
-              onClick: _next,
-            ),
-            margin: const EdgeInsets.all(10),
+
+               CustomButton(
+                horizontal: 10.0,
+                vertical: 10.0,
+                title: "下一步",
+                 loading: Provider.of<RetrieveNextViewmodel>(context).getIsLogin,
+                onPressed: _next
           ),
-          
         ],
       ),
     );

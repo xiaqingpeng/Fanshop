@@ -55,16 +55,13 @@ class _RetrieveFinishViewState extends State<RetrieveFinishView> {
             textInputAction: TextInputAction.next,
             onChange: (value)=>checkpassword.text = value,
           ),
-          Container(
-            child: WeButton(
-              '完成',
-              loading: Provider.of<RetrieveFinishViewmodel>(context).getIsLogin,
-              theme: WeButtonType.primary,
-              onClick: _finish,
-            ),
-            margin: const EdgeInsets.all(10),
-          )
-          
+            CustomButton(
+                horizontal: 10.0,
+                vertical: 10.0,
+                title: "完成",
+                onPressed: _finish,
+                loading: Provider.of<RetrieveFinishViewmodel>(context).getIsLogin,
+          ), 
         ],
       ),
     );

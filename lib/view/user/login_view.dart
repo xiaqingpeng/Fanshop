@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:kuangxianjiaoapp/custom/custom.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';
+import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -26,13 +28,12 @@ class _LoginViewState extends State<LoginView>
   late bool disable = true;
   @override
   void initState() {
-   
     super.initState();
     tabController = TabController(length: 2, vsync: this);
     // 监听输入框正则校验
     _mobile.addListener(() {
       setState(() {
-        disable = isAllPhone(_mobile.text)==false;
+        disable = isAllPhone(_mobile.text) == false;
       });
     });
     tabController.addListener(
@@ -52,6 +53,7 @@ class _LoginViewState extends State<LoginView>
     tabController.dispose(); // tabController销毁
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     Color primaryColor = Theme.of(context).primaryColor;
@@ -171,7 +173,8 @@ class _LoginViewState extends State<LoginView>
                               WeCell(
                                 footer: WeButton(
                                     count > 0 ? '$count秒后重发' : '获取验证码',
-                                    disabled: (count > 0 || disable) ? true : false,
+                                    disabled:
+                                        (count > 0 || disable) ? true : false,
                                     theme: WeButtonType.primary,
                                     size: WeButtonSize.mini,
                                     onClick: _getVertifyCode),
@@ -232,24 +235,26 @@ class _LoginViewState extends State<LoginView>
               const SizedBox(
                 height: 16.0,
               ),
-              WeButton('登录',
-                  theme: WeButtonType.primary,
-                  loading: Provider.of<LoginViewmodel>(context).getIsLogin,
-                  onClick: tabController.index == 0
-                      ? _loginByPassword
-                      : _loginByVerificationcode),
+              CustomButton(
+                title: "登录",
+                loading: Provider.of<LoginViewmodel>(context).getIsLogin,
+                onPressed: tabController.index == 0
+                    ? _loginByPassword
+                    : _loginByVerificationcode,
+              ),
               const SizedBox(
                 height: 16.0,
               ),
-              WeButton('注册', theme: WeButtonType.primary, onClick: _register),
+              CustomButton(
+                  title: "注册",
+                  loading: Provider.of<RegisterViewmodel>(context).getIsLogin,
+                  onPressed: _register),
             ],
           ),
         ),
       ),
     );
   }
-
-  
 
   // 密码登录
   void _loginByPassword() {

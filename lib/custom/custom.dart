@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
@@ -73,6 +74,81 @@ class _CustomCardState extends State<CustomCard> {
                 height: widget.height,
                 width: double.infinity,
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+// 自定义按钮封装
+class CustomButton extends StatefulWidget {
+  const CustomButton({
+    Key? key,
+    this.onPressed,
+    this.height = 48.0,
+    this.horizontal = 0.0,
+    this.vertical = 0.0,
+    this.width = double.infinity,
+    this.borderRadius = 10.0,
+    this.content,
+    this.loading=false,
+    this.title = "",
+    this.disable=false
+  }) : super(
+          key: key,
+        );
+
+  // 按钮宽高
+  // ignore: empty_constructor_bodies
+  final double width;
+  final double height;
+  final double horizontal;
+  final double vertical;
+  final double borderRadius;
+  final String title;
+  final bool loading;
+  final bool disable;
+
+  final Widget? content;
+
+  // 点击回调
+  final GestureTapCallback? onPressed;
+
+  @override
+  _CustomButtonState createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical:widget.vertical,horizontal: widget.horizontal),
+      child: GestureDetector(
+        onTap: widget.disable?null:widget.onPressed,
+        child: Container(
+          alignment: Alignment.center,
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(widget.borderRadius),
+            ),
+          ),
+          // ignore: unrelated_type_equality_checks
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              widget.loading?const CupertinoActivityIndicator():const SizedBox(),
+              widget.content ??
+                  Text(
+                    widget.title,
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                  ),
             ],
           ),
         ),

@@ -126,15 +126,14 @@ class _RegisterViewState extends State<RegisterView> {
               ],
             ),
           ),
-          Container(
-            child: WeButton(
-              '注册',
-              loading: Provider.of<RegisterViewmodel>(context).getIsLogin,
-              theme: WeButtonType.warn,
-              onClick: _register,
-            ),
-            margin: const EdgeInsets.all(10),
-          )
+           CustomButton(
+                horizontal: 10.0,
+                vertical: 10.0,
+                title: "注册",
+                loading: Provider.of<RegisterViewmodel>(context).getIsLogin,
+                onPressed: _register
+          ),
+         
         ],
       ),
     );
