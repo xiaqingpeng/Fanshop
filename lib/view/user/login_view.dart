@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/common/regExp.dart';
 import 'package:kuangxianjiaoapp/custom/custom.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';

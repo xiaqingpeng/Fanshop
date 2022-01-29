@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
-import 'package:kuangxianjiaoapp/view/menu_view.dart';
+import 'package:kuangxianjiaoapp/view/main_view.dart';
 import 'package:kuangxianjiaoapp/view/user/login_view.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
   @override
@@ -39,12 +40,12 @@ class _SplashView extends State<SplashView> {
     final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
     // print("获取到的用户信息为" + userInfo.toString());
     // 判断用户是否登录
-    // userInfo['loginstatus'] == 1登录进入首页 
+    // userInfo['loginstatus'] == 1登录进入首页
     // userInfo['loginstatus'] == 0未登录进入登录注册
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (BuildContext context) =>
-            userInfo['loginstatus'] == 1 ? const MenuView() : const LoginView(),
+            userInfo['loginstatus'] == 1 ? const MainView() : const LoginView(),
       ),
       // ignore: unnecessary_null_comparison
       (route) => route == null,
@@ -59,6 +60,7 @@ class _SplashView extends State<SplashView> {
     }
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
+import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
-
-class MenuView extends StatefulWidget {
-  const MenuView({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class MinePage extends StatefulWidget {
+ String name;
+  MinePage({Key? key, required this.name}) : super(key: key);
 
   @override
-  _MenuViewState createState() => _MenuViewState();
+  State<MinePage> createState() => _MinePageState();
 }
 
-class _MenuViewState extends State<MenuView> {
+class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbarActions(
-        '菜单',
+        appBar: CustomAppbarActions(
+        widget.name,
         Theme.of(context).primaryColor,
         [
           IconButton(
@@ -36,6 +37,15 @@ class _MenuViewState extends State<MenuView> {
             icon: const Icon(Icons.exit_to_app_sharp),
           ),
         ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children:  [
+            Text(widget.name),
+          ],
+        ),
       ),
     );
   }
