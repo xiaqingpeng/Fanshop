@@ -93,6 +93,7 @@ class CustomButton extends StatefulWidget {
     this.vertical = 0.0,
     this.width = double.infinity,
     this.borderRadius = 10.0,
+    this.fontSize = 18.0,
     this.content,
     this.loading=false,
     this.title = "",
@@ -108,6 +109,7 @@ class CustomButton extends StatefulWidget {
   final double horizontal;
   final double vertical;
   final double borderRadius;
+  final double fontSize;
   final String title;
   final bool loading;
   final bool disable;
@@ -133,7 +135,7 @@ class _CustomButtonState extends State<CustomButton> {
           width: widget.width,
           height: widget.height,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: widget.disable?Theme.of(context).primaryColor.withOpacity(.7):Theme.of(context).primaryColor,
             borderRadius: BorderRadius.all(
               Radius.circular(widget.borderRadius),
             ),
@@ -147,7 +149,7 @@ class _CustomButtonState extends State<CustomButton> {
               widget.content ??
                   Text(
                     widget.title,
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                    style: TextStyle(color: Colors.white, fontSize: widget.fontSize),
                   ),
             ],
           ),

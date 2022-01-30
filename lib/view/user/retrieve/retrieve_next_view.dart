@@ -17,43 +17,46 @@ class RetrieveNextView extends StatefulWidget {
 class _RetrieveNextViewState extends State<RetrieveNextView> {
   TextEditingController telephone = TextEditingController(); // 手机号码
   TextEditingController verificationcode = TextEditingController(); // 手机验证码
- 
+
   late int count = 0;
   late bool disable = true;
   @override
   void initState() {
-      telephone.addListener(() {
+    telephone.addListener(() {
       setState(() {
-        disable = isAllPhone(telephone.text)==false;
+        disable = isAllPhone(telephone.text) == false;
       });
     });
     super.initState();
   }
+
   @override
   void dispose() {
     super.dispose();
     telephone.dispose();
     verificationcode.dispose();
-   
-   
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar('找回密码', Theme.of(context).primaryColor),
       body: WeForm(
         children: [
-         
           WeInput(
             label: '手机号码',
             hintText: '请输入手机号码',
             textInputAction: TextInputAction.next,
             onChange: (value) => telephone.text = value,
-            footer: WeButton(count > 0 ? '$count秒后重发' : '获取验证码',
-                disabled: (count > 0 || disable) ? true : false,
-                theme: WeButtonType.primary,
-                size: WeButtonSize.mini,
-                onClick: _getVertifyCode),
+            footer: CustomButton(
+              width: 100,
+              height: 30,
+              borderRadius: 4,
+              fontSize: 14.0,
+              title: count > 0 ? '$count秒后重发' : '获取验证码',
+              disable: (count > 0 || disable) ? true : false,
+              onPressed: _getVertifyCode,
+            ),
           ),
           WeInput(
               label: '验证码',
@@ -62,20 +65,19 @@ class _RetrieveNextViewState extends State<RetrieveNextView> {
               type: TextInputType.number,
               textInputAction: TextInputAction.next,
               onChange: (value) => verificationcode.text = value),
-
-               CustomButton(
-                horizontal: 10.0,
-                vertical: 10.0,
-                title: "下一步",
-                 loading: Provider.of<RetrieveNextViewmodel>(context).getIsLogin,
-                onPressed: _next
-          ),
+          CustomButton(
+              horizontal: 10.0,
+              vertical: 10.0,
+              title: "下一步",
+              loading: Provider.of<RetrieveNextViewmodel>(context).getIsLogin,
+              onPressed: _next),
         ],
       ),
     );
   }
+
   void _getVertifyCode() {
-    WeDialog.alert(context)('验证码${getRandom(6)},有效期10分钟');// 获取验证码
+    WeDialog.alert(context)('验证码${getRandom(6)},有效期10分钟'); // 获取验证码
     setState(
       () {
         count = 60;
@@ -83,6 +85,7 @@ class _RetrieveNextViewState extends State<RetrieveNextView> {
     );
     _task();
   }
+
   // 定时任务
   void _task() {
     Future.delayed(
@@ -99,9 +102,11 @@ class _RetrieveNextViewState extends State<RetrieveNextView> {
       },
     );
   }
+
   // 下一步
   void _next() {
-    context.read<RetrieveNextViewmodel>().register(context,  telephone.text, verificationcode.text);
+    context
+        .read<RetrieveNextViewmodel>()
+        .retrieve(context, telephone.text, verificationcode.text);
   }
-  
 }

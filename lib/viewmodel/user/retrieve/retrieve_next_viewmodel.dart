@@ -17,7 +17,7 @@ class RetrieveNextViewmodel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void register(
+  void retrieve(
     BuildContext context,
     String telephone,
     String verificationcode,

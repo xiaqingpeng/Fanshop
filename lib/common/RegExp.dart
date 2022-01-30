@@ -25,6 +25,7 @@ bool isLoginPassword(String input) {
 
 // 登录密码：6位数字验证码
 bool isValidateCaptcha(String input) {
+  if(input.length!=6)return false;
   RegExp captcha = RegExp(r"\d{6}$");
   return captcha.hasMatch(input);
 }

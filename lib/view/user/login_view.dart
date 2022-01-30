@@ -170,13 +170,16 @@ class _LoginViewState extends State<LoginView>
                             boxBorder: false,
                             children: [
                               WeCell(
-                                footer: WeButton(
-                                    count > 0 ? '$count秒后重发' : '获取验证码',
-                                    disabled:
-                                        (count > 0 || disable) ? true : false,
-                                    theme: WeButtonType.primary,
-                                    size: WeButtonSize.mini,
-                                    onClick: _getVertifyCode),
+                                footer: CustomButton(
+                                  width: 100,
+                                  height: 30,
+                                  borderRadius: 4,
+                                  fontSize: 14.0,
+                                  title: count > 0 ? '$count秒后重发' : '获取验证码',
+                                  disable:
+                                      (count > 0 || disable) ? true : false,
+                                  onPressed: _getVertifyCode,
+                                ),
                                 content: TextField(
                                   cursorColor: primaryColor,
                                   style: TextStyle(color: primaryColor),
