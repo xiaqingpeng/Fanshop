@@ -2,6 +2,7 @@
     package="com.example.kuangxianjiaoapp">
    <application
         android:label="邝邝乐购"
+        android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
