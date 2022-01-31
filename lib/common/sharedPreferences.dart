@@ -15,8 +15,8 @@ class SharedPreferencesUserUtils {
   // 获取数据
   static Future getUserInfo(String key) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    print(sp.toString()+'sptest');
-    return const JsonDecoder().convert(sp.getString(key));
+    String str=sp.getString(key)??const JsonEncoder().convert({});
+    return const JsonDecoder().convert(str);
   }
 
   // 清除数据

@@ -29,10 +29,11 @@ class CustomCard extends StatefulWidget {
   const CustomCard({
     Key? key,
     this.padding = 8.0,
+    this.margin = 0.0,
     this.onPressed,
     this.height = 100,
     this.shadowColor = Colors.grey,
-    this.elevation = 5.0,
+    this.elevation = 4.0,
     this.child,
   }) : super(
           key: key,
@@ -41,6 +42,7 @@ class CustomCard extends StatefulWidget {
   // 按钮宽高
   // ignore: empty_constructor_bodies
   final double padding;
+  final double margin;
   final double height;
 
   final Widget? child;
@@ -70,6 +72,7 @@ class _CustomCardState extends State<CustomCard> {
             children: [
               Container(
                 alignment: Alignment.center,
+                margin: EdgeInsets.all(widget.margin),
                 child: widget.child,
                 height: widget.height,
                 width: double.infinity,
@@ -81,7 +84,6 @@ class _CustomCardState extends State<CustomCard> {
     );
   }
 }
-
 
 // 自定义按钮封装
 class CustomButton extends StatefulWidget {
@@ -95,9 +97,10 @@ class CustomButton extends StatefulWidget {
     this.borderRadius = 10.0,
     this.fontSize = 18.0,
     this.content,
-    this.loading=false,
+    this.loading = false,
     this.title = "",
-    this.disable=false
+    this.disable = false,
+    this.backgroundColor,
   }) : super(
           key: key,
         );
@@ -113,7 +116,7 @@ class CustomButton extends StatefulWidget {
   final String title;
   final bool loading;
   final bool disable;
-
+  final Color? backgroundColor;
   final Widget? content;
 
   // 点击回调
@@ -126,32 +129,40 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
+    final Color primaryColor = Theme.of(context).primaryColor;
     return Padding(
-      padding: EdgeInsets.symmetric(vertical:widget.vertical,horizontal: widget.horizontal),
+      padding: EdgeInsets.symmetric(
+          vertical: widget.vertical, horizontal: widget.horizontal),
       child: GestureDetector(
-        onTap: widget.disable?null:widget.onPressed,
-        child: Container(
-          alignment: Alignment.center,
-          width: widget.width,
-          height: widget.height,
-          decoration: BoxDecoration(
-            color: widget.disable?Theme.of(context).primaryColor.withOpacity(.7):Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(widget.borderRadius),
+        onTap: widget.disable ? null : widget.onPressed,
+        child: Opacity(
+          opacity: widget.disable ? 0.7 : 1,
+          child: Container(
+            alignment: Alignment.center,
+            width: widget.width,
+            height: widget.height,
+            decoration: BoxDecoration(
+              color: widget.backgroundColor ?? primaryColor,
+              borderRadius: BorderRadius.all(
+                Radius.circular(widget.borderRadius),
+              ),
             ),
-          ),
-          // ignore: unrelated_type_equality_checks
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              widget.loading?const CupertinoActivityIndicator():const SizedBox(),
-              widget.content ??
-                  Text(
-                    widget.title,
-                    style: TextStyle(color: Colors.white, fontSize: widget.fontSize),
-                  ),
-            ],
+            // ignore: unrelated_type_equality_checks
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.loading
+                    ? const CupertinoActivityIndicator()
+                    : const SizedBox(),
+                widget.content ??
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                          color: Colors.white, fontSize: widget.fontSize),
+                    ),
+              ],
+            ),
           ),
         ),
       ),

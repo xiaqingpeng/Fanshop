@@ -61,7 +61,8 @@ dependencies:
   provider: ^4.3.2+3 
   # 轮播图
   flutter_swiper: ^1.1.6
-
+  vertical_tabs: ^0.2.0
+ 
   
 
 dev_dependencies:
