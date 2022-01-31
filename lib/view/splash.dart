@@ -72,12 +72,13 @@ class _SplashView extends State<SplashView> {
           children: [
             SizedBox(
               width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 250.0),
+              child: Center(
+                // padding: const EdgeInsets.only(top: 250.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
                     Text(
-                      '邝邝 乐购',
+                      '邝邝乐购',
                       style: TextStyle(
                           fontSize: 50.0,
                           fontWeight: FontWeight.bold,
@@ -98,15 +99,15 @@ class _SplashView extends State<SplashView> {
                   width: 100,
                   //边框设置
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.black.withOpacity(0.2),
                     //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
                     borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                     //设置四周边框
-                    border: Border.all(width: 1, color: Colors.white),
+                    // border: Border.all(width: 1, color: Colors.white),
                   ),
                   child: Text(
                     "$currentTime",
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
