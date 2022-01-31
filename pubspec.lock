@@ -139,6 +139,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.5.1"
+  flutter_launcher_icons:
+    dependency: "direct main"
+    description:
+      name: flutter_launcher_icons
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.7.5"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -532,6 +539,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "4.5.1"
+  yaml:
+    dependency: transitive
+    description:
+      name: yaml
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "2.2.1"
 sdks:
   dart: ">=2.14.0 <3.0.0"
   flutter: ">=1.20.0"

@@ -62,8 +62,13 @@ dependencies:
   # 轮播图
   flutter_swiper: ^1.1.6
   vertical_tabs: ^0.2.0
+  # flutter_launcher_icons 自动生成应用图标的工具   在工程的根目录下运行命令 flutter pub run flutter_launcher_icons:main
+  flutter_launcher_icons: ^0.7.4
  
-  
+flutter_icons:
+  image_path: "assets/appicon/appicon.jpeg"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
 
 dev_dependencies:
   flutter_test:
