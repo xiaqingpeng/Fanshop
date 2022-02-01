@@ -78,9 +78,9 @@ class _SplashView extends State<SplashView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
                     Text(
-                      '邝邝乐购',
+                      '邝邝新年快乐',
                       style: TextStyle(
-                          fontSize: 50.0,
+                          fontSize: 40.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),

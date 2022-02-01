@@ -8,6 +8,8 @@ class Login {
         "password": password,
         "mobile": mobile,
         "loginstatus": 1,
+        "registerstatus": 1,
+        "userimages": '',
       };
     }
     final com = Completer();
@@ -47,6 +49,7 @@ class Register {
         "calendar": calendar,
         "datetime": datetime,
         "loginstatus": 0,
+        "registerstatus": 1,
       };
     }
     final com = Completer();
@@ -64,11 +67,9 @@ class Register {
 // 获取验证码
 class Verificationcode {
   Future verificationcode(
-   
     String telephone,
     String verificationcode,
     int status,
-   
   ) async {
     Map result() {
       return {
@@ -77,7 +78,6 @@ class Verificationcode {
         "verificationcode": verificationcode,
         "loginstatus": 1,
         "status": 1,
-        
       };
     }
     final com = Completer();

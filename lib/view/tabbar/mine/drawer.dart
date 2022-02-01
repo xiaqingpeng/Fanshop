@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
+import 'package:kuangxianjiaoapp/view/splash.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 import 'dart:io';
@@ -15,11 +16,14 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _ImagePickerState extends State<MyDrawer> {
-  File _image=File("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3024387196,1621670548&fm=27&gp=0.jpg");
-
+  late Map<dynamic, dynamic> userInfo = {};
+  File? _image;
   final picker = ImagePicker();
-  Future getImage() async {
+  Future pickerCamera() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
+    userInfo['userimages'] = pickedFile?.path;
+    print(userInfo.toString() + 'test');
+    await SharedPreferencesUserUtils.setUserInfo("userInfo", userInfo);
     setState(
       () {
         if (pickedFile != null) {
@@ -34,11 +38,40 @@ class _ImagePickerState extends State<MyDrawer> {
 
   @override
   void initState() {
-    getSharedPreferences();
+    getUserInfo();
     super.initState();
   }
 
-  Future getSharedPreferences() async {}
+  Future<void> getUserInfo() async {
+    Map<dynamic, dynamic> _userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    setState(
+      () {
+        userInfo = _userInfo;
+        if(userInfo["userimages"] != null){
+            _image = File(userInfo["userimages"]);
+        } 
+        
+      },
+    );
+  }
+
+  Future<void> clearSharedPreferences() async {
+    await SharedPreferencesUserUtils.deleteUserInfo("userInfo");
+    Navigator.of(context)
+        .pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (BuildContext context) => const SplashView()),
+          // ignore: unnecessary_null_comparison
+          (route) => route == null,
+        )
+        .then((value) => {
+              // ignore: avoid_print
+              print(value)
+            });
+    WeToast.success(context)(message: '清除成功');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -49,25 +82,25 @@ class _ImagePickerState extends State<MyDrawer> {
           padding: EdgeInsets.zero,
           children: [
             UserAccountsDrawerHeader(
-              accountName: const Text('邝献骄'),
-              accountEmail: const Text('626143872@qq.com'),
+              accountName: Text(userInfo["fullname"] ?? ''),
+              accountEmail: Text(userInfo["telephone"] ?? ''),
               currentAccountPicture: ClipOval(
                 child: InkWell(
                   // ignore: unnecessary_null_comparison
-                  child: _image == null
-                      ? Image.asset(
-                          "assets/launcher/launcher.png",
+                  child: _image != null
+                      ? Image.file(
+                          _image!,
                           fit: BoxFit.cover,
                           width: 80,
                           height: 80,
                         )
-                      : Image.file(
-                          _image,
+                      : Image.asset(
+                          "assets/launcher/launcher.png",
                           fit: BoxFit.cover,
                           width: 80,
                           height: 80,
                         ),
-                  onTap: getImage,
+                  onTap: pickerCamera,
                 ),
               ),
             ),
@@ -86,6 +119,12 @@ class _ImagePickerState extends State<MyDrawer> {
               onClick: () => Navigator.of(context).pushNamed('theme'),
             ),
             WeCell(
+              label: '清除缓存',
+              content: '',
+              footer: const Icon(Icons.cleaning_services_sharp),
+              onClick: clearSharedPreferences,
+            ),
+            WeCell(
               label: '退出登录',
               content: '',
               footer: const Icon(Icons.exit_to_app),
@@ -93,12 +132,8 @@ class _ImagePickerState extends State<MyDrawer> {
                 '确定退出登录嘛',
                 onConfirm: () {
                   Navigator.of(context).popAndPushNamed('login');
-                  SharedPreferencesUserUtils.setUserInfo(
-                    "userInfo",
-                    {
-                      "loginstatus": 0,
-                    },
-                  );
+                  userInfo["loginstatus"] = 0;
+                  SharedPreferencesUserUtils.setUserInfo("userInfo", userInfo);
                 },
               ),
             ),
@@ -107,6 +142,4 @@ class _ImagePickerState extends State<MyDrawer> {
       ),
     );
   }
-
-  
 }

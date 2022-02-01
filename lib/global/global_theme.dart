@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
 List<MaterialColor> themes = [
-    Colors.green,
-     Colors.red,
-   
+    Colors.red,
     Colors.orange,
     Colors.yellow,
+    Colors.green,
     Colors.cyan,
     Colors.purple,
     Colors.pink,

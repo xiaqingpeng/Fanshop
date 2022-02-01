@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 // ignore: unused_import
@@ -8,16 +10,20 @@ import 'package:weui/weui.dart';
 
 class LoginViewmodel extends ChangeNotifier {
   bool _isLogin = false;
-  
+
   bool get getIsLogin {
     return _isLogin;
   }
+
   void setIsLogin(bool value) {
     _isLogin = value;
     notifyListeners();
   }
 
-  void loginByPassword(BuildContext context,String moible,String password) async {
+  void loginByPassword(
+      BuildContext context, String moible, String password) async {
+    Map<dynamic, dynamic> userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
     final Login _model = Login();
     setIsLogin(true);
 
@@ -44,6 +50,27 @@ class LoginViewmodel extends ChangeNotifier {
       return;
     }
 
+    if (userInfo['registerstatus'] != 1) {
+      setIsLogin(false);
+      String message = r"请先注册方可登录";
+      WeToast.fail(context)(message: message);
+      return;
+    }
+
+    if (moible != userInfo['telephone']) {
+      String message = r"该手机号码尚未注册,请先注册";
+      WeToast.fail(context)(message: message);
+      setIsLogin(false);
+      return;
+    }
+
+    if (password != userInfo['password']) {
+      String message = r"密码错误,请重新输入";
+      WeToast.fail(context)(message: message);
+      setIsLogin(false);
+      return;
+    }
+
     var result = await _model.login(moible, password);
     if (result != null) {
       // 登录成功返回到首页
@@ -58,12 +85,18 @@ class LoginViewmodel extends ChangeNotifier {
       );
     }
     setIsLogin(false);
+    userInfo['loginstatus'] = result['loginstatus'];
+    SharedPreferencesUserUtils.setUserInfo("userInfo", userInfo);
     // ignore: avoid_print
-    print(result);
-    SharedPreferencesUserUtils.setUserInfo("userInfo", result);
+    print(userInfo);
     notifyListeners(); // 刷新ui
   }
-  void loginByVerificationcode(BuildContext context,String moible,String verificationcode) async {
+
+  void loginByVerificationcode(
+      // ignore: duplicate_ignore
+      BuildContext context,
+      String moible,
+      String verificationcode) async {
     final Verificationcode _model = Verificationcode();
     setIsLogin(true);
 
@@ -77,7 +110,7 @@ class LoginViewmodel extends ChangeNotifier {
       setIsLogin(false);
       return;
     }
-   if (verificationcode.isEmpty) {
+    if (verificationcode.isEmpty) {
       setIsLogin(false);
       WeToast.fail(context)(message: '验证码不能为空');
       return;
@@ -88,9 +121,26 @@ class LoginViewmodel extends ChangeNotifier {
       WeToast.fail(context)(message: message);
       return;
     }
-   
 
-    var result = await _model.verificationcode(moible, verificationcode,1);
+    Map<dynamic, dynamic> userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    if (userInfo['registerstatus'] != 1) {
+      setIsLogin(false);
+      String message = r"请先注册方可登录";
+      WeToast.fail(context)(message: message);
+      return;
+    }
+
+    if (moible != userInfo['telephone']) {
+      String message = r"该手机号码尚未注册,请先注册";
+      WeToast.fail(context)(message: message);
+      setIsLogin(false);
+      return;
+    }
+
+    Map<dynamic, dynamic> result =
+        await _model.verificationcode(moible, verificationcode, 1);
+    // ignore: unnecessary_null_comparison
     if (result != null) {
       // 登录成功返回到首页
       WeToast.success(context)(message: '登录成功');
@@ -105,8 +155,10 @@ class LoginViewmodel extends ChangeNotifier {
     }
     setIsLogin(false);
     // ignore: avoid_print
-    print(result);
-    SharedPreferencesUserUtils.setUserInfo("userInfo", result);
+    userInfo['loginstatus'] = result['loginstatus'];
+    SharedPreferencesUserUtils.setUserInfo("userInfo", userInfo);
+    // ignore: avoid_print
+    print(userInfo);
     notifyListeners(); // 刷新ui
   }
 }
