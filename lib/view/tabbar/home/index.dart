@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
  String name;

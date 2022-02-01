@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_button.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/product.dart';
 
 const double _kAppBarHeight = 256.0;

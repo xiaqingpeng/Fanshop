@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:vertical_tabs/vertical_tabs.dart';
 import 'category_detail.dart';

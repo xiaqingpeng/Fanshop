@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/global/global_theme.dart';
 import 'package:kuangxianjiaoapp/viewmodel/theme/theme_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:kuangxianjiaoapp/custom/custom_button.dart';
 import 'package:kuangxianjiaoapp/view/main_view.dart';
 // ignore: must_be_immutable
 class CarPage extends StatefulWidget {

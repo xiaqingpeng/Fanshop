@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
-import 'package:kuangxianjiaoapp/custom/custom.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:weui/weui.dart';
 
 // ignore: must_be_immutable
 class MinePage extends StatefulWidget {
