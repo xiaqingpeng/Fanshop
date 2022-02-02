@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/car/index.dart';
@@ -14,12 +15,32 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   List<BottomNavigationBarItem> bottomTabs = [
-    const BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: '首页'),
-    const BottomNavigationBarItem(icon: Icon(Icons.category), label: '分类'),
     const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.shopping_cart), label: '购物车'),
+      icon: Icon(CupertinoIcons.home),
+      label: '首页',
+    ),
     const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.person), label: '我的'),
+      icon: Icon(Icons.category),
+      label: '分类',
+    ),
+    BottomNavigationBarItem(
+      icon: Badge(
+        badgeContent: const Text(
+          '3',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        child: const Icon(
+          CupertinoIcons.shopping_cart,
+        ),
+      ),
+      label: '购物车',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(CupertinoIcons.person),
+      label: '我的',
+    ),
   ];
   List<Widget> tabBodies = [
     HomePage(name: '首页'),

@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
@@ -19,7 +20,19 @@ class _MinePageState extends State<MinePage> {
       appBar: CustomAppbarActions(
         widget.name,
         Theme.of(context).primaryColor,
-        [ IconButton(onPressed: _onPressed, icon: const Icon(Icons.message)),
+        [
+          IconButton(
+            onPressed: _onPressed,
+            icon: Badge(
+              badgeContent: const Text(
+                '3',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              child: const Icon(Icons.message),
+            ),
+          ),
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(Icons.settings),
@@ -41,7 +54,6 @@ class _MinePageState extends State<MinePage> {
       ),
     );
   }
-  _onPressed(){
-    
-  }
+
+  _onPressed() {}
 }
