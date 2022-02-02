@@ -19,6 +19,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
+
   
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -65,7 +66,8 @@ dependencies:
   # flutter_launcher_icons 自动生成应用图标的工具   在工程的根目录下运行命令 flutter pub run flutter_launcher_icons:main
   flutter_launcher_icons: ^0.9.2
   flutter_native_splash: ^2.0.1+1
-
+  get: ^4.6.1
+  
 flutter_native_splash:
     color: "#ffffff" 
     image: assets/launcher/launcher.png

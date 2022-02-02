@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -41,7 +42,10 @@ class _RetrieveNextViewState extends State<RetrieveNextView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar('找回密码', Theme.of(context).primaryColor),
+      appBar: CustomNavigatorBar(
+        title: '找回密码',
+        bgColor: Theme.of(context).primaryColor,
+      ),
       body: WeForm(
         children: [
           WeInput(

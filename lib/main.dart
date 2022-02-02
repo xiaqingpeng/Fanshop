@@ -12,13 +12,16 @@ import 'package:kuangxianjiaoapp/viewmodel/theme/theme_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 import 'package:kuangxianjiaoapp/global/global_theme.dart';
+import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final color = await SharedPreferencesThemeUtils.getThemeInfo("color") ?? 0;
   ThemeViewmodel themeViewmodel = ThemeViewmodel();
   themeViewmodel.setColor(color);
   runApp(
-    MultiProvider(
+     GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      home:MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (_) => LoginViewmodel(),
@@ -35,8 +38,8 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => themeViewmodel,
         ),
-      ],
-      child: const MyApp(),
+      ], child:  const MyApp(),),
+     
     ),
   );
 }

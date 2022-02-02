@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
@@ -32,11 +32,12 @@ class _RetrieveFinishViewState extends State<RetrieveFinishView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar('找回密码', Theme.of(context).primaryColor),
+      appBar: CustomNavigatorBar(
+        title: '找回密码',
+        bgColor: Theme.of(context).primaryColor,
+      ),
       body: WeForm(
         children: [
-         
-         
           WeInput(
             label: '新密码',
             hintText: '请输入新密码',
