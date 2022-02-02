@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/home/red_packet.dart';
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
  String name;
@@ -18,8 +19,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children:  [
-            Text(widget.name),
+          children:  const [
+            RedPacket()
           ],
         ),
       ),
