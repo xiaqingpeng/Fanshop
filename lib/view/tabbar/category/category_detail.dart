@@ -2,20 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/product.dart';
-
+import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 const double _kAppBarHeight = 256.0;
-
 // ignore: must_be_immutable
 class CategoryDetailPage extends StatefulWidget {
-  // String product_id;
-  // String product_name;
+
   Product item;
   CategoryDetailPage({Key? key, required this.item}) : super(key: key);
   @override
   State<CategoryDetailPage> createState() => _CategoryDetailPageState();
 }
-
 class _CategoryDetailPageState extends State<CategoryDetailPage>
     with TickerProviderStateMixin {
   late final List<Tab> _tabs = [

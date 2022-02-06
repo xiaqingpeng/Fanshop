@@ -68,6 +68,7 @@ dependencies:
   flutter_native_splash: ^2.0.1+1
   badges: ^2.0.2
   get: ^4.6.1
+  http: ^0.13.3 #latest version
   
 flutter_native_splash:
     color: "#ffffff" 
@@ -109,6 +110,7 @@ flutter:
     - assets/images/login.jpeg
     - assets/images/hongbao.png
     - assets/launcher/launcher.png
+   
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

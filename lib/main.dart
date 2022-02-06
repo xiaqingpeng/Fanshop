@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/routers/routers.dart';
 import 'package:kuangxianjiaoapp/view/splash.dart';
+import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
@@ -28,6 +29,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => RegisterViewmodel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryViewmodel(),
         ),
         ChangeNotifierProvider(
           create: (_) => RetrieveNextViewmodel(),
