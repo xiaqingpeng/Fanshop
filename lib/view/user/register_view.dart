@@ -54,94 +54,96 @@ class _RegisterViewState extends State<RegisterView> {
         title: '注册',
         bgColor: Theme.of(context).primaryColor,
       ),
-      body: WeForm(
-        children: [
-          WeInput(
-            label: '登录账号',
-            hintText: '请输入登录账号',
-            clearable: true,
-            textInputAction: TextInputAction.next,
-            onChange: (value) => loginId.text = value,
-          ),
-          WeInput(
-            label: '手机号码',
-            hintText: '请输入手机号码',
-            textInputAction: TextInputAction.next,
-            onChange: (value) => telephone.text = value,
-            footer: CustomButton(
-                width: 100,
-                height: 30,
-                borderRadius: 4,
-                fontSize: 14.0,
-                title: count > 0 ? '$count秒后重发' : '获取验证码',
-                disable:(count > 0 || disable) ? true : false ,
-                onPressed: _getVertifyCode),
-          ),
-          WeInput(
-              label: '验证码',
-              hintText: '请输入验证码',
+      body: SingleChildScrollView(
+        child: WeForm(
+          children: [
+            WeInput(
+              label: '登录账号',
+              hintText: '请输入登录账号',
               clearable: true,
-              type: TextInputType.number,
               textInputAction: TextInputAction.next,
-              onChange: (value) => verificationcode.text = value),
-          WeInput(
-            label: '登录密码',
-            hintText: '请输入登录密码',
-            clearable: true,
-            obscureText: true,
-            textInputAction: TextInputAction.next,
-            onChange: (value) => password.text = value,
-          ),
-          WeInput(
-            label: '中文姓名',
-            hintText: '请输入中文姓名',
-            textInputAction: TextInputAction.next,
-            onChange: (value) => fullname.text = value,
-            footer: Row(
-              children: [
-                WeSwitch(
-                  size: 20,
-                  checked: gender == 1 ? true : false,
-                  onChange: (value) => context
-                      .read<RegisterViewmodel>()
-                      .setGender(value ? 1 : 0),
-                ),
-                const SizedBox(
-                  width: 4,
-                ),
-                Text(gender == 1 ? '男' : '女')
-              ],
+              onChange: (value) => loginId.text = value,
             ),
-          ),
-          WeCell(
-            label: '出生日期',
-            align: Alignment.center,
-            content: content,
-            onClick: _showDatePicker,
-            footer: Row(
-              children: [
-                WeSwitch(
+            WeInput(
+              label: '手机号码',
+              hintText: '请输入手机号码',
+              textInputAction: TextInputAction.next,
+              onChange: (value) => telephone.text = value,
+              footer: CustomButton(
+                  width: 100,
+                  height: 30,
+                  borderRadius: 4,
+                  fontSize: 14.0,
+                  title: count > 0 ? '$count秒后重发' : '获取验证码',
+                  disable:(count > 0 || disable) ? true : false ,
+                  onPressed: _getVertifyCode),
+            ),
+            WeInput(
+                label: '验证码',
+                hintText: '请输入验证码',
+                clearable: true,
+                type: TextInputType.number,
+                textInputAction: TextInputAction.next,
+                onChange: (value) => verificationcode.text = value),
+            WeInput(
+              label: '登录密码',
+              hintText: '请输入登录密码',
+              clearable: true,
+              obscureText: true,
+              textInputAction: TextInputAction.next,
+              onChange: (value) => password.text = value,
+            ),
+            WeInput(
+              label: '中文姓名',
+              hintText: '请输入中文姓名',
+              textInputAction: TextInputAction.next,
+              onChange: (value) => fullname.text = value,
+              footer: Row(
+                children: [
+                  WeSwitch(
                     size: 20,
-                    checked: calendar == 1 ? true : false,
+                    checked: gender == 1 ? true : false,
                     onChange: (value) => context
                         .read<RegisterViewmodel>()
-                        .setCalendar(value ? 1 : 0)),
-                const SizedBox(
-                  width: 4,
-                ),
-                Text(calendar == 1 ? '阳历' : '阴历')
-              ],
+                        .setGender(value ? 1 : 0),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(gender == 1 ? '男' : '女')
+                ],
+              ),
             ),
-          ),
-           CustomButton(
-                horizontal: 10.0,
-                vertical: 10.0,
-                title: "注册",
-                loading: Provider.of<RegisterViewmodel>(context).getIsLogin,
-                onPressed: _register
-          ),
-         
-        ],
+            WeCell(
+              label: '出生日期',
+              align: Alignment.center,
+              content: content,
+              onClick: _showDatePicker,
+              footer: Row(
+                children: [
+                  WeSwitch(
+                      size: 20,
+                      checked: calendar == 1 ? true : false,
+                      onChange: (value) => context
+                          .read<RegisterViewmodel>()
+                          .setCalendar(value ? 1 : 0)),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(calendar == 1 ? '阳历' : '阴历')
+                ],
+              ),
+            ),
+             CustomButton(
+                  horizontal: 10.0,
+                  vertical: 10.0,
+                  title: "注册",
+                  loading: Provider.of<RegisterViewmodel>(context).getIsLogin,
+                  onPressed: _register
+            ),
+           
+          ],
+        ),
       ),
     );
   }

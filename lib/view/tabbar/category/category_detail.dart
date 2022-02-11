@@ -1,17 +1,26 @@
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, import_of_legacy_library_into_null_safe
 
+import 'package:badges/badges.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:kuangxianjiaoapp/custom/custom_card.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+// ignore: implementation_imports
+import 'package:provider/src/provider.dart';
+
 const double _kAppBarHeight = 256.0;
+
 // ignore: must_be_immutable
 class CategoryDetailPage extends StatefulWidget {
-
   Product item;
   CategoryDetailPage({Key? key, required this.item}) : super(key: key);
   @override
   State<CategoryDetailPage> createState() => _CategoryDetailPageState();
 }
+
 class _CategoryDetailPageState extends State<CategoryDetailPage>
     with TickerProviderStateMixin {
   late final List<Tab> _tabs = [
@@ -27,6 +36,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
 
   late VoidCallback onChanged;
   late int _currentIndex = 0;
+
+  get checkOutProvider => null;
   @override
   void initState() {
     super.initState();
@@ -50,6 +61,22 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
 
   @override
   Widget build(BuildContext context) {
+    CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
+    CheckOutViewmodel checkOutProvider =
+        Provider.of<CheckOutViewmodel>(context);
+    double count = cartProvider.allCount;
+    List checkoutData = [];
+    checkoutData.add(
+      {
+        "product_id": widget.item.product_id,
+        "product_name": widget.item.product_name,
+        "current_price": widget.item.current_price,
+        "market_price": widget.item.market_price,
+        "current_count": 1,
+        "checked": true,
+        "product_image": widget.item.product_image,
+      },
+    );
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 242, 242, 245),
       body: Stack(
@@ -62,6 +89,37 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                   child: Image.network(
                     widget.item.product_image,
                     fit: BoxFit.cover,
+                  ),
+                ),
+                CustomCard(
+                  padding: 2,
+                  child: Expanded(
+                    flex: 1,
+                    child: Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(widget.item.product_name, maxLines: 2),
+                          Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "￥${widget.item.current_price}元",
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                           Text(
+                            "比市场价低${widget.item.market_price - widget.item.current_price}元",
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Padding(
@@ -85,9 +143,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
-                             constraints: const BoxConstraints(minHeight: 100),
+                            constraints: const BoxConstraints(minHeight: 100),
                             height: _kAppBarHeight * 3,
-                            
                             child: TabBarView(
                                 controller: _controller,
                                 children: const [
@@ -125,10 +182,21 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                     child: CustomButton(
                       backgroundColor: Colors.white,
                       borderRadius: 0.0,
-                      content: Icon(
-                        Icons.car_rental_rounded,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                      content: count > 0
+                          ? Badge(
+                              badgeContent: Text(
+                                count.toInt().toString(),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: const Icon(
+                                CupertinoIcons.shopping_cart,
+                              ),
+                            )
+                          : const Icon(
+                              CupertinoIcons.shopping_cart,
+                            ),
                       onPressed: () {
                         // ignore: avoid_print
                         print("图标");
@@ -142,8 +210,10 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                       borderRadius: 0.0,
                       title: "加入购物车",
                       onPressed: () {
-                        // ignore: avoid_print
-                        print("加入购物车");
+                        context
+                            .read<CartViewmodel>()
+                            .setAddProduct(widget.item);
+                        context.read<CartViewmodel>().computeAllCount();
                       },
                     ),
                     flex: 2,
@@ -155,8 +225,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                       borderRadius: 0.0,
                       title: "立即购买",
                       onPressed: () {
-                        // ignore: avoid_print
-                        print("立即购买");
+                        checkOutProvider.changeCheckOutListData(
+                            checkoutData, context); // 提交订单
                       },
                     ),
                   ),

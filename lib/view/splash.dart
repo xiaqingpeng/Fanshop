@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_is_emulator/flutter_is_emulator.dart';
 import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
+import 'package:kuangxianjiaoapp/common/storage.dart';
 import 'package:kuangxianjiaoapp/view/main_view.dart';
 import 'package:kuangxianjiaoapp/view/user/login_view.dart';
 
@@ -14,9 +18,11 @@ class SplashView extends StatefulWidget {
 class _SplashView extends State<SplashView> {
   int currentTime = 5;
   late Timer _timer;
+  String _text = 'Unknown';
   @override
   void initState() {
     super.initState();
+    initPlatformState();
     // 计时器创建
     _timer = Timer.periodic(
       const Duration(seconds: 5),
@@ -36,7 +42,25 @@ class _SplashView extends State<SplashView> {
     );
   }
 
+  initPlatformState() async {
+    String text;
+    try {
+      bool res = await FlutterIsEmulator.isDeviceAnEmulatorOrASimulator;
+      text = res.toString();
+      // ignore: nullable_type_in_catch_clause
+    } on PlatformException {
+      text = 'Error.';
+    }
+
+    if (!mounted) return;
+
+    setState(() {
+      _text = text;
+    });
+  }
+
   void next() async {
+    await Storage.setString('device', _text);
     final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
     // print("获取到的用户信息为" + userInfo.toString());
     // 判断用户是否登录
@@ -78,7 +102,7 @@ class _SplashView extends State<SplashView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
                     Text(
-                      '邝邝新年快乐',
+                      '邝邝乐购',
                       style: TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
+import 'package:kuangxianjiaoapp/model/messages.dart';
 import 'package:kuangxianjiaoapp/routers/routers.dart';
 import 'package:kuangxianjiaoapp/view/splash.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
@@ -14,6 +17,8 @@ import 'package:kuangxianjiaoapp/viewmodel/theme/theme_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:kuangxianjiaoapp/global/global_theme.dart';
 import 'package:get/get.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final color = await SharedPreferencesThemeUtils.getThemeInfo("color") ?? 0;
@@ -22,6 +27,9 @@ void main() async {
   runApp(
      GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      translations: Messages(),
+      locale: const Locale('zh', 'CN'),
+      fallbackLocale: const Locale('zh', 'CN'),
       home:MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -42,6 +50,8 @@ void main() async {
         ChangeNotifierProvider(
           create: (_) => themeViewmodel,
         ),
+        ChangeNotifierProvider(create: (_) => CheckOutViewmodel()),
+        ChangeNotifierProvider(create: (_) => CartViewmodel()),
       ], child:  const MyApp(),),
      
     ),
@@ -90,6 +100,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // if (PlatformUtils.isIOS) {
     //   return const JiGuangIosView();
     // }
+    
+
+    /// 注意：
+    /// 一定要在 `WidgetsApp` 或者 `MaterialApp widget` 中初始化
+    /// 否则，会因为 `MediaQuery` 找不到报错
+
+    ScreenAdapter.init(context);
     return const SplashView();
   }
 }

@@ -146,6 +146,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.5.1"
+  flutter_is_emulator:
+    dependency: "direct main"
+    description:
+      name: flutter_is_emulator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.0"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -188,6 +195,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.5"
+  flutter_screen_adapter:
+    dependency: "direct main"
+    description:
+      name: flutter_screen_adapter
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.3"
   flutter_swiper:
     dependency: "direct main"
     description:

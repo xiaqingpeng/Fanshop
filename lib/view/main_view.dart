@@ -1,10 +1,16 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/car/index.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_is_emulator/flutter_is_emulator.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/cart/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/index.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -14,43 +20,17 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  List<BottomNavigationBarItem> bottomTabs = [
-    const BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.home),
-      label: '首页',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.category),
-      label: '分类',
-    ),
-    BottomNavigationBarItem(
-      icon: Badge(
-        badgeContent: const Text(
-          '3',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        child: const Icon(
-          CupertinoIcons.shopping_cart,
-        ),
-      ),
-      label: '购物车',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.person),
-      label: '我的',
-    ),
-  ];
   List<Widget> tabBodies = [
-    HomePage(name: '首页'),
-    CategoryPage(name: '分类'),
-    CarPage(name: '购物车'),
-    MinePage(name: '我的'),
+    HomePage(name: 'home'.tr),
+    CategoryPage(name: 'category'.tr),
+    CartPage(name: 'cart'.tr),
+    MinePage(name: 'mine'.tr),
   ];
   int currentIndex = 0;
   // ignore: prefer_typing_uninitialized_variables
   var currentpage;
+  // ignore: unused_field
+  
   @override
   void initState() {
     currentpage = tabBodies[currentIndex];
@@ -62,9 +42,46 @@ class _MainViewState extends State<MainView> {
     super.dispose();
   }
 
+  
+
   final PageController _pageController = PageController();
   @override
   Widget build(BuildContext context) {
+    CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
+    cartProvider.Cart(); //获取购物车缓存数据
+    double count = cartProvider.allCount;
+    List<BottomNavigationBarItem> bottomTabs = [
+      BottomNavigationBarItem(
+        icon: const Icon(CupertinoIcons.home),
+        label: 'home'.tr,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.category),
+        label: 'category'.tr,
+      ),
+      BottomNavigationBarItem(
+        icon: count > 0
+            ? Badge(
+                badgeContent: Text(
+                  count.toInt().toString(),
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                child: const Icon(
+                  CupertinoIcons.shopping_cart,
+                ),
+              )
+            : const Icon(
+                CupertinoIcons.shopping_cart,
+              ),
+        label: 'cart'.tr,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(CupertinoIcons.person),
+        label: 'mine'.tr,
+      ),
+    ];
     return Scaffold(
       backgroundColor: Colors.redAccent,
       bottomNavigationBar: BottomNavigationBar(

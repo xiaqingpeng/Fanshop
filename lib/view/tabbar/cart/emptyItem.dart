@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
 import 'package:kuangxianjiaoapp/view/main_view.dart';
-// ignore: must_be_immutable
-class CarPage extends StatefulWidget {
-  String name;
-  CarPage({Key? key, required this.name}) : super(key: key);
+
+class EmptyItem extends StatefulWidget {
+  const EmptyItem({Key? key}) : super(key: key);
 
   @override
-  State<CarPage> createState() => _CarPageState();
+  State<EmptyItem> createState() => _EmptyItemState();
 }
 
-class _CarPageState extends State<CarPage> {
+class _EmptyItemState extends State<EmptyItem> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppbar(widget.name, Theme.of(context).primaryColor),
-      body: Center(
+    return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -48,11 +44,9 @@ class _CarPageState extends State<CarPage> {
             )
           ],
         ),
-      ),
-    );
+      );
   }
-
-  void goHomePage() {
+   void goHomePage() {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (BuildContext context) => const MainView()),
       // ignore: unnecessary_null_comparison

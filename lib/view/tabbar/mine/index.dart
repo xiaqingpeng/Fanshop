@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -18,7 +19,7 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbarActions(
-        widget.name,
+        'mine'.tr,
         Theme.of(context).primaryColor,
         [
           IconButton(

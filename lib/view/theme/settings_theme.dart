@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/global/global_theme.dart';
@@ -19,7 +20,7 @@ class _SettingsThemeState extends State<SettingsTheme> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar('设置主题', Theme.of(context).primaryColor),
+      appBar: CustomAppbar('theme'.tr, Theme.of(context).primaryColor),
       body: ListView.builder(
         itemBuilder: itemBuilder,
         itemCount: themes.length,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_empty.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -34,7 +35,7 @@ class _CategoryPage extends State<CategoryPage> {
     List<Product> products =
         Provider.of<CategoryViewmodel>(context).getProducts;
     return Scaffold(
-      appBar: CustomAppbar(widget.name, Theme.of(context).primaryColor),
+      appBar: CustomAppbar('category'.tr, Theme.of(context).primaryColor),
       body: categorys.isEmpty
           ? Center(
               child: CircularProgressIndicator(

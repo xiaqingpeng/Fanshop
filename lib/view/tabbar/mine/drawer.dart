@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:image_picker/image_picker.dart';
 import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
@@ -48,10 +49,9 @@ class _ImagePickerState extends State<MyDrawer> {
     setState(
       () {
         userInfo = _userInfo;
-        if(userInfo["userimages"] != null){
-            _image = File(userInfo["userimages"]);
-        } 
-        
+        if (userInfo["userimages"] != null) {
+          _image = File(userInfo["userimages"]);
+        }
       },
     );
   }
@@ -105,27 +105,25 @@ class _ImagePickerState extends State<MyDrawer> {
               ),
             ),
             WeCell(
-              label: '支出上限',
-              onClick: () {},
+              label: 'language'.tr,
+              content: '',
+              footer: const Icon(Icons.language),
+              onClick: () => Navigator.of(context).pushNamed('international'),
             ),
             WeCell(
-              label: '注册日期',
-              onClick: () {},
-            ),
-            WeCell(
-              label: '设置主题',
+              label: 'theme'.tr,
               content: '',
               footer: const Icon(Icons.colorize),
               onClick: () => Navigator.of(context).pushNamed('theme'),
             ),
             WeCell(
-              label: '清除缓存',
+              label: 'cache'.tr,
               content: '',
               footer: const Icon(Icons.cleaning_services_sharp),
               onClick: clearSharedPreferences,
             ),
             WeCell(
-              label: '退出登录',
+              label: 'logout'.tr,
               content: '',
               footer: const Icon(Icons.exit_to_app),
               onClick: () => WeDialog.confirm(context)(

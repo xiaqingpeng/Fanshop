@@ -1,6 +1,7 @@
-
 import 'dart:io';
 import 'package:flutter/foundation.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_is_emulator/flutter_is_emulator.dart';
 
 class PlatformUtils {
   static bool _isWeb() {
@@ -31,6 +32,20 @@ class PlatformUtils {
     return _isWeb() ? false : Platform.isLinux;
   }
 
+  // 判断是否是模拟器
+  // ignore: unused_element
+  static Future<bool> _isAnEmulator() async {
+    bool isAnEmulator = await FlutterIsEmulator.isDeviceAnEmulatorOrASimulator;
+    return isAnEmulator;
+  }
+
+  // 判断是否是生产环境
+  // ignore: unused_element
+  static bool _isProd() {
+    const isProd = bool.fromEnvironment('dart.vm.product');
+    return isProd;
+  }
+
   static bool get isWeb => _isWeb();
 
   static bool get isAndroid => _isAndroid();
@@ -44,4 +59,7 @@ class PlatformUtils {
   static bool get isFuchsia => _isFuchsia();
 
   static bool get isLinux => _isLinux();
+  static bool get isProd => _isProd(); // 判断是否是生产环境
+
+  static Future<bool> get isAnEmulator => _isAnEmulator(); // 判断是否是模拟器
 }
