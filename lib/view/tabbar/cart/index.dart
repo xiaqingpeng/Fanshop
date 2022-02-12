@@ -55,7 +55,7 @@ class _CartPageState extends State<CartPage> {
        'cart'.tr,
         Theme.of(context).primaryColor,
         [
-          IconButton(
+          cartProvider.cartList.isNotEmpty?IconButton(
             onPressed: () {
               setState(
                 () {
@@ -64,7 +64,7 @@ class _CartPageState extends State<CartPage> {
               );
             },
             icon: _isEdit ? const Icon(Icons.delete) : const Icon(Icons.launch),
-          ),
+          ):Row(),
         ],
       ),
       body: cartProvider.cartList.isNotEmpty

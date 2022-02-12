@@ -1,11 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
+import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:kuangxianjiaoapp/view/main_view.dart';
+import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
 import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:weui/weui.dart';
 
 class CheckOut extends StatefulWidget {
   const CheckOut({Key? key}) : super(key: key);
@@ -14,9 +21,17 @@ class CheckOut extends StatefulWidget {
 }
 
 class _CheckOutState extends State<CheckOut> {
+  late Map<dynamic, dynamic> userInfo = {};
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     CheckOutViewmodel checkOuProvider = Provider.of<CheckOutViewmodel>(context);
+    CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
     List checkOutListData = checkOuProvider.checkOutListData;
     double allPrice = checkOuProvider.allPrice;
 
@@ -123,7 +138,23 @@ class _CheckOutState extends State<CheckOut> {
                           borderRadius: 5,
                           title: '提交订单',
                           fontSize: 14,
-                          onPressed: () {},
+                          onPressed: () async {
+                            double data = await showBottomSheet(allPrice);
+
+                            WeToast.success(context)(
+                              message: '支付成功',
+                              onClose: () {
+                                cartProvider.removeItem();
+                                Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) => const MainView()
+                                  ),
+                                  // ignore: unnecessary_null_comparison
+                                  (route) => route == null,
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                     )
@@ -134,6 +165,67 @@ class _CheckOutState extends State<CheckOut> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<double> showBottomSheet(double allPrice) async {
+    final double res = await showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: ScreenAdapter.value(600),
+          // ignore: prefer_const_literals_to_create_immutables
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                '￥${allPrice.toString()}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: ScreenAdapter.value(60.0),
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text('支付宝账号'),
+              trailing: Text(userInfo["telephone"] ?? ''),
+            ),
+            Divider(
+              color: Colors.grey[200],
+              height: 1,
+              thickness: 1,
+              indent: 15.0,
+              endIndent: 15.0,
+            ),
+            const ListTile(
+              trailing: Icon(Icons.arrow_right),
+              title: Text('招商银行储蓄卡(6732)'),
+              leading: Icon(Icons.food_bank),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: CustomButton(
+                title: '确认支付',
+                onPressed: () {
+                  Navigator.pop(context, allPrice);
+                },
+              ),
+            )
+          ]),
+        );
+      },
+    );
+    // ignore: avoid_print
+    return res;
+  }
+
+  Future<void> getUserInfo() async {
+    Map<dynamic, dynamic> _userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    setState(
+      () {
+        userInfo = _userInfo;
+      },
     );
   }
 }
