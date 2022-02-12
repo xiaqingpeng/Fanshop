@@ -7,6 +7,9 @@ import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
 import 'package:kuangxianjiaoapp/common/storage.dart';
 import 'package:kuangxianjiaoapp/view/main_view.dart';
 import 'package:kuangxianjiaoapp/view/user/login_view.dart';
+import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
+// ignore: implementation_imports, import_of_legacy_library_into_null_safe
+import 'package:provider/src/provider.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -16,16 +19,18 @@ class SplashView extends StatefulWidget {
 
 // ignore: camel_case_types
 class _SplashView extends State<SplashView> {
-  int currentTime = 5;
+  int currentTime = 3;
   late Timer _timer;
   String _text = 'Unknown';
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    context.read<HomeViewmodel>().getCategory();
+    context.read<HomeViewmodel>().getProduct(0);
     // 计时器创建
     _timer = Timer.periodic(
-      const Duration(seconds: 5),
+      const Duration(seconds: 3),
       (timer) {
         if (currentTime == 0) {
           _timer.cancel();

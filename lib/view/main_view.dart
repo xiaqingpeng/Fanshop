@@ -1,8 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_is_emulator/flutter_is_emulator.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/cart/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/index.dart';
@@ -34,6 +33,7 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     currentpage = tabBodies[currentIndex];
+   
     super.initState();
   }
 

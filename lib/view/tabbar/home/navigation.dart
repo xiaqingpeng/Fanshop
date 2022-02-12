@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/category_content.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
@@ -25,11 +24,11 @@ class _TopNavigationState extends State<TopNavigation> {
   Widget build(BuildContext context) {
     List<Category> categorys = context.read<HomeViewmodel>().getCategorys;
     return Padding(
-      padding: EdgeInsets.all(ScreenAdapter.value(20)),
-      child: Wrap(
-        spacing: ScreenAdapter.value(20.0),
-        runSpacing: ScreenAdapter.value(20.0),
-        children: categorys.map((e) {
+      padding: EdgeInsets.all(ScreenAdapter.value(10)),
+      child:  GridView.count(
+          physics: const NeverScrollableScrollPhysics(), // 禁止滚动
+          crossAxisCount: 5,
+          children: categorys.map((e) {
           return InkWell(
             onTap: () {
               final int id = e.category_id;
@@ -48,8 +47,8 @@ class _TopNavigationState extends State<TopNavigation> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: ScreenAdapter.value(120),
-                  height: ScreenAdapter.value(120),
+                  width: ScreenAdapter.value(100),
+                  height: ScreenAdapter.value(100),
                   child: Image.network(
                     e.category_img,
                     fit: BoxFit.cover,
@@ -68,7 +67,15 @@ class _TopNavigationState extends State<TopNavigation> {
                     ),
                   ),
                 ),
-                Text(e.category_name)
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: ScreenAdapter.value(5.0)),
+                  child: Text(
+                    e.category_name,
+                    style: TextStyle(
+                      fontSize: ScreenAdapter.value(20.0),
+                    ),
+                  ),
+                ),
               ],
             ),
           );
