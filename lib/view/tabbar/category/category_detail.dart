@@ -165,8 +165,8 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
             left: -10.0,
             child: Container(
               padding: const EdgeInsets.all(15.0),
-              child: const BackButton(
-                color: Colors.white,
+              child: BackButton(
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),

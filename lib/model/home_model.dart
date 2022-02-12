@@ -87,10 +87,27 @@ class FindProduct {
       return await HttpController.get(
           "/find_product", "?category_id=$catagory_id");
     }
-
-    if (catagory_id == 4) {
+    if (catagory_id == 0) {
       return {
         "data": [
+           {
+            "category_id": 6,
+            "product_id": 32,
+            "product_name": "迪奥",
+            "market_price": 499,
+            "current_price": 299,
+            "product_image":
+                "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/e3ca931b62c84d18871b2f0f92f102c7_800_800.jpg"
+          },
+          {
+            "category_id": 6,
+            "product_id": 33,
+            "product_name": "兰蔻",
+            "market_price": 399,
+            "current_price": 199,
+            "product_image":
+                "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/79c76f6f52ef485cb1d0c368da29ee1a_800_800.jpg?x-oss-process=image/resize,w_750,h_750/quality,q_85"
+          },
           {
             "category_id": 4,
             "product_id": 18,
@@ -109,13 +126,6 @@ class FindProduct {
             "product_image":
                 "https://kaola-pop.oss.kaolacdn.com/04d2ce59b41d43589270cb3bff3be79d_800_800.jpg"
           },
-        ],
-        "total": 19
-      };
-    }
-    if (catagory_id == 5) {
-      return {
-        "data": [
           {
             "category_id": 5,
             "product_id": 30,
@@ -133,39 +143,8 @@ class FindProduct {
             "current_price": 9999,
             "product_image":
                 "https://kaola-haitao.oss.kaolacdn.com/6f1c8e0eaed392559594b0f281f5aae2.jpg"
-          }
-        ],
-        "total": 19
-      };
-    }
-    if (catagory_id == 6) {
-      return {
-        "data": [
-          {
-            "category_id": 6,
-            "product_id": 32,
-            "product_name": "迪奥",
-            "market_price": 499,
-            "current_price": 299,
-            "product_image":
-                "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/e3ca931b62c84d18871b2f0f92f102c7_800_800.jpg"
           },
-          {
-            "category_id": 6,
-            "product_id": 33,
-            "product_name": "兰蔻",
-            "market_price": 399,
-            "current_price": 199,
-            "product_image":
-                "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/79c76f6f52ef485cb1d0c368da29ee1a_800_800.jpg?x-oss-process=image/resize,w_750,h_750/quality,q_85"
-          }
-        ],
-        "total": 19
-      };
-    }
-    if (catagory_id == 7) {
-      return {
-        "data": [
+         
           {
             "category_id": 7,
             "product_id": 34,
@@ -174,20 +153,13 @@ class FindProduct {
             "current_price": 1077,
             "product_image":
                 "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/f783e68955e24ee2b747b9f64de4e987_800_800.jpg"
-          }
-        ],
-        "total": 19
-      };
-    }
-    if (catagory_id == 8) {
-      return {
-        "data": [
+          },
           {
             "category_id": 8,
             "product_id": 35,
             "product_name": "天之蓝",
             "market_price": 400,
-            "current_price": 350,
+            "current_price": 300,
             "product_image":
                 "https://kaola-haitao.oss.kaolacdn.com/vangoghTemp202202/25618c0635214cf080fa261d900ffd7f_800_800.jpg"
           },

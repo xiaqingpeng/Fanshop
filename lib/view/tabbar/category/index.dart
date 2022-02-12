@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
-import 'package:kuangxianjiaoapp/custom/custom_empty.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/category/category_content.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:vertical_tabs/vertical_tabs.dart';
-import 'category_detail.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 
 // ignore: must_be_immutable
@@ -59,51 +58,9 @@ class _CategoryPage extends State<CategoryPage> {
                   .toList(),
               contents: categorys.map(
                 (Category item) {
-                  return products.isEmpty
-                      ? const CustomEmpty()
-                      : Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 0.0),
-                          child: GridView.count(
-                            // physics: const NeverScrollableScrollPhysics(), // 禁止滚动
-                            crossAxisCount: 2,
-                            children: products.map(
-                              (Product item) {
-                                return InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                          return CategoryDetailPage(item: item);
-                                        },
-                                      ),
-                                    );
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Image.network(
-                                        item.product_image,
-                                        width: 80.0,
-                                        height: 60.0,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const SizedBox(
-                                        height: 6,
-                                      ),
-                                      Text(
-                                        item.product_name,
-                                        textAlign: TextAlign.center,
-                                        overflow: TextOverflow.ellipsis, // 溢出影藏
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ).toList(),
-                          ),
-                        );
+                  return CategoryContent(title: null,
+                   
+                  );
                 },
               ).toList(),
             ),

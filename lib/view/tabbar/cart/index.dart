@@ -174,8 +174,11 @@ class _CartPageState extends State<CartPage> {
                                     },
                                   );
                                 }
-                                checkOutProvider.changeCheckOutListData(
+                                if(!_isEdit){
+                                    checkOutProvider.changeCheckOutListData(
                                     checkoutData, context);// 提交订单
+                                }
+                               
                               },
                             ),
                           ),

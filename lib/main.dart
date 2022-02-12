@@ -6,6 +6,7 @@ import 'package:kuangxianjiaoapp/view/splash.dart';
 import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
 import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
 // import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
 import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
@@ -40,6 +41,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (_) => CategoryViewmodel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => HomeViewmodel(),
         ),
         ChangeNotifierProvider(
           create: (_) => RetrieveNextViewmodel(),

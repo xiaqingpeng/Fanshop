@@ -8,12 +8,16 @@ class Category {
   late final int category_id;
   // ignore: non_constant_identifier_names
   late final String category_name;
+  // ignore: non_constant_identifier_names
+  late final String category_img;
 
   Category({
     // ignore: non_constant_identifier_names
     required this.category_id,
     // ignore: non_constant_identifier_names
     required this.category_name,
+    // ignore: non_constant_identifier_names
+    required this.category_img,
   });
   static List<Category> fromJson(Map json) {
     // ignore: avoid_print
@@ -28,6 +32,7 @@ class Category {
       Category categorys = Category(
         category_id: obj['category_id'],
         category_name: obj['category_name'],
+        category_img: obj['category_img'],
       );
       _category.add(categorys);
     });
