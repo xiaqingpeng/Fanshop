@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -105,14 +106,36 @@ class _SplashView extends State<SplashView> {
                 // padding: const EdgeInsets.only(top: 250.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const <Widget>[
-                    Text(
-                      '邝邝乐购',
-                      style: TextStyle(
+                  children: <Widget>[
+                    // ignore: deprecated_member_use
+                    SizedBox(
+                      width: 250.0,
+                      // ignore: deprecated_member_use
+                      child: ScaleAnimatedTextKit(
+                        onTap: () {
+                          print("Tap Event");
+                        },
+                        text: const [
+                          "刘玲同学",
+                          "情人节快乐",
+                        ],
+                        textStyle: const TextStyle(
                           fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
+                          fontFamily: "Bobbers",
+                          color: Colors.white
+                        ),
+                        textAlign: TextAlign.center,
+                        
+                        // alignment: AlignmentDirectional.topStart,
+                      ),
+                    )
+                    // Text(
+                    //   '纯沁乐购',
+                    //   style: TextStyle(
+                    //       fontSize: 40.0,
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Colors.white),
+                    // ),
                   ],
                 ),
               ),

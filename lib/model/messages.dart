@@ -11,6 +11,7 @@ class Messages extends Translations {
           'home': '首页',
           'category': '分类',
           'cart': '购物车',
+          'message': '信息',
           'mine': '我的',
         },
         'en_US': {
@@ -21,6 +22,7 @@ class Messages extends Translations {
           'home': 'Home',
           'category': 'Category',
           'cart': 'Car',
+          'message': 'Message',
           'mine': 'Mine',
         },
       };

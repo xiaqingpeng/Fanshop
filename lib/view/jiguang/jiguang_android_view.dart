@@ -59,11 +59,13 @@ class _JiGuangAndroidViewState extends State<JiGuangAndroidView> {
           },
         );
   }
+
   @override
   void initState() {
     initPlatformState();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,9 +88,9 @@ class _JiGuangAndroidViewState extends State<JiGuangAndroidView> {
                     DateTime.now().millisecondsSinceEpoch + 3000);
                 var localNotification = LocalNotification(
                   id: 123,
-                  title: '问候邝邝',
+                  title: '问候纯沁',
                   buildId: 1,
-                  content: '邝邝小朋友你好呀',
+                  content: '纯沁小朋友你好呀',
                   fireTime: fireDate,
                   subtitle: '我是推送测试副标题',
                 );

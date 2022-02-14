@@ -93,32 +93,29 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                 ),
                 CustomCard(
                   padding: 2,
-                  child: Expanded(
-                    flex: 1,
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(widget.item.product_name, maxLines: 2),
-                          Stack(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "￥${widget.item.current_price}元",
-                                  style: const TextStyle(color: Colors.red),
-                                ),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(widget.item.product_name, maxLines: 2),
+                        Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "￥${widget.item.current_price}元",
+                                style: const TextStyle(color: Colors.red),
                               ),
-                            ],
-                          ),
-                           Text(
-                            "比市场价低${widget.item.market_price - widget.item.current_price}元",
-                            style: const TextStyle(color: Colors.red),
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          "比市场价低${widget.item.market_price - widget.item.current_price}元",
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -143,8 +140,11 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                         Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
-                            constraints: const BoxConstraints(minHeight: 100),
-                            height: _kAppBarHeight * 3,
+                            constraints: BoxConstraints(
+                              minHeight: _kAppBarHeight*2,
+                              minWidth: MediaQuery.of(context).size.width,
+                            ),
+                            height: _kAppBarHeight*2 ,
                             child: TabBarView(
                                 controller: _controller,
                                 children: const [

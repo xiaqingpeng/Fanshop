@@ -9,27 +9,32 @@ import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
 // ignore: implementation_imports, import_of_legacy_library_into_null_safe
 import 'package:provider/src/provider.dart';
+
 class Recommend extends StatefulWidget {
   const Recommend({Key? key}) : super(key: key);
 
   @override
   State<Recommend> createState() => _RecommendState();
 }
+
 class _RecommendState extends State<Recommend> {
   // ignore: prefer_typing_uninitialized_variables
   @override
   initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     List<Product> products = context.read<HomeViewmodel>().getProducts;
     return ListView.builder(
       itemBuilder: itemBuilder,
       itemCount: products.length,
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
     );
   }
+
   Widget itemBuilder(BuildContext context, int index) {
     List<Product> products = context.read<HomeViewmodel>().getProducts;
     Product item = products[index];

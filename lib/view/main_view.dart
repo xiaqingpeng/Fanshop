@@ -6,6 +6,7 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/cart/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/index.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/message/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/index.dart';
 import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -23,6 +24,7 @@ class _MainViewState extends State<MainView> {
     HomePage(name: 'home'.tr),
     CategoryPage(name: 'category'.tr),
     CartPage(name: 'cart'.tr),
+    MessagePage(name: 'message'.tr),
     MinePage(name: 'mine'.tr),
   ];
   int currentIndex = 0;
@@ -76,6 +78,10 @@ class _MainViewState extends State<MainView> {
                 CupertinoIcons.shopping_cart,
               ),
         label: 'cart'.tr,
+      ),
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.message),
+        label: 'message'.tr,
       ),
       BottomNavigationBarItem(
         icon: const Icon(CupertinoIcons.person),
