@@ -49,7 +49,7 @@ class _MinePageState extends State<MinePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(widget.name),
+            Text('mine'.tr),
           ],
         ),
       ),

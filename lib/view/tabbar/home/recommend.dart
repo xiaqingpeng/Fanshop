@@ -79,7 +79,7 @@ class _RecommendState extends State<Recommend> {
                           "￥${products[index].current_price.toString()}元",
                           style: TextStyle(
                               color: Colors.red,
-                              fontSize: ScreenAdapter.value(50.0)),
+                              fontSize: ScreenAdapter.value(40.0)),
                         ),
                       ),
                       Align(

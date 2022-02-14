@@ -114,7 +114,6 @@ flutter:
   assets:
     - assets/images/login.jpeg
     - assets/images/hongbao.png
-    - assets/launcher/launcher.png
    
    
 

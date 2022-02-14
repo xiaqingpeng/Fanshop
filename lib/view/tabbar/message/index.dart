@@ -36,7 +36,7 @@ class _MessagePageState extends State<MessagePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(widget.name),
+            Text('message'.tr),
           ],
         ),
       ),

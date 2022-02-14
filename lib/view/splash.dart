@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,13 +20,29 @@ class SplashView extends StatefulWidget {
 }
 
 // ignore: camel_case_types
-class _SplashView extends State<SplashView> {
+class _SplashView extends State<SplashView> with TickerProviderStateMixin {
   int currentTime = 3;
   late Timer _timer;
   String _text = 'Unknown';
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration.zero, () {
+      initData();
+    });
+    //创建动画控制器 1秒
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 10000),
+    );
+    //执行刷新监听
+    _animationController.addListener(() {
+      setState(() {});
+    });
+    //开启气泡的运动
+    _animationController.repeat();
+    // 状态栏隐藏
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     initPlatformState();
     context.read<HomeViewmodel>().getCategory();
     context.read<HomeViewmodel>().getProduct(0);
@@ -87,57 +104,82 @@ class _SplashView extends State<SplashView> {
   void dispose() {
     if (_timer.isActive) {
       _timer.cancel();
+      _animationController.dispose();
     }
     super.dispose();
   }
 
+  //创建一个集合用来保存气泡
+  final List<BobbleBean> _list = [];
+
+  //随机数
+  final Random _random = Random(
+    DateTime.now().microsecondsSinceEpoch,
+  );
+
+  //来个动画控制器
+  late AnimationController _animationController;
+
+  void initData() {
+    for (int i = 0; i < 2000; i++) {
+      BobbleBean bean = BobbleBean();
+      //获取随机透明度白色
+      bean.color = getRandomWhiteColor(_random);
+      //设置位置 先来个默认的 绘制的时候再修改
+      double x = _random.nextDouble() * MediaQuery.of(context).size.width;
+      double y = _random.nextDouble() * MediaQuery.of(context).size.height;
+      double z = _random.nextDouble() + 0.5;
+      bean.speed = _random.nextDouble() + 0.01 / z;
+      bean.postion = Offset(x, y);
+      bean.origin = Offset(x, 0);
+      //设置半径
+      bean.radius = 3.0 / z;
+      _list.add(bean);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).primaryColor,
-      child: SizedBox(
+    return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
+
+      ///填充布局
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
+        //层叠布局
         child: Stack(
           children: [
-            SizedBox(
-              width: double.infinity,
-              child: Center(
-                // padding: const EdgeInsets.only(top: 250.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    // ignore: deprecated_member_use
-                    SizedBox(
-                      width: 250.0,
-                      // ignore: deprecated_member_use
-                      child: ScaleAnimatedTextKit(
-                        onTap: () {
-                          print("Tap Event");
-                        },
-                        text: const [
-                          "刘玲同学",
-                          "情人节快乐",
-                        ],
-                        textStyle: const TextStyle(
-                          fontSize: 40.0,
-                          fontFamily: "Bobbers",
-                          color: Colors.white
-                        ),
-                        textAlign: TextAlign.center,
-                        
-                        // alignment: AlignmentDirectional.topStart,
-                      ),
-                    )
-                    // Text(
-                    //   '纯沁乐购',
-                    //   style: TextStyle(
-                    //       fontSize: 40.0,
-                    //       fontWeight: FontWeight.bold,
-                    //       color: Colors.white),
-                    // ),
+            // //第一部分 背景
+            Center(
+              child: SizedBox(
+                width: 250.0,
+                // ignore: deprecated_member_use
+                child: ScaleAnimatedTextKit(
+                  onTap: () {
+                    print("Tap Event");
+                  },
+                  text: const [
+                    "邝邝小朋友",
+                    "情人节快乐",
                   ],
+                  textStyle: const TextStyle(
+                      fontSize: 40.0,
+                      fontFamily: "Bobbers",
+                      color: Colors.white),
+                  textAlign: TextAlign.center,
+
+                  // alignment: AlignmentDirectional.topStart,
                 ),
+              ),
+            ),
+            //第二部分 雪花
+            CustomPaint(
+              size: MediaQuery.of(context).size,
+              //画布
+              painter: SnowCustomMyPainter(
+                list: _list,
+                random: _random,
               ),
             ),
             Positioned(
@@ -153,7 +195,9 @@ class _SplashView extends State<SplashView> {
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.2),
                     //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
-                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20.0),
+                    ),
                     //设置四周边框
                     // border: Border.all(width: 1, color: Colors.white),
                   ),
@@ -170,5 +214,67 @@ class _SplashView extends State<SplashView> {
         ),
       ),
     );
+  }
+}
+
+//全局定义获取颜色的方法
+Color getRandomWhiteColor(Random random) {
+  //透明度 0 ~ 200  255是不透明
+  int a = random.nextInt(200);
+  return Color.fromARGB(a, 255, 255, 255);
+}
+
+///定义 雪花模型 用来保存雪花的基本属性信息
+class BobbleBean {
+  //位置
+  late Offset postion;
+
+  //初始位置
+  late Offset origin;
+  //颜色
+  late Color color;
+  //运动的速度
+  late double speed;
+  //半径
+  late double radius;
+}
+
+///创建画布
+class SnowCustomMyPainter extends CustomPainter {
+  List<BobbleBean> list;
+  Random random;
+  SnowCustomMyPainter({required this.list, required this.random});
+  //先来个画笔
+  final Paint _paint = Paint()..isAntiAlias = true;
+  //具体的绘制功能
+  @override
+  void paint(Canvas canvas, Size size) {
+    // 在绘制前重新计算每个点的位置
+    for (var element in list) {
+      //左右微抖动
+      double dx = random.nextDouble() * 2.0 - 1.0;
+      //竖直方向位置偏移
+      double dy = element.speed;
+      //位置偏移量计算
+      element.postion += Offset(dx, dy);
+      //重置位置
+      if (element.postion.dy > size.height) {
+        element.postion = element.origin;
+      }
+    }
+    //// //绘制
+    for (var element in list) {
+      //修改画笔的颜色
+      _paint.color = element.color;
+      //绘制圆
+      canvas.drawCircle(element.postion, element.radius, _paint);
+    }
+  }
+
+  //刷新 控制
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    //返回false 不刷新
+    return true;
   }
 }
