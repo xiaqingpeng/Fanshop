@@ -27,12 +27,13 @@ class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     List<Product> products = context.read<HomeViewmodel>().getProducts;
-    return ListView.builder(
-      itemBuilder: itemBuilder,
-      itemCount: products.length,
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
+    return SliverList(
+      delegate: SliverChildBuilderDelegate((content, index) {
+        return itemBuilder(context,index);
+      }, childCount: products.length),
     );
+
+    
   }
 
   Widget itemBuilder(BuildContext context, int index) {

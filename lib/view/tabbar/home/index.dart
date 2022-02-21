@@ -55,28 +55,21 @@ class _HomePageState extends State with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(
-        'home'.tr,
-        Theme.of(context).primaryColor,
-        content: CustomSearch(
-          onClick: (v) {
-            print(v.toString() + 'test');
-          },
-        ),
-      ),
-      body: Stack(
-        children: <Widget>[
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox.fromSize(
-                  size: Size.fromHeight(ScreenAdapter.value(360.0)),
-                  child: const TopNavigation(),
-                ),
-                const Recommend(),
-              ],
-            ),
+        appBar: CustomAppbar(
+          'home'.tr,
+          Theme.of(context).primaryColor,
+          content: CustomSearch(
+            onClick: (v) {
+              print(v.toString() + 'test');
+            },
           ),
+        ),
+        body: const CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: <Widget>[
+          CupertinoSliverRefreshControl(),
+          TopNavigation(),
+          Recommend(),
         ],
       ),
     );
@@ -91,14 +84,16 @@ class _HomePageState extends State with WidgetsBindingObserver {
     if (status.isGranted) {
       //权限通过
     } else if (status.isDenied) {
-       // 用户第一次申请拒绝
+      // 用户第一次申请拒绝
       showPermissonAlert(_list[0], '同意', permission);
-    } else if (status==PermissionStatus.permanentlyDenied) {
-
-       // 第二次申请
-      showPermissonAlert(_list[1], '重试', permission,);
-    
-    }  else if (status.isRestricted) {
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      // 第二次申请
+      showPermissonAlert(
+        _list[1],
+        '重试',
+        permission,
+      );
+    } else if (status.isRestricted) {
       //活动限制（例如，设置了家长///控件，仅在iOS以上受支持。
       openAppSettings();
     } else {

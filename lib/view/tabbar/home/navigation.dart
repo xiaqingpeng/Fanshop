@@ -23,12 +23,9 @@ class _TopNavigationState extends State<TopNavigation> {
   @override
   Widget build(BuildContext context) {
     List<Category> categorys = context.read<HomeViewmodel>().getCategorys;
-    return Padding(
-      padding: EdgeInsets.all(ScreenAdapter.value(10)),
-      child:  GridView.count(
-          physics: const NeverScrollableScrollPhysics(), // 禁止滚动
-          crossAxisCount: 5,
-          children: categorys.map((e) {
+    return SliverGrid.count(
+      crossAxisCount: 5,
+      children:  categorys.map((e) {
           return InkWell(
             onTap: () {
               final int id = e.category_id;
@@ -47,6 +44,7 @@ class _TopNavigationState extends State<TopNavigation> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
+                  margin: EdgeInsets.only(top:ScreenAdapter.value(5)),
                   width: ScreenAdapter.value(100),
                   height: ScreenAdapter.value(100),
                   child: Image.network(
@@ -68,7 +66,8 @@ class _TopNavigationState extends State<TopNavigation> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: ScreenAdapter.value(5.0)),
+                  padding:
+                      EdgeInsets.symmetric(vertical: ScreenAdapter.value(5.0)),
                   child: Text(
                     e.category_name,
                     style: TextStyle(
@@ -80,7 +79,8 @@ class _TopNavigationState extends State<TopNavigation> {
             ),
           );
         }).toList(),
-      ),
     );
+
+   
   }
 }
