@@ -25,6 +25,7 @@ class _MinePageState extends State<MinePage> {
           IconButton(
             onPressed: _onPressed,
             icon: Badge(
+              badgeColor: Theme.of(context).primaryColor,
               badgeContent: const Text(
                 '3',
                 style: TextStyle(

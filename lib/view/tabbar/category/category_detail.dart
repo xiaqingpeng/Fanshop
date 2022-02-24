@@ -106,14 +106,14 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 "￥${widget.item.current_price}元",
-                                style: const TextStyle(color: Colors.red),
+                                style: TextStyle(color: Theme.of(context).primaryColor),
                               ),
                             ),
                           ],
                         ),
                         Text(
                           "比市场价低${widget.item.market_price - widget.item.current_price}元",
-                          style: const TextStyle(color: Colors.red),
+                          style: TextStyle(color:  Theme.of(context).primaryColor),
                         ),
                       ],
                     ),
@@ -184,6 +184,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                       borderRadius: 0.0,
                       content: count > 0
                           ? Badge(
+                              badgeColor: Theme.of(context).primaryColor,
                               badgeContent: Text(
                                 count.toInt().toString(),
                                 style: const TextStyle(
@@ -221,7 +222,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                   Expanded(
                     flex: 2,
                     child: CustomButton(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Theme.of(context).primaryColor,
                       borderRadius: 0.0,
                       title: "立即购买",
                       onPressed: () {

@@ -71,11 +71,11 @@ class _CheckOutState extends State<CheckOut> {
                                   maxLines: 2),
                               Text(
                                 "￥${checkOutListData[index]["current_price"]}",
-                                style: const TextStyle(color: Colors.red),
+                                style: TextStyle(color:  Theme.of(context).primaryColor),
                               ),
                               Text(
                                 "x${checkOutListData[index]["current_count"]}",
-                                style: const TextStyle(color: Colors.red),
+                                style: TextStyle(color:  Theme.of(context).primaryColor),
                               ),
                             ],
                           ),

@@ -65,7 +65,7 @@ class _CartItemState extends State<CartItem> {
                   Text("${_itemData["product_name"]}", maxLines: 2),
                   Text(
                     "比市场价低${_itemData["market_price"] - _itemData["current_price"]}元",
-                    style: const TextStyle(color: Colors.red),
+                    style: TextStyle(color:  Theme.of(context).primaryColor),
                   ),
                   Stack(
                     children: <Widget>[
@@ -73,7 +73,7 @@ class _CartItemState extends State<CartItem> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "￥${_itemData["current_price"]}",
-                          style: const TextStyle(color: Colors.red),
+                          style: TextStyle(color:Theme.of(context).primaryColor),
                         ),
                       ),
                       Align(
