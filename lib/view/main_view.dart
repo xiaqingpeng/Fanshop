@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:get/route_manager.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/cart/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/index.dart';

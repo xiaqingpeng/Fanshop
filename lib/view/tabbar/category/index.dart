@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
+import 'package:kuangxianjiaoapp/utils/platform.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/category_content.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/category/webview_html.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:vertical_tabs/vertical_tabs.dart';
 import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:barcode_scan/barcode_scan.dart';
 
 // ignore: must_be_immutable
 class CategoryPage extends StatefulWidget {
@@ -17,6 +21,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPage extends State<CategoryPage> {
+  var textStr = '';
   @override
   initState() {
     context.read<CategoryViewmodel>().getCategory();
@@ -31,10 +36,40 @@ class _CategoryPage extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     List<Category> categorys = context.read<CategoryViewmodel>().getCategorys;
-    List<Product> products =
-        Provider.of<CategoryViewmodel>(context).getProducts;
     return Scaffold(
-      appBar: CustomAppbar('category'.tr, Theme.of(context).primaryColor),
+      appBar: CustomAppbarActions(
+        'category'.tr,
+        Theme.of(context).primaryColor,
+        [
+          PlatformUtils.isWeb
+              ? Row()
+              : IconButton(
+                  onPressed: () {
+                    getQrcodeState().then(
+                      (value) => setState(
+                        () {
+                          // print(value.toString()+'testoop');
+                          textStr = value!;
+                          if (value.isNotEmpty) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return WebViewHtml(
+                                    title: value,
+                                  );
+                                },
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.qr_code_scanner_outlined),
+                ),
+        ],
+      ),
       body: categorys.isEmpty
           ? Center(
               child: CircularProgressIndicator(
@@ -58,12 +93,29 @@ class _CategoryPage extends State<CategoryPage> {
                   .toList(),
               contents: categorys.map(
                 (Category item) {
-                  return CategoryContent(title: null,
-                   
+                  return CategoryContent(
+                    title: null,
                   );
                 },
               ).toList(),
             ),
     );
+  }
+
+  //扫描二维码
+  static Future<String?> getQrcodeState() async {
+    try {
+      const ScanOptions options = ScanOptions(
+        strings: {
+          'cancel': '取消',
+          'flash_on': '开启闪光灯',
+          'flash_off': '关闭闪光灯',
+        },
+      );
+      final ScanResult result = await BarcodeScanner.scan(options: options);
+      return result.rawContent;
+      // ignore: empty_catches
+    } catch (e) {}
+    return null;
   }
 }
