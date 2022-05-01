@@ -1,15 +1,16 @@
+// ignore_for_file: unused_import
+
 import 'dart:async';
 import 'dart:math';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:flutter_is_emulator/flutter_is_emulator.dart';
+// import 'package:flutter_is_emulator/flutter_is_emulator.dart';
 import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
-import 'package:kuangxianjiaoapp/common/storage.dart';
+// import 'package:kuangxianjiaoapp/common/storage.dart';
 import 'package:kuangxianjiaoapp/view/main_view.dart';
 import 'package:kuangxianjiaoapp/view/user/login_view.dart';
-import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
+import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 // ignore: implementation_imports, import_of_legacy_library_into_null_safe
 import 'package:provider/src/provider.dart';
 
@@ -23,7 +24,7 @@ class SplashView extends StatefulWidget {
 class _SplashView extends State<SplashView> with TickerProviderStateMixin {
   int currentTime = 3;
   late Timer _timer;
-  String _text = 'Unknown';
+  final String _text = 'Unknown';
   @override
   void initState() {
     super.initState();
@@ -31,21 +32,21 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
       initData();
     });
     //创建动画控制器 1秒
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 10000),
-    );
+    // _animationController = AnimationController(
+    //   vsync: this,
+    //   duration: const Duration(milliseconds: 10000),
+    // );
     //执行刷新监听
-    _animationController.addListener(() {
-      setState(() {});
-    });
+    // _animationController.addListener(() {
+    //   setState(() {});
+    // });
     //开启气泡的运动
-    _animationController.repeat();
+    // _animationController.repeat();
     // 状态栏隐藏
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-    initPlatformState();
-    context.read<HomeViewmodel>().getCategory();
-    context.read<HomeViewmodel>().getProduct(0);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    // initPlatformState();
+    // context.read<CategoryViewmodel>().getCategory();
+    // context.read<CategoryViewmodel>().getProduct(0);
     // 计时器创建
     _timer = Timer.periodic(
       const Duration(seconds: 3),
@@ -65,25 +66,25 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
     );
   }
 
-  initPlatformState() async {
-    String text;
-    try {
-      bool res = await FlutterIsEmulator.isDeviceAnEmulatorOrASimulator;
-      text = res.toString();
-      // ignore: nullable_type_in_catch_clause
-    } on PlatformException {
-      text = 'Error.';
-    }
+  // initPlatformState() async {
+  //   String text;
+  //   try {
+  //     bool res = await FlutterIsEmulator.isDeviceAnEmulatorOrASimulator;
+  //     text = res.toString();
+  //     // ignore: nullable_type_in_catch_clause
+  //   } on PlatformException {
+  //     text = 'Error.';
+  //   }
 
-    if (!mounted) return;
+  //   if (!mounted) return;
 
-    setState(() {
-      _text = text;
-    });
-  }
+  //   setState(() {
+  //     _text = text;
+  //   });
+  // }
 
   void next() async {
-    await Storage.setString('device', _text);
+    // await Storage.setString('device', _text);
     final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
     // print("获取到的用户信息为" + userInfo.toString());
     // 判断用户是否登录
@@ -104,7 +105,7 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
   void dispose() {
     if (_timer.isActive) {
       _timer.cancel();
-      _animationController.dispose();
+      // _animationController.dispose();
     }
     super.dispose();
   }
@@ -118,7 +119,7 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
   );
 
   //来个动画控制器
-  late AnimationController _animationController;
+  // late AnimationController _animationController;
 
   void initData() {
     for (int i = 0; i < 2000; i++) {
@@ -160,11 +161,11 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
                     print("Tap Event");
                   },
                   text: const [
-                    "邝邝小朋友",
-                    "情人节快乐",
+                    "精选好物",
+                    "不付每一份热爱",
                   ],
                   textStyle: const TextStyle(
-                      fontSize: 40.0,
+                      fontSize: 30.0,
                       fontFamily: "Bobbers",
                       color: Colors.white),
                   textAlign: TextAlign.center,
@@ -174,14 +175,14 @@ class _SplashView extends State<SplashView> with TickerProviderStateMixin {
               ),
             ),
             //第二部分 雪花
-            CustomPaint(
-              size: MediaQuery.of(context).size,
-              //画布
-              painter: SnowCustomMyPainter(
-                list: _list,
-                random: _random,
-              ),
-            ),
+            // CustomPaint(
+            //   size: MediaQuery.of(context).size,
+            //   //画布
+            //   painter: SnowCustomMyPainter(
+            //     list: _list,
+            //     random: _random,
+            //   ),
+            // ),
             Positioned(
               child: GestureDetector(
                 onTap: () => next(),

@@ -53,7 +53,6 @@ class RetrieveNextViewmodel extends ChangeNotifier {
     var result = await _model.verificationcode(
       telephone,
       verificationcode,
-      0
     );
     if (result != null) {
       // 登录成功返回到首页

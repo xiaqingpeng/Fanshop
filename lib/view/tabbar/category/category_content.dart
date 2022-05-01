@@ -20,7 +20,7 @@ class _CategoryContentState extends State<CategoryContent> {
   Widget build(BuildContext context) {
     // ignore: unnecessary_null_comparison
     List<Product> products =
-        Provider.of<CategoryViewmodel>(context).getProducts;
+        Provider.of<CategoryViewmodel>(context).products;
     if (widget.title == null) {
       return products.isEmpty ? const CustomEmpty() : Content();
     }
@@ -44,7 +44,7 @@ class _CategoryContentState extends State<CategoryContent> {
   // ignore: non_constant_identifier_names
   Widget Content() {
     List<Product> products =
-        Provider.of<CategoryViewmodel>(context).getProducts;
+        Provider.of<CategoryViewmodel>(context).products;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
       child: GridView.count(

@@ -4,19 +4,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:kuangxianjiaoapp/custom/custom_search.dart';
 import 'package:kuangxianjiaoapp/utils/platform.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/navigation.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/recommend.dart';
+import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+
 import 'package:permission_handler/permission_handler.dart';
-// ignore: implementation_imports
+import 'package:kuangxianjiaoapp/api/logs.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   String name;
   HomePage({Key? key, required this.name}) : super(key: key) {
-    print('StatelessWidget 构造函数被调用了!');
+    // print('StatelessWidget 构造函数被调用了!');
   }
   @override
   _HomePageState createState() => _HomePageState();
@@ -26,6 +30,9 @@ class _HomePageState extends State with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+     final AddLogs _model = AddLogs();
+    _model.addLogs("flutter/home", {});
+   
     if (!PlatformUtils.isWeb) {
       checkPermission();
     }
@@ -47,23 +54,23 @@ class _HomePageState extends State with WidgetsBindingObserver {
   @override
   void dispose() {
     // 注销观察者
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppbar(
-          'home'.tr,
-          Theme.of(context).primaryColor,
-          content: CustomSearch(
-            onClick: (v) {
-              print(v.toString() + 'test');
-            },
-          ),
+      appBar: CustomAppbar(
+        'home'.tr,
+        Theme.of(context).primaryColor,
+        content: CustomSearch(
+          onClick: (v) {
+            print(v.toString() + 'test');
+          },
         ),
-        body: const CustomScrollView(
+      ),
+      body: const CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           CupertinoSliverRefreshControl(),
@@ -180,4 +187,6 @@ class _HomePageState extends State with WidgetsBindingObserver {
   void closeApp() {
     SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
+
+ 
 }

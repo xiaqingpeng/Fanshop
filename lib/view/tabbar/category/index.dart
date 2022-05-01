@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/api/logs.dart';
+import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/utils/platform.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/category/category_content.dart';
@@ -24,8 +26,10 @@ class _CategoryPage extends State<CategoryPage> {
   var textStr = '';
   @override
   initState() {
-    context.read<CategoryViewmodel>().getCategory();
     super.initState();
+     context.read<CategoryViewmodel>().getCategory();
+      final AddLogs _model = AddLogs();
+      _model.addLogs("flutter/category", {});
   }
 
   _onSelect(int index, categorys) {
@@ -35,7 +39,8 @@ class _CategoryPage extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Category> categorys = context.read<CategoryViewmodel>().getCategorys;
+    List<Category> categorys = context.watch<CategoryViewmodel>().categorys;
+    print(categorys.toString() + 'categorys');
     return Scaffold(
       appBar: CustomAppbarActions(
         'category'.tr,
@@ -118,4 +123,6 @@ class _CategoryPage extends State<CategoryPage> {
     } catch (e) {}
     return null;
   }
+
+ 
 }

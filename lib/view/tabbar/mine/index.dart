@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/api/logs.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -15,6 +16,12 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+   @override
+  void initState() {
+    super.initState();
+    final AddLogs _model = AddLogs();
+      _model.addLogs("flutter/mine", {});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +63,6 @@ class _MinePageState extends State<MinePage> {
       ),
     );
   }
-
+ 
   _onPressed() {}
 }

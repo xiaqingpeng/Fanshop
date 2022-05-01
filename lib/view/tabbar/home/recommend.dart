@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
@@ -22,11 +24,12 @@ class _RecommendState extends State<Recommend> {
   @override
   initState() {
     super.initState();
+    context.read<CategoryViewmodel>().getProduct(0);
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Product> products = context.read<HomeViewmodel>().getProducts;
+    List<Product> products = context.watch<CategoryViewmodel>().products;
     return SliverList(
       delegate: SliverChildBuilderDelegate((content, index) {
         return itemBuilder(context,index);
@@ -37,7 +40,7 @@ class _RecommendState extends State<Recommend> {
   }
 
   Widget itemBuilder(BuildContext context, int index) {
-    List<Product> products = context.read<HomeViewmodel>().getProducts;
+    List<Product> products = context.watch<CategoryViewmodel>().products;
     Product item = products[index];
     CheckOutViewmodel checkOutProvider =
         Provider.of<CheckOutViewmodel>(context);

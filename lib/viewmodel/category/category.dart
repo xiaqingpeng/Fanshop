@@ -30,7 +30,7 @@ class Category {
 
     mapData.forEach((obj) {
       Category categorys = Category(
-        category_id: obj['category_id'],
+        category_id: obj['id'],
         category_name: obj['category_name'],
         category_img: obj['category_img'],
       );
@@ -68,7 +68,6 @@ class Product {
     // ignore: non_constant_identifier_names
     required this.product_id,
     // ignore: non_constant_identifier_names
-  
   });
   static List<Product> fromJson(Map json) {
     List<Product> _product = [];
@@ -76,7 +75,7 @@ class Product {
     mapData.forEach(
       (obj) {
         Product products = Product(
-          category_id: obj['category_id'],
+          category_id: obj['id'],
           current_price: obj['current_price'],
           market_price: obj['market_price'],
           product_image: obj['product_image'],
@@ -92,9 +91,7 @@ class Product {
 
 class CategoryViewmodel extends ChangeNotifier {
   List<Product> _products = [];
-  get getProducts {
-    return _products;
-  }
+  List<Product>  get products =>_products;
 
   void setProducts(List<Product> products) {
     _products = products;
@@ -102,27 +99,31 @@ class CategoryViewmodel extends ChangeNotifier {
   }
 
   // ignore: non_constant_identifier_names
-  getProduct(int catagory_id) async {
+  getProduct(int? catagory_id) async {
     final FindProduct _model = FindProduct();
     var products = await _model.getProduct(catagory_id);
     setProducts(Product.fromJson(products));
+    notifyListeners();
     return Product.fromJson(products);
   }
 
+
   List<Category> _categorys = [];
-  get getCategorys {
-    return _categorys;
-  }
+  List<Category> get categorys =>_categorys;
 
   void setCategorys(List<Category> categorys) {
+    
     _categorys = categorys;
+  
     notifyListeners();
   }
 
   getCategory() async {
     final FindCategory _model = FindCategory();
     var categorys = await _model.getList();
-    setCategorys(Category.fromJson(categorys));
-    return Category.fromJson(categorys);
+    var res = Category.fromJson(categorys);
+    setCategorys(res);
+    notifyListeners();
+    return res;
   }
 }

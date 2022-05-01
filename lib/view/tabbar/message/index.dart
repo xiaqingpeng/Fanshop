@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/api/logs.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/message/drawer.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -14,6 +15,12 @@ class MessagePage extends StatefulWidget {
 }
 
 class _MessagePageState extends State<MessagePage> {
+  @override
+  void initState() {
+    super.initState();
+     final AddLogs _model = AddLogs();
+      _model.addLogs("flutter/category", {});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +49,6 @@ class _MessagePageState extends State<MessagePage> {
       ),
     );
   }
-
+ 
   _onPressed() {}
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +12,7 @@ import 'package:kuangxianjiaoapp/view/tabbar/home/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/message/index.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/index.dart';
 import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
+import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
@@ -36,9 +39,8 @@ class _MainViewState extends State<MainView> {
 
   @override
   void initState() {
-    currentpage = tabBodies[currentIndex];
-
     super.initState();
+    currentpage = tabBodies[currentIndex];
   }
 
   @override
@@ -73,7 +75,9 @@ class _MainViewState extends State<MainView> {
 
   Widget build(BuildContext context) {
     CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
+   
     cartProvider.Cart(); //获取购物车缓存数据
+   
     double count = cartProvider.allCount;
     List<BottomNavigationBarItem> bottomTabs = [
       BottomNavigationBarItem(

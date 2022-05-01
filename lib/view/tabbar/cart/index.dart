@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:kuangxianjiaoapp/api/logs.dart';
+import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
 // ignore: unused_import
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/custom/custom_button.dart';
@@ -32,6 +34,8 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
+     final AddLogs _model = AddLogs();
+      _model.addLogs("flutter/cart", {});
   }
 
   //去结算
@@ -52,19 +56,23 @@ class _CartPageState extends State<CartPage> {
     String? buttonText = {true: "删除", false: '结算'}[_isEdit];
     return Scaffold(
       appBar: CustomAppbarActions(
-       'cart'.tr,
+        'cart'.tr,
         Theme.of(context).primaryColor,
         [
-          cartProvider.cartList.isNotEmpty?IconButton(
-            onPressed: () {
-              setState(
-                () {
-                  _isEdit = !_isEdit;
-                },
-              );
-            },
-            icon: _isEdit ? const Icon(Icons.delete) : const Icon(Icons.launch),
-          ):Row(),
+          cartProvider.cartList.isNotEmpty
+              ? IconButton(
+                  onPressed: () {
+                    setState(
+                      () {
+                        _isEdit = !_isEdit;
+                      },
+                    );
+                  },
+                  icon: _isEdit
+                      ? const Icon(Icons.delete)
+                      : const Icon(Icons.launch),
+                )
+              : Row(),
         ],
       ),
       body: cartProvider.cartList.isNotEmpty
@@ -174,11 +182,10 @@ class _CartPageState extends State<CartPage> {
                                     },
                                   );
                                 }
-                                if(!_isEdit){
-                                    checkOutProvider.changeCheckOutListData(
-                                    checkoutData, context);// 提交订单
+                                if (!_isEdit) {
+                                  checkOutProvider.changeCheckOutListData(
+                                      checkoutData, context); // 提交订单
                                 }
-                               
                               },
                             ),
                           ),
@@ -192,4 +199,6 @@ class _CartPageState extends State<CartPage> {
           : const EmptyItem(),
     );
   }
+
+ 
 }

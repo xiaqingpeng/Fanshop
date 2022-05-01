@@ -46,7 +46,11 @@ dependencies:
   screen_ratio_adapter: ^3.0.0
   image_picker: ^0.8.0+3
   # 日期选择
-  flutter_datetime_picker: ^1.5.1
+  # flutter_datetime_picker: ^1.5.1
+  flutter_datetime_picker:
+    git:
+      url: https://github.com/Realank/flutter_datetime_picker.git
+      ref: master
   # 图形报表
   flutter_chart_csx: ^0.0.3
   # RSA 加密
@@ -72,7 +76,7 @@ dependencies:
   get: ^4.6.1
   http: ^0.13.3 #latest version
   # 检测设备是不是模拟器
-  flutter_is_emulator: any
+  # flutter_is_emulator: any
   flutter_screen_adapter: ^0.0.3
   animated_text_kit: ^4.2.1
   permission_handler: ^5.1.0+2
@@ -83,7 +87,9 @@ flutter_native_splash:
     image: assets/launcher/launcher.png
     android: true
     ios: true
+    web: true
     fullscreen: true
+    web_image_mode: contain 
 
 flutter_icons:
   image_path: "assets/appicon/appicon.jpeg"

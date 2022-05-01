@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: '邝邝乐购',
       theme: ThemeData.light().copyWith(
         primaryColor: themes[index],
         buttonTheme: ButtonThemeData(
