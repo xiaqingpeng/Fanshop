@@ -82,6 +82,9 @@ dependencies:
   permission_handler: ^5.1.0+2
   barcode_scan: ^3.0.1
   webview_flutter: any
+  url_launcher: ^6.0.5
+  flutter_echarts: ^2.3.0
+  qr_flutter: ^4.0.0
 flutter_native_splash:
     color: "#ffffff" 
     image: assets/launcher/launcher.png
@@ -139,10 +142,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: iconfont
+      fonts:
+       - asset: fonts/iconfont.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -4,6 +4,8 @@ import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/api/logs.dart';
 import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/mine/header.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/mine/tableList.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 // ignore: must_be_immutable
@@ -16,12 +18,13 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
-   @override
+  @override
   void initState() {
     super.initState();
     final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/mine", {});
+    _model.addLogs("flutter/mine", {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,17 +55,16 @@ class _MinePageState extends State<MinePage> {
         ],
       ),
       endDrawer: const MyDrawer(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('mine'.tr),
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[const HeaderPage(), TabList(),const Icon(
+            IconData(0xe620, fontFamily: 'iconfont'),
+           
+            color: Colors.black45,
+            // size: 20,
+          ),],
       ),
     );
   }
- 
+
   _onPressed() {}
 }
