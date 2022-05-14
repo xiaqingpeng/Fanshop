@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MineServicePage extends StatelessWidget {
@@ -12,9 +13,7 @@ class MineServicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('$name'),
-      ),
+      appBar: CustomAppbar(name, Theme.of(context).primaryColor,),
       body: ListView(
         children: <Widget>[
           Container(

@@ -20,7 +20,7 @@ class _EmptyItemState extends State<EmptyItem> {
               radius: 50,
               backgroundColor: Colors.grey[200],
               child: const Icon(
-                Icons.shopping_cart,
+                IconData(0xe7b2, fontFamily: 'iconfont2'),
                 size: 50.0,
                 color: Colors.white,
               ),

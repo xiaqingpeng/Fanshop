@@ -75,17 +75,21 @@ class _MainViewState extends State<MainView> {
 
   Widget build(BuildContext context) {
     CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
-   
+
     cartProvider.Cart(); //获取购物车缓存数据
-   
+
     double count = cartProvider.allCount;
     List<BottomNavigationBarItem> bottomTabs = [
       BottomNavigationBarItem(
-        icon: const Icon(CupertinoIcons.home),
+        icon: const Icon(
+          IconData(0xe639, fontFamily: 'iconfont2'),
+        ),
         label: 'home'.tr,
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.category),
+        icon: const Icon(
+          IconData(0xe65e, fontFamily: 'iconfont2'),
+        ),
         label: 'category'.tr,
       ),
       BottomNavigationBarItem(
@@ -107,11 +111,15 @@ class _MainViewState extends State<MainView> {
         label: 'cart'.tr,
       ),
       BottomNavigationBarItem(
-        icon: const Icon(Icons.message),
+        icon: const Icon(
+          IconData(0xe681, fontFamily: 'iconfont2'),
+        ),
         label: 'message'.tr,
       ),
       BottomNavigationBarItem(
-        icon: const Icon(CupertinoIcons.person),
+        icon: const Icon(
+          IconData(0xe638, fontFamily: 'iconfont2'),
+        ),
         label: 'mine'.tr,
       ),
     ];
@@ -154,7 +162,7 @@ class _MainViewState extends State<MainView> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(
-                      CupertinoIcons.home,
+                      const IconData(0xe639, fontFamily: 'iconfont2'),
                       color: getColor(0),
                     ),
                     Text(
@@ -174,7 +182,7 @@ class _MainViewState extends State<MainView> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(
-                      Icons.category,
+                      const IconData(0xe65e, fontFamily: 'iconfont2'),
                       color: getColor(1),
                     ),
                     Text(
@@ -194,7 +202,7 @@ class _MainViewState extends State<MainView> {
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     Icon(
-                      Icons.message,
+                     IconData(0xe681, fontFamily: 'iconfont2'),
                       color: Colors.transparent,
                     ),
                     // Text('message'.tr)
@@ -243,7 +251,7 @@ class _MainViewState extends State<MainView> {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Icon(
-                      CupertinoIcons.person,
+                      const IconData(0xe638, fontFamily: 'iconfont2'),
                       color: getColor(4),
                     ),
                     Text(
@@ -264,7 +272,7 @@ class _MainViewState extends State<MainView> {
             onTap(2);
           },
           child: const Icon(
-            Icons.add,
+            IconData(0xe8b3, fontFamily: 'iconfont2'),
             color: Colors.white,
           ),
         ),

@@ -71,7 +71,7 @@ class _CategoryPage extends State<CategoryPage> {
                       ),
                     );
                   },
-                  icon: const Icon(Icons.qr_code_scanner_outlined),
+                  icon: const Icon( IconData(0xe8b5, fontFamily: 'iconfont2'),),
                 ),
         ],
       ),

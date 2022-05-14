@@ -42,12 +42,12 @@ class _MinePageState extends State<MinePage> {
                   color: Colors.white,
                 ),
               ),
-              child: const Icon(Icons.message),
+              child: const Icon( IconData(0xe681, fontFamily: 'iconfont2'),),
             ),
           ),
           Builder(
             builder: (context) => IconButton(
-              icon: const Icon(Icons.settings),
+              icon: const Icon(IconData(0xe70f, fontFamily: 'iconfont2'),),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
@@ -56,12 +56,10 @@ class _MinePageState extends State<MinePage> {
       ),
       endDrawer: const MyDrawer(),
       body: ListView(
-        children: <Widget>[const HeaderPage(), TabList(),const Icon(
-            IconData(0xe620, fontFamily: 'iconfont'),
-           
-            color: Colors.black45,
-            // size: 20,
-          ),],
+        children: <Widget>[
+          const HeaderPage(),
+          TabList(),
+        ],
       ),
     );
   }

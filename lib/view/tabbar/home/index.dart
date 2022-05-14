@@ -3,18 +3,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
-import 'package:kuangxianjiaoapp/custom/custom_search.dart';
+import 'package:kuangxianjiaoapp/custom/custom_ripple.dart';
 import 'package:kuangxianjiaoapp/utils/platform.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/navigation.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/recommend.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/home/search_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -26,19 +22,21 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State with WidgetsBindingObserver {
+class _HomePageState extends State
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
+  TabController? tabController;
   @override
   void initState() {
     super.initState();
-     final AddLogs _model = AddLogs();
+    final AddLogs _model = AddLogs();
     _model.addLogs("flutter/home", {});
-   
+
     if (!PlatformUtils.isWeb) {
       checkPermission();
     }
-
+    tabController = TabController(length: 3, vsync: this);
     // 注册观察者
-    WidgetsBinding.instance!.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -54,31 +52,94 @@ class _HomePageState extends State with WidgetsBindingObserver {
   @override
   void dispose() {
     // 注销观察者
-    WidgetsBinding.instance!.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+    tabController?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(
-        'home'.tr,
-        Theme.of(context).primaryColor,
-        content: CustomSearch(
-          onClick: (v) {
-            print(v.toString() + 'test');
-          },
-        ),
-      ),
-      body: const CustomScrollView(
-        physics: BouncingScrollPhysics(),
-        slivers: <Widget>[
-          CupertinoSliverRefreshControl(),
-          TopNavigation(),
-          Recommend(),
-        ],
-      ),
-    );
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment.topLeft,
+
+                    ///导航栏
+                    child: TabBar(
+                      isScrollable: true,
+                      labelColor: Theme.of(context).primaryColor,
+                      // unselectedLabelColor:Colors.black ,
+                      controller: tabController,
+                      // labelStyle: Styles.style_FE8C28_24_bold,
+                      // unselectedLabelStyle: Styles.style_FFAE2E_16,
+                      tabs: const [
+                        Tab(
+                          // text: StringStyles.tabHome.tr,
+                          text: '首页',
+                        ),
+                        Tab(
+                          text: '广场',
+                        ),
+                        Tab(
+                          // text: StringStyles.tabAsk.tr,
+                          text: '问答',
+                        )
+                      ],
+                    ),
+                  ),
+
+                  ///间隔
+                  const Expanded(child: SizedBox()),
+
+                  ///搜索框
+                  CustomRipple(
+                      circular: 20,
+                      onTap: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) {
+                                  return const SearchPage();
+                                },
+                              ),
+                            )
+                            // Get.toNamed(Routes.searchPage)
+                          },
+                    //   child: const Padding(
+                    //   padding: EdgeInsets.all(5),
+                    //   child: Icon(
+                    //     IconData(0xe681, fontFamily: 'iconfont2'),
+                    //   ),
+                    // ),
+                    child: const Icon(Icons.search),
+                  ),
+                ],
+              ),
+              Expanded(
+                  child: TabBarView(
+                controller: tabController,
+                children: const [
+                  CustomScrollView(
+                    physics: BouncingScrollPhysics(),
+                    slivers: <Widget>[
+                      CupertinoSliverRefreshControl(),
+                      TopNavigation(),
+                      Recommend(),
+                    ],
+                  ),
+                  Text('广场'),
+                  Text('问答'),
+                ],
+              )),
+            ],
+          ),
+        ));
   }
 
   // 检查权限
@@ -187,6 +248,4 @@ class _HomePageState extends State with WidgetsBindingObserver {
   void closeApp() {
     SystemChannels.platform.invokeMethod('SystemNavigator.pop');
   }
-
- 
 }
