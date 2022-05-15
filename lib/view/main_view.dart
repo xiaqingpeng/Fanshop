@@ -25,7 +25,7 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   List<Widget> tabBodies = [
-    HomePage(name: 'home'.tr),
+    HomePage(name: 'synthesize'.tr),
     CategoryPage(name: 'category'.tr),
     MessagePage(name: 'message'.tr),
     CartPage(name: 'cart'.tr),
@@ -84,7 +84,7 @@ class _MainViewState extends State<MainView> {
         icon: const Icon(
           IconData(0xe639, fontFamily: 'iconfont2'),
         ),
-        label: 'home'.tr,
+        label: 'synthesize'.tr,
       ),
       BottomNavigationBarItem(
         icon: const Icon(
@@ -166,7 +166,7 @@ class _MainViewState extends State<MainView> {
                       color: getColor(0),
                     ),
                     Text(
-                      'home'.tr,
+                      'synthesize'.tr,
                       style: TextStyle(
                         color: getColor(0),
                       ),

@@ -81,7 +81,7 @@ class CustomSearch extends StatelessWidget {
                 suffixIcon: GestureDetector(
                   onTap: () {
                     //addPostFrameCallback是 StatefulWidge 渲染结束的回调，只会被调用一次
-                    SchedulerBinding.instance!.addPostFrameCallback(
+                    SchedulerBinding.instance.addPostFrameCallback(
                       (_) {
                         textController.text = "";
                       },

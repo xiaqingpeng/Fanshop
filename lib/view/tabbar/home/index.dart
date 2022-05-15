@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:kuangxianjiaoapp/custom/custom_ripple.dart';
 import 'package:kuangxianjiaoapp/utils/platform.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/home/navigation.dart';
@@ -74,21 +75,30 @@ class _HomePageState extends State
                     child: TabBar(
                       isScrollable: true,
                       labelColor: Theme.of(context).primaryColor,
-                      // unselectedLabelColor:Colors.black ,
+                      unselectedLabelColor:Colors.black ,
                       controller: tabController,
-                      // labelStyle: Styles.style_FE8C28_24_bold,
-                      // unselectedLabelStyle: Styles.style_FFAE2E_16,
-                      tabs: const [
+                      labelStyle: TextStyle(color:Theme.of(context).primaryColor ),
+                      unselectedLabelStyle: const TextStyle(color:Colors.black),
+
+                       // 标签指示器的颜色
+                            indicatorColor: Theme.of(context).primaryColor,
+                            // 标签的颜色
+                          
+                            // 指示器的大小
+                            indicatorSize: TabBarIndicatorSize.tab,
+                            // 指示器的权重，即线条高度
+                            indicatorWeight: 2.0,
+                      tabs: [
                         Tab(
                           // text: StringStyles.tabHome.tr,
-                          text: '首页',
+                          text: 'home'.tr,
                         ),
                         Tab(
-                          text: '广场',
+                          text: 'square'.tr,
                         ),
                         Tab(
                           // text: StringStyles.tabAsk.tr,
-                          text: '问答',
+                          text: 'question'.tr,
                         )
                       ],
                     ),

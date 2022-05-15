@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/income_detail.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/mineservice/mine_service.dart';
 import 'package:kuangxianjiaoapp/view/tabbar/mine/qrcode_page.dart';
+import 'package:kuangxianjiaoapp/view/tabbar/mine/feedback.dart';
 
 class TabList extends StatelessWidget {
   final List navigatorList = [
@@ -12,6 +13,7 @@ class TabList extends StatelessWidget {
     {'name': '分享二维码', 'id': 6, 'icon': 0xe623},
     {'name': '活跃记录', 'id': 7, 'icon': 0xe617},
     {'name': '售后服务', 'id': 8, 'icon': 0xe610},
+    {'name': '问题反馈', 'id': 9, 'icon': 0xe610},
   ];
 
   Widget _listViewItemUi(BuildContext context, item) {
@@ -36,6 +38,8 @@ class TabList extends StatelessWidget {
                   return QrcodePage(name: item['name'], id: item['id']);
                 } else if (item['name'] == '活跃记录') {
                   return IncomeDetailPage(name: item['name'], id: item['id']);
+                } else if (item['name'] == '问题反馈') {
+                  return FeedbackPage(name: item['name'], id: item['id']);
                 } else if (item['name'] == '我的优惠券') {
                   // return MineTicketPage(name: item['name'], id: item['id']);
                 } else if (item['name'] == '我的地址') {

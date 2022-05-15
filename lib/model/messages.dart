@@ -13,6 +13,10 @@ class Messages extends Translations {
           'cart': '购物车',
           'message': '信息',
           'mine': '我的',
+          'empty': '暂无数据',
+          'synthesize': '综合',
+          'square': '广场',
+          'question': '问答',
         },
         'en_US': {
           'language': 'Set Language',
@@ -24,6 +28,10 @@ class Messages extends Translations {
           'cart': 'Car',
           'message': 'Message',
           'mine': 'Mine',
+          'empty': 'No Data',
+          'synthesize': 'Synthesize',
+          'square': 'Square',
+          'question': 'Question',
         },
       };
 }
