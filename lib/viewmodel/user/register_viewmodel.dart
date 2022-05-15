@@ -64,7 +64,7 @@ class RegisterViewmodel extends ChangeNotifier {
       await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
        final AddLogs _model = AddLogs();
       _model.addLogs("flutter/register", {});
-      Navigator.of(context).pushNamed('login');
+      Navigator.of(context).popAndPushNamed('menu');
     }
     if (result == null) {
       WeDialog.alert(context)(
