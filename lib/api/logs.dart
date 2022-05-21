@@ -15,6 +15,7 @@ String getPlatform() {
   if (PlatformUtils.isFuchsia == true) return 'fuchsia';
   return '平台待定';
 }
+
 // 获取环境
 String getEnvironment() {
   if (PlatformUtils.isProd == true) return 'production';
@@ -23,7 +24,7 @@ String getEnvironment() {
 
 // 获取商品分类
 class AddLogs {
-  Future addLogs(String? desc, Map<dynamic, dynamic>? data) async {
+  Future addLogs(String? desc, {Map<dynamic, dynamic>? data}) async {
     Map<dynamic, dynamic> userInfo =
         await SharedPreferencesUserUtils.getUserInfo("userInfo");
     await HttpController.post("api/add_logs", {
@@ -31,7 +32,7 @@ class AddLogs {
       "desc": desc,
       "data": data,
       "platform": getPlatform(),
-      "environment":getEnvironment()
+      "environment": getEnvironment()
     });
   }
 }

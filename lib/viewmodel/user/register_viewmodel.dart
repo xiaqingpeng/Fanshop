@@ -68,7 +68,7 @@ class RegisterViewmodel extends ChangeNotifier {
           Get.put(UserInfoController()); //获取state的值
       userInfoController.changeUserInfo(result['data']); // 修改state的值
       final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/register", {});
+      _model.addLogs("flutter/register");
       Navigator.of(context).popAndPushNamed('menu');
     }
     if (result == null) {

@@ -22,7 +22,7 @@ class _MinePageState extends State<MinePage> {
   void initState() {
     super.initState();
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/mine", {});
+    _model.addLogs("flutter/mine");
   }
 
   @override

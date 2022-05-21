@@ -30,7 +30,7 @@ class _HomePageState extends State
   void initState() {
     super.initState();
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/home", {});
+    _model.addLogs("flutter/home");
 
     if (!PlatformUtils.isWeb) {
       checkPermission();
