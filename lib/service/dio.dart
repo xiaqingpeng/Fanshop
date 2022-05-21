@@ -1,13 +1,13 @@
 // ignore: import_of_legacy_library_into_null_safe
 // ignore_for_file: prefer_collection_literals, unnecessary_new
 
+import 'package:Fanshop/utils/platform.dart';
 import 'package:dio/dio.dart';
 import 'package:Fanshop/common/SharedPreferences.dart';
-import 'package:Fanshop/utils/platform.dart';
 
-String baseUrl = PlatformUtils.isProd
+String baseUrl = PlatformUtils.isProd ==true
     ? 'http://43.138.203.36:7001/'
-    : 'http://43.138.203.36:7001/';
+    : 'http://127.0.0.1:7001/';
 
 class HttpController {
   static getAuthorization() async {
@@ -27,6 +27,7 @@ class HttpController {
   };
 
   static post(String api, params) async {
+    print(PlatformUtils.isProd );
     // ignore: avoid_print
     print("开始获取数据");
     Response response;

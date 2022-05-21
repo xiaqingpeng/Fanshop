@@ -15,6 +15,11 @@ String getPlatform() {
   if (PlatformUtils.isFuchsia == true) return 'fuchsia';
   return '平台待定';
 }
+// 获取环境
+String getEnvironment() {
+  if (PlatformUtils.isProd == true) return 'production';
+  return 'development';
+}
 
 // 获取商品分类
 class AddLogs {
@@ -26,6 +31,7 @@ class AddLogs {
       "desc": desc,
       "data": data,
       "platform": getPlatform(),
+      "environment":getEnvironment()
     });
   }
 }
