@@ -2,8 +2,8 @@
 // ignore_for_file: prefer_collection_literals, unnecessary_new
 
 import 'package:dio/dio.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
-import 'package:kuangxianjiaoapp/utils/platform.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
+import 'package:Fanshop/utils/platform.dart';
 
 String baseUrl = PlatformUtils.isProd
     ? 'http://43.138.203.36:7001/'
@@ -24,8 +24,8 @@ class HttpController {
     'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS',
     'Accept': '*/*',
     "authorization": getAuthorization()
-  }; 
-  
+  };
+
   static post(String api, params) async {
     // ignore: avoid_print
     print("开始获取数据");
@@ -34,10 +34,10 @@ class HttpController {
     // dio.options.headers= headers;//设置当前的refreshToken
     try {
       // dio.options.contentType = ContentType.parse("application/x-www-form-urlencoded");
-      response = await dio.post(baseUrl + api, data: params );
-     
-      print("获取到的数据:" +(response.data).toString() );
-    
+      response = await dio.post(baseUrl + api, data: params);
+
+      print("获取到的数据:" + (response.data).toString());
+
       if (response.statusCode == 200) {
         return response.data;
       } else {
@@ -50,14 +50,13 @@ class HttpController {
   }
 
   static get(api, params) async {
-    print(params.toString()+"开始获取数据");
+    print(params.toString() + "开始获取数据");
     Response response;
     Dio dio = new Dio();
-   
+
     try {
       if (params.isNotEmpty) {
-       
-        response = await dio.get(baseUrl + api , queryParameters:params);
+        response = await dio.get(baseUrl + api, queryParameters: params);
         // ignore: avoid_print
         print(response);
 
@@ -67,7 +66,7 @@ class HttpController {
           throw Exception('后端请求请求异常');
         }
       } else {
-        response = await dio.get(baseUrl + api,queryParameters:params);
+        response = await dio.get(baseUrl + api, queryParameters: params);
         // ignore: avoid_print
         print("$response  PPPPPPPPP");
         if (response.statusCode == 200) {

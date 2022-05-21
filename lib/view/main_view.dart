@@ -6,13 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/cart/index.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/category/index.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/home/index.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/message/index.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/index.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/view/tabbar/cart/index.dart';
+import 'package:Fanshop/view/tabbar/category/index.dart';
+import 'package:Fanshop/view/tabbar/home/index.dart';
+import 'package:Fanshop/view/tabbar/message/index.dart';
+import 'package:Fanshop/view/tabbar/mine/index.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
@@ -202,7 +202,7 @@ class _MainViewState extends State<MainView> {
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     Icon(
-                     IconData(0xe681, fontFamily: 'iconfont2'),
+                      IconData(0xe681, fontFamily: 'iconfont2'),
                       color: Colors.transparent,
                     ),
                     // Text('message'.tr)

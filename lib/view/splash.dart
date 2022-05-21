@@ -6,11 +6,11 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 // import 'package:flutter_is_emulator/flutter_is_emulator.dart';
-import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
-// import 'package:kuangxianjiaoapp/common/storage.dart';
-import 'package:kuangxianjiaoapp/view/main_view.dart';
-import 'package:kuangxianjiaoapp/view/user/login_view.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/common/sharedPreferences.dart';
+// import 'package:Fanshop/common/storage.dart';
+import 'package:Fanshop/view/main_view.dart';
+import 'package:Fanshop/view/user/login_view.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 // ignore: implementation_imports, import_of_legacy_library_into_null_safe
 import 'package:provider/src/provider.dart';
 

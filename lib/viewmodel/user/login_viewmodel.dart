@@ -1,11 +1,13 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/model/user_model.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:Fanshop/model/user_model.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:get/get.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 
@@ -50,13 +52,17 @@ class LoginViewmodel extends ChangeNotifier {
     }
 
     var result = await _model.login(moible, password);
-   
+
     if (result['data'] != null) {
       // 登录成功返回到首页
       WeToast.success(context)(message: '登录成功');
-       print(result.toString()+'resul872030683');
-      await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
-       final AddLogs _model = AddLogs();
+      print(result.toString() + 'resul872030683');
+      // await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
+      // ignore: non_constant_identifier_names
+      final UserInfoController userInfoController =
+          Get.put(UserInfoController()); //获取state的值
+      userInfoController.changeUserInfo(result['data']); // 修改state的值
+      final AddLogs _model = AddLogs();
       _model.addLogs("flutter/login", {});
       Navigator.of(context).popAndPushNamed('menu');
     }
@@ -105,11 +111,11 @@ class LoginViewmodel extends ChangeNotifier {
 
     Map<dynamic, dynamic> result =
         await _model.verificationcode(moible, verificationcode);
-    print(result.toString()+'resul872030683');
+    print(result.toString() + 'resul872030683');
     if (result != null) {
       // 登录成功返回到首页
       WeToast.success(context)(message: '登录成功');
-    
+
       Navigator.of(context).popAndPushNamed('menu');
     }
     if (result == null) {
@@ -120,7 +126,7 @@ class LoginViewmodel extends ChangeNotifier {
       );
     }
     setIsLogin(false);
-    
+
     notifyListeners(); // 刷新ui
   }
 }

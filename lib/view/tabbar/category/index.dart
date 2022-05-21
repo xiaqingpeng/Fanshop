@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
-import 'package:kuangxianjiaoapp/utils/platform.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/category/category_content.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/category/webview_html.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
+import 'package:Fanshop/custom/custom_appbar_actions.dart';
+import 'package:Fanshop/utils/platform.dart';
+import 'package:Fanshop/view/tabbar/category/category_content.dart';
+import 'package:Fanshop/view/tabbar/category/webview_html.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:vertical_tabs/vertical_tabs.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 
 // ignore: must_be_immutable
 class CategoryPage extends StatefulWidget {
@@ -27,9 +27,9 @@ class _CategoryPage extends State<CategoryPage> {
   @override
   initState() {
     super.initState();
-     context.read<CategoryViewmodel>().getCategory();
-      final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/category", {});
+    context.read<CategoryViewmodel>().getCategory();
+    final AddLogs _model = AddLogs();
+    _model.addLogs("flutter/category", {});
   }
 
   _onSelect(int index, categorys) {
@@ -71,7 +71,9 @@ class _CategoryPage extends State<CategoryPage> {
                       ),
                     );
                   },
-                  icon: const Icon( IconData(0xe8b5, fontFamily: 'iconfont2'),),
+                  icon: const Icon(
+                    IconData(0xe8b5, fontFamily: 'iconfont2'),
+                  ),
                 ),
         ],
       ),
@@ -123,6 +125,4 @@ class _CategoryPage extends State<CategoryPage> {
     } catch (e) {}
     return null;
   }
-
- 
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_card.dart';
+import 'package:Fanshop/custom/custom_card.dart';
 
 class RedPacket extends StatefulWidget {
   const RedPacket({Key? key}) : super(key: key);
@@ -112,7 +112,7 @@ class _RedPacketState extends State<RedPacket>
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(),
                     child: Column(
-                      children:  const [
+                      children: const [
                         CustomCard(
                           child: ListTile(
                             title: Text('大红包'),
@@ -161,7 +161,6 @@ class _RedPacketState extends State<RedPacket>
                             ),
                           ),
                         ),
-                        
                       ],
                     ),
                   ),

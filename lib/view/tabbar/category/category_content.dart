@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_empty.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/category/category_detail.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/custom/custom_empty.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
+import 'package:Fanshop/view/tabbar/category/category_detail.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
@@ -19,8 +19,7 @@ class _CategoryContentState extends State<CategoryContent> {
   @override
   Widget build(BuildContext context) {
     // ignore: unnecessary_null_comparison
-    List<Product> products =
-        Provider.of<CategoryViewmodel>(context).products;
+    List<Product> products = Provider.of<CategoryViewmodel>(context).products;
     if (widget.title == null) {
       return products.isEmpty ? const CustomEmpty() : Content();
     }
@@ -43,8 +42,7 @@ class _CategoryContentState extends State<CategoryContent> {
 
   // ignore: non_constant_identifier_names
   Widget Content() {
-    List<Product> products =
-        Provider.of<CategoryViewmodel>(context).products;
+    List<Product> products = Provider.of<CategoryViewmodel>(context).products;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 0.0),
       child: GridView.count(

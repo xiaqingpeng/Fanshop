@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
+import 'package:Fanshop/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
-
 
 class RetrieveFinishView extends StatefulWidget {
   const RetrieveFinishView({Key? key}) : super(key: key);
@@ -15,20 +14,20 @@ class RetrieveFinishView extends StatefulWidget {
 }
 
 class _RetrieveFinishViewState extends State<RetrieveFinishView> {
- 
   TextEditingController password = TextEditingController(); // 登录密码
   TextEditingController checkpassword = TextEditingController(); // 确认登录密码
   @override
   void initState() {
     super.initState();
   }
+
   @override
   void dispose() {
     super.dispose();
     password.dispose();
     checkpassword.dispose();
-   
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +44,7 @@ class _RetrieveFinishViewState extends State<RetrieveFinishView> {
             obscureText: true,
             textAlign: TextAlign.center,
             textInputAction: TextInputAction.next,
-            onChange: (value)=>password.text = value,
+            onChange: (value) => password.text = value,
           ),
           WeInput(
             label: '确认新密码',
@@ -55,22 +54,24 @@ class _RetrieveFinishViewState extends State<RetrieveFinishView> {
             clearable: true,
             obscureText: true,
             textInputAction: TextInputAction.next,
-            onChange: (value)=>checkpassword.text = value,
+            onChange: (value) => checkpassword.text = value,
           ),
-            CustomButton(
-                horizontal: 10.0,
-                vertical: 10.0,
-                title: "完成",
-                onPressed: _finish,
-                loading: Provider.of<RetrieveFinishViewmodel>(context).getIsLogin,
-          ), 
+          CustomButton(
+            horizontal: 10.0,
+            vertical: 10.0,
+            title: "完成",
+            onPressed: _finish,
+            loading: Provider.of<RetrieveFinishViewmodel>(context).getIsLogin,
+          ),
         ],
       ),
     );
   }
+
   // 下一步
   void _finish() {
-    context.read<RetrieveFinishViewmodel>().register(context,  password.text, checkpassword.text);
+    context
+        .read<RetrieveFinishViewmodel>()
+        .register(context, password.text, checkpassword.text);
   }
-  
 }

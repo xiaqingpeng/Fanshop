@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
-import 'package:kuangxianjiaoapp/common/random.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:Fanshop/common/random.dart';
+import 'package:Fanshop/common/regExp.dart';
 
 class RetrieveNextView extends StatefulWidget {
   const RetrieveNextView({Key? key}) : super(key: key);

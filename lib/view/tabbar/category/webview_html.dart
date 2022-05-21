@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 // ignore: must_be_immutable
@@ -26,7 +26,7 @@ class WebViewExampleState extends State<WebViewHtml> {
           WebView(
             initialUrl: widget.title,
           ),
-           Positioned(
+          Positioned(
             top: 10.0,
             left: -10.0,
             child: Container(

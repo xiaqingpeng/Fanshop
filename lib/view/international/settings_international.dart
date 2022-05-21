@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
-import 'package:kuangxianjiaoapp/getx/messages_getx.dart';
-import 'package:kuangxianjiaoapp/global/global_international.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
+import 'package:Fanshop/getx/messages_getx.dart';
+import 'package:Fanshop/global/global_international.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:get/get.dart';
 
@@ -14,6 +15,23 @@ class SettingsInternational extends StatefulWidget {
 }
 
 class _SettingsInternationalState extends State<SettingsInternational> {
+  late Map<dynamic, dynamic> userInfo = {};
+  @override
+  void initState() {
+    getUserInfo();
+    super.initState();
+  }
+
+  Future<void> getUserInfo() async {
+    Map<dynamic, dynamic> _userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    setState(
+      () {
+        userInfo = _userInfo;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +56,11 @@ class _SettingsInternationalState extends State<SettingsInternational> {
           padding: const EdgeInsets.all(10),
           child: GestureDetector(
             onTap: () async {
+              userInfo['language'] = international[index]['lanuage'] +
+                  '_' +
+                  international[index]['mark'];
+              await SharedPreferencesUserUtils.setUserInfo(
+                  "userInfo", userInfo);
               languageController.language(index); // 修改state的值
               messagesController.changeLanguage(international[index]['lanuage'],
                   international[index]['mark']);

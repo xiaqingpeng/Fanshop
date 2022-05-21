@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
-import 'package:kuangxianjiaoapp/model/messages.dart';
-import 'package:kuangxianjiaoapp/routers/routers.dart';
-import 'package:kuangxianjiaoapp/view/splash.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
-import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
-// import 'package:kuangxianjiaoapp/view/jiguang_android_view.dart';
-// import 'package:kuangxianjiaoapp/view/jiguang_ios_view.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/theme/theme_viewmodel.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
+import 'package:Fanshop/model/messages.dart';
+import 'package:Fanshop/routers/routers.dart';
+import 'package:Fanshop/view/splash.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
+import 'package:Fanshop/viewmodel/cart/check_out.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
+import 'package:Fanshop/viewmodel/home/home.dart';
+// import 'package:Fanshop/view/jiguang_android_view.dart';
+// import 'package:Fanshop/view/jiguang_ios_view.dart';
+import 'package:Fanshop/viewmodel/user/retrieve/retrieve_finish_viewmodel.dart';
+import 'package:Fanshop/viewmodel/user/retrieve/retrieve_next_viewmodel.dart';
+import 'package:Fanshop/viewmodel/user/login_viewmodel.dart';
+import 'package:Fanshop/viewmodel/user/register_viewmodel.dart';
+import 'package:Fanshop/viewmodel/theme/theme_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
-import 'package:kuangxianjiaoapp/global/global_theme.dart';
+import 'package:Fanshop/global/global_theme.dart';
 import 'package:get/get.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final color = await SharedPreferencesThemeUtils.getThemeInfo("color") ?? 0;
+  final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
   ThemeViewmodel themeViewmodel = ThemeViewmodel();
-  themeViewmodel.setColor(color);
+  themeViewmodel.setColor(userInfo['theme'] ?? 0);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: '邝邝乐购',
+      title: 'Fanshop',
       theme: ThemeData.light().copyWith(
         primaryColor: themes[index],
         buttonTheme: ButtonThemeData(

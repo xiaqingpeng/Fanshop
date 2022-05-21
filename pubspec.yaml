@@ -1,4 +1,4 @@
-name: kuangxianjiaoapp
+name: Fanshop
 description: '邝献骄'
 
 # The following line prevents the package from being accidentally published to
@@ -78,7 +78,7 @@ dependencies:
   flutter_screen_adapter: ^0.0.3
   animated_text_kit: ^4.2.1
   permission_handler: ^5.1.0+2
-  barcode_scan: ^3.0.1
+  barcode_scan2: any
   webview_flutter: any
   url_launcher: ^6.0.5
   qr_flutter: ^4.0.0
@@ -96,7 +96,8 @@ flutter_icons:
   image_path: "assets/appicon/appicon.jpeg"
   android: true # can specify file name here e.g. "ic_launcher"
   ios: true # can specify file name here e.g. "My-Launcher-Icon"
- 
+
+
 
 dev_dependencies:
   flutter_test:
@@ -108,7 +109,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-
+  flutter_app_name: ^0.1.0
+flutter_app_name:
+  name: "邝献娇"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

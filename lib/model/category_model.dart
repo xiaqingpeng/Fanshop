@@ -1,7 +1,7 @@
-// import 'package:kuangxianjiaoapp/common/storage.dart';
-import 'package:kuangxianjiaoapp/service/dio.dart';
+// import 'package:Fanshop/common/storage.dart';
+import 'package:Fanshop/service/dio.dart';
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/utils/platform.dart';
+import 'package:Fanshop/utils/platform.dart';
 
 // 获取商品分类
 class FindCategory {

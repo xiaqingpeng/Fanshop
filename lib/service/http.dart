@@ -3,7 +3,7 @@
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
+import 'package:Fanshop/common/sharedPreferences.dart';
 
 const String baseUrl = 'http://127.0.0.1:7001/';
 
@@ -22,7 +22,7 @@ class HttpController {
     'Access-Control-Allow-Methods': 'POST,GET,DELETE,PUT,OPTIONS',
     'Accept': '*/*',
     "authorization": getAuthorization()
-  }; 
+  };
   static Future<dynamic> get(String api,
       {required Map<String, dynamic> params, Function? errorCallback}) async {
     var url = baseUrl + api;
@@ -37,10 +37,10 @@ class HttpController {
     }
     try {
       http.Response res = await http.get(Uri.parse(url), headers: headers);
-       print(res.body.toString()+'test');
+      print(res.body.toString() + 'test');
       return res.body;
     } catch (exception) {
-       print(exception.toString()+'exception');
+      print(exception.toString() + 'exception');
       if (errorCallback != null) {
         errorCallback(exception);
       }
@@ -54,10 +54,10 @@ class HttpController {
       http.Response res =
           await http.post(Uri.parse(url), body: params, headers: headers);
       // ignore: avoid_print
-      print(res.body.toString()+'test');
+      print(res.body.toString() + 'test');
       return json.decode(res.body);
     } catch (e) {
-       print(e.toString()+'e');
+      print(e.toString() + 'e');
       if (errorCallback != null) {
         errorCallback(e);
       }

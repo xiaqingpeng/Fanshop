@@ -23,7 +23,7 @@
 		"project_id":"737518067794330694",
 		"app_id":"105398791",
 		"api_key":"DAEDADe2F3sEApAUl1zrrEAEf0IP1ROBkF+hgZ3TlkYnTdjBCtGi3XdsnIkGpQzyHC9+e233WYIfNg9lW67Ogmz3oZ75YJnL3ZduVQ==",
-		"package_name":"com.example.kuangxianjiaoapp"
+		"package_name":"com.example.Fanshop"
 	},
 	"oauth_client":{
 		"client_id":"105398791",
@@ -31,7 +31,7 @@
 	},
 	"app_info":{
 		"app_id":"105398791",
-		"package_name":"com.example.kuangxianjiaoapp"
+		"package_name":"com.example.Fanshop"
 	},
 	"service":{
 		"analytics":{
@@ -57,12 +57,12 @@
 	"configuration_version":"3.0",
 	"appInfos":[
 		{
-			"package_name":"com.example.kuangxianjiaoapp",
+			"package_name":"com.example.Fanshop",
 			"client":{
 				"app_id":"105398791"
 			},
 			"app_info":{
-				"package_name":"com.example.kuangxianjiaoapp",
+				"package_name":"com.example.Fanshop",
 				"app_id":"105398791"
 			},
 			"oauth_client":{

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
 
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -12,7 +12,10 @@ class QrcodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(name, Theme.of(context).primaryColor,),
+      appBar: CustomAppbar(
+        name,
+        Theme.of(context).primaryColor,
+      ),
       body: Center(
         child: QrImage(
           data: 'http://43.138.203.36:8086/flutter',

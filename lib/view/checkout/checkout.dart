@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
-import 'package:kuangxianjiaoapp/common/sharedPreferences.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/view/main_view.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
+import 'package:Fanshop/common/sharedPreferences.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/view/main_view.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
+import 'package:Fanshop/viewmodel/cart/check_out.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -71,11 +71,13 @@ class _CheckOutState extends State<CheckOut> {
                                   maxLines: 2),
                               Text(
                                 "￥${checkOutListData[index]["current_price"]}",
-                                style: TextStyle(color:  Theme.of(context).primaryColor),
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
                               ),
                               Text(
                                 "x${checkOutListData[index]["current_count"]}",
-                                style: TextStyle(color:  Theme.of(context).primaryColor),
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
                               ),
                             ],
                           ),
@@ -147,8 +149,8 @@ class _CheckOutState extends State<CheckOut> {
                                 cartProvider.removeItem();
                                 Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                    builder: (BuildContext context) => const MainView()
-                                  ),
+                                      builder: (BuildContext context) =>
+                                          const MainView()),
                                   // ignore: unnecessary_null_comparison
                                   (route) => route == null,
                                 );

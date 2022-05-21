@@ -1,10 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/model/home_model.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
-
-
+import 'package:Fanshop/model/home_model.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 
 class HomeViewmodel extends ChangeNotifier {
   List<Product> _products = [];

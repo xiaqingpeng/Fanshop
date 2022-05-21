@@ -1,19 +1,22 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MineServicePage extends StatelessWidget {
-  int ?id;
-  String ?name;
+  int? id;
+  String? name;
   // ignore: use_key_in_widget_constructors
-  MineServicePage({this.name,this.id});
+  MineServicePage({this.name, this.id});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(name, Theme.of(context).primaryColor,),
+      appBar: CustomAppbar(
+        name,
+        Theme.of(context).primaryColor,
+      ),
       body: ListView(
         children: <Widget>[
           Container(
@@ -52,7 +55,7 @@ class MineServicePage extends StatelessWidget {
                       print('售后电话');
                       const String url = 'tel:17304472875';
                       if (await canLaunch(url)) {
-                         print('售后电话正常');
+                        print('售后电话正常');
                         await launch(url);
                       } else {
                         throw 'url不能进行访问，异常。';
@@ -78,4 +81,3 @@ class MineServicePage extends StatelessWidget {
     );
   }
 }
-

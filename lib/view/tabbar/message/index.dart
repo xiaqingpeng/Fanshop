@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/message/drawer.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/custom/custom_appbar_actions.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 // ignore: must_be_immutable
@@ -18,26 +17,18 @@ class _MessagePageState extends State<MessagePage> {
   @override
   void initState() {
     super.initState();
-     final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/category", {});
+    final AddLogs _model = AddLogs();
+    _model.addLogs("flutter/category", {});
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbarActions(
         'message'.tr,
         Theme.of(context).primaryColor,
-        [
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            ),
-          ),
-        ],
+        [],
       ),
-      endDrawer: const MyDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +40,4 @@ class _MessagePageState extends State<MessagePage> {
       ),
     );
   }
- 
-  _onPressed() {}
 }

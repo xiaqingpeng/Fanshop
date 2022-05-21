@@ -1,16 +1,15 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:Fanshop/custom/custom_button.dart';
 
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
+import 'package:Fanshop/viewmodel/user/register_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
-
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);

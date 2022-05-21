@@ -1,16 +1,16 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:Fanshop/custom/custom_button.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
-import 'package:kuangxianjiaoapp/custom/custom_navigationbar.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
+import 'package:Fanshop/custom/custom_navigationbar.dart';
+import 'package:Fanshop/viewmodel/user/register_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
-import 'package:kuangxianjiaoapp/common/random.dart';
+import 'package:Fanshop/common/random.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({Key? key}) : super(key: key);
@@ -149,9 +149,11 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void _getVertifyCode() {
-    String code= getRandom(6);
+    String code = getRandom(6);
     WeDialog.alert(context)('验证码${code},有效期2分钟', onConfirm: () {
-       context.read<RegisterViewmodel>().verificationcode(context,telephone.text,code);
+      context
+          .read<RegisterViewmodel>()
+          .verificationcode(context, telephone.text, code);
       setState(
         () {
           count = 60;
@@ -186,11 +188,11 @@ class _RegisterViewState extends State<RegisterView> {
 
   // 调用日期控件
   _showDatePicker() async {
-    DateTime currentTime= DateTime.now(); // 获取当前时间
+    DateTime currentTime = DateTime.now(); // 获取当前时间
     await DatePicker.showDatePicker(context,
         showTitleActions: true,
         minTime: DateTime(1990, 1, 1),
-        maxTime:currentTime, onChanged: (date) {
+        maxTime: currentTime, onChanged: (date) {
       // ignore: avoid_print
       print('change $date');
     }, onConfirm: (date) {

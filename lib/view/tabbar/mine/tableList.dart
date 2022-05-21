@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:kuangxianjiaoapp/view/tabbar/mine/income_detail.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/mineservice/mine_service.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/qrcode_page.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/feedback.dart';
+import 'package:Fanshop/view/tabbar/mine/income_detail.dart';
+import 'package:Fanshop/view/tabbar/mine/mineservice/mine_service.dart';
+import 'package:Fanshop/view/tabbar/mine/qrcode_page.dart';
+import 'package:Fanshop/view/tabbar/mine/feedback.dart';
 
 class TabList extends StatelessWidget {
   final List navigatorList = [
@@ -18,7 +18,6 @@ class TabList extends StatelessWidget {
 
   Widget _listViewItemUi(BuildContext context, item) {
     return Column(children: <Widget>[
-      
       ListTile(
         title: Text(item["name"],
             style: const TextStyle(
@@ -45,15 +44,10 @@ class TabList extends StatelessWidget {
                 } else if (item['name'] == '我的地址') {
                   // return MineAddressPage(name: item['name'], id: item['id']);
                 } else {
-                  return const Center(
-                    child: Text('test')
-                  );
+                  return const Center(child: Text('test'));
                   // return MineDetailPage(name: item['name'], id: item['id']);
                 }
-                return const Center(
-                    child: Text('test')
-                  );
-               
+                return const Center(child: Text('test'));
               },
             ),
           );

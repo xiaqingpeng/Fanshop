@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/cart/cartNum.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
+import 'package:Fanshop/view/tabbar/cart/cartNum.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 
@@ -65,7 +65,7 @@ class _CartItemState extends State<CartItem> {
                   Text("${_itemData["product_name"]}", maxLines: 2),
                   Text(
                     "比市场价低${_itemData["market_price"] - _itemData["current_price"]}元",
-                    style: TextStyle(color:  Theme.of(context).primaryColor),
+                    style: TextStyle(color: Theme.of(context).primaryColor),
                   ),
                   Stack(
                     children: <Widget>[
@@ -73,7 +73,8 @@ class _CartItemState extends State<CartItem> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "￥${_itemData["current_price"]}",
-                          style: TextStyle(color:Theme.of(context).primaryColor),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         ),
                       ),
                       Align(

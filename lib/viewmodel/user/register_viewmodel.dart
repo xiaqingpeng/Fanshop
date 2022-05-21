@@ -1,9 +1,11 @@
+import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/model/user_model.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:Fanshop/model/user_model.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:get/get.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 
@@ -52,8 +54,8 @@ class RegisterViewmodel extends ChangeNotifier {
       return;
     }
 
-    print(telephone.toString()+'telephone');
-    print(password.toString()+'telephone');
+    print(telephone.toString() + 'telephone');
+    print(password.toString() + 'telephone');
     var result = await _model.register(
       telephone,
       password,
@@ -61,8 +63,11 @@ class RegisterViewmodel extends ChangeNotifier {
     if (result != null) {
       // 登录成功返回到首页
       WeToast.success(context)(message: '注册成功');
-      await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
-       final AddLogs _model = AddLogs();
+      // await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
+      final UserInfoController userInfoController =
+          Get.put(UserInfoController()); //获取state的值
+      userInfoController.changeUserInfo(result['data']); // 修改state的值
+      final AddLogs _model = AddLogs();
       _model.addLogs("flutter/register", {});
       Navigator.of(context).popAndPushNamed('menu');
     }
@@ -76,7 +81,7 @@ class RegisterViewmodel extends ChangeNotifier {
     setIsLogin(false);
     // ignore: avoid_print
     print(result);
-  
+
     notifyListeners(); // 刷新ui
   }
 

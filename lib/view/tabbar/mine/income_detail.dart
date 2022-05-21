@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bruno/bruno.dart';
 import 'dart:math';
 
-import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
+import 'package:Fanshop/custom/custom_appbar_actions.dart';
 
 // ignore: must_be_immutable
 class IncomeDetailPage extends StatefulWidget {

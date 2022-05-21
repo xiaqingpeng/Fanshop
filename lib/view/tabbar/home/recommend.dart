@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/custom/custom_card.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/category/category_detail.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
-import 'package:kuangxianjiaoapp/viewmodel/home/home.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/custom/custom_card.dart';
+import 'package:Fanshop/view/tabbar/category/category_detail.dart';
+import 'package:Fanshop/viewmodel/cart/check_out.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
+import 'package:Fanshop/viewmodel/home/home.dart';
 // ignore: implementation_imports, import_of_legacy_library_into_null_safe
 import 'package:provider/src/provider.dart';
 
@@ -32,11 +32,9 @@ class _RecommendState extends State<Recommend> {
     List<Product> products = context.watch<CategoryViewmodel>().products;
     return SliverList(
       delegate: SliverChildBuilderDelegate((content, index) {
-        return itemBuilder(context,index);
+        return itemBuilder(context, index);
       }, childCount: products.length),
     );
-
-    
   }
 
   Widget itemBuilder(BuildContext context, int index) {

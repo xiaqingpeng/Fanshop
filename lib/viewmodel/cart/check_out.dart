@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/view/checkout/checkout.dart';
+import 'package:Fanshop/view/checkout/checkout.dart';
 // ignore: duplicate_import
-import 'package:kuangxianjiaoapp/view/checkout/checkout.dart';
+import 'package:Fanshop/view/checkout/checkout.dart';
 
 class CheckOutViewmodel with ChangeNotifier {
   List _checkOutListData = []; //购物车数据

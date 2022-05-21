@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/storage.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/common/storage.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 
 class CartViewmodel with ChangeNotifier {
   List _cartList = []; //购物车数据
@@ -168,5 +168,4 @@ class CartViewmodel with ChangeNotifier {
     updateCartList();
     notifyListeners();
   }
-  
 }

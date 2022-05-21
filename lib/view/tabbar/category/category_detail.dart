@@ -3,11 +3,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/custom/custom_card.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
-import 'package:kuangxianjiaoapp/viewmodel/category/category.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/custom/custom_card.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
+import 'package:Fanshop/viewmodel/cart/check_out.dart';
+import 'package:Fanshop/viewmodel/category/category.dart';
 // ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
@@ -106,14 +106,16 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 "￥${widget.item.current_price}元",
-                                style: TextStyle(color: Theme.of(context).primaryColor),
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
                               ),
                             ),
                           ],
                         ),
                         Text(
                           "比市场价低${widget.item.market_price - widget.item.current_price}元",
-                          style: TextStyle(color:  Theme.of(context).primaryColor),
+                          style:
+                              TextStyle(color: Theme.of(context).primaryColor),
                         ),
                       ],
                     ),
@@ -141,10 +143,10 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                           padding: const EdgeInsets.all(5.0),
                           child: Container(
                             constraints: BoxConstraints(
-                              minHeight: _kAppBarHeight*2,
+                              minHeight: _kAppBarHeight * 2,
                               minWidth: MediaQuery.of(context).size.width,
                             ),
-                            height: _kAppBarHeight*2 ,
+                            height: _kAppBarHeight * 2,
                             child: TabBarView(
                                 controller: _controller,
                                 children: const [

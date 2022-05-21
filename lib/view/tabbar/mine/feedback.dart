@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_this
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar.dart';
+import 'package:Fanshop/custom/custom_appbar.dart';
 
 // ignore: must_be_immutable
 class FeedbackPage extends StatefulWidget {

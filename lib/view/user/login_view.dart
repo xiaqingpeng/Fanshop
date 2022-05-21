@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/viewmodel/user/login_viewmodel.dart';
+import 'package:Fanshop/viewmodel/user/register_viewmodel.dart';
 
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';

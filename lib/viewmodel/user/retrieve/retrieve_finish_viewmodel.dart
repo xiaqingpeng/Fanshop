@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/model/user_model.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:Fanshop/model/user_model.dart';
+import 'package:Fanshop/common/regExp.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 
@@ -16,16 +16,15 @@ class RetrieveFinishViewmodel extends ChangeNotifier {
     _isLogin = value;
     notifyListeners();
   }
+
   void register(
     BuildContext context,
-  
     String password,
     String checkpassword,
-    
   ) async {
     final ModifyPassword _model = ModifyPassword();
     setIsLogin(true);
-    
+
     if (password.isEmpty) {
       setIsLogin(false);
       WeToast.fail(context)(message: '新密码不能为空');
@@ -36,9 +35,6 @@ class RetrieveFinishViewmodel extends ChangeNotifier {
       WeToast.fail(context)(message: '确认新密码不能为空');
       return;
     }
-   
-
-    
 
     if (!isLoginPassword(password)) {
       setIsLogin(false);
@@ -53,14 +49,12 @@ class RetrieveFinishViewmodel extends ChangeNotifier {
       return;
     }
 
-    if (checkpassword!=password) {
+    if (checkpassword != password) {
       setIsLogin(false);
       String message = r"确认密码跟新密码不一致";
       WeToast.fail(context)(message: message);
       return;
     }
-
-    
 
     var result = await _model.modifypassword(password, checkpassword);
     if (result != null) {
@@ -78,7 +72,7 @@ class RetrieveFinishViewmodel extends ChangeNotifier {
     setIsLogin(false);
     // ignore: avoid_print
     print(result);
-   
+
     notifyListeners(); // 刷新ui
   }
 }

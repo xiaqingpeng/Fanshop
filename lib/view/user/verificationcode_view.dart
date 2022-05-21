@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/login_viewmodel.dart';
-import 'package:kuangxianjiaoapp/viewmodel/user/register_viewmodel.dart';
+import 'package:Fanshop/common/regExp.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/viewmodel/user/login_viewmodel.dart';
+import 'package:Fanshop/viewmodel/user/register_viewmodel.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
-import 'package:kuangxianjiaoapp/common/random.dart';
+import 'package:Fanshop/common/random.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -99,17 +99,17 @@ class _LoginViewState extends State<LoginView>
                             tabs: <Widget>[
                               Text(
                                 '账号密码登录',
-                                style:
-                                    TextStyle(color: primaryColor, fontSize: 16),
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 16),
                               ),
                               Text(
                                 '验证码登录',
-                                style:
-                                    TextStyle(color: primaryColor, fontSize: 16),
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 16),
                               ),
                             ],
                           )),
-          
+
                       TextField(
                         cursorColor: primaryColor,
                         style: TextStyle(color: primaryColor),
@@ -194,7 +194,8 @@ class _LoginViewState extends State<LoginView>
                                       hintStyle: TextStyle(
                                         color: primaryColor,
                                       ),
-                                      labelStyle: TextStyle(color: primaryColor),
+                                      labelStyle:
+                                          TextStyle(color: primaryColor),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide:
                                             BorderSide(color: primaryColor),

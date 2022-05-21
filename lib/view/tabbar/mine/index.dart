@@ -1,11 +1,11 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/drawer.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/header.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/mine/tableList.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/custom/custom_appbar_actions.dart';
+import 'package:Fanshop/view/tabbar/mine/drawer.dart';
+import 'package:Fanshop/view/tabbar/mine/header.dart';
+import 'package:Fanshop/view/tabbar/mine/tableList.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 // ignore: must_be_immutable
@@ -42,12 +42,16 @@ class _MinePageState extends State<MinePage> {
                   color: Colors.white,
                 ),
               ),
-              child: const Icon( IconData(0xe681, fontFamily: 'iconfont2'),),
+              child: const Icon(
+                IconData(0xe681, fontFamily: 'iconfont2'),
+              ),
             ),
           ),
           Builder(
             builder: (context) => IconButton(
-              icon: const Icon(IconData(0xe70f, fontFamily: 'iconfont2'),),
+              icon: const Icon(
+                IconData(0xe70f, fontFamily: 'iconfont2'),
+              ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),

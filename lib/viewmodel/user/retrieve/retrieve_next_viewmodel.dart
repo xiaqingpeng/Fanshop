@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/model/user_model.dart';
-import 'package:kuangxianjiaoapp/common/regExp.dart';
+import 'package:Fanshop/model/user_model.dart';
+import 'package:Fanshop/common/regExp.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:weui/weui.dart';
 

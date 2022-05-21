@@ -4,14 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/custom/custom_ripple.dart';
-import 'package:kuangxianjiaoapp/utils/platform.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/home/navigation.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/home/recommend.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/home/search_page.dart';
+import 'package:Fanshop/custom/custom_ripple.dart';
+import 'package:Fanshop/utils/platform.dart';
+import 'package:Fanshop/view/tabbar/home/navigation.dart';
+import 'package:Fanshop/view/tabbar/home/recommend.dart';
+import 'package:Fanshop/view/tabbar/home/search_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
+import 'package:Fanshop/api/logs.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -75,19 +75,21 @@ class _HomePageState extends State
                     child: TabBar(
                       isScrollable: true,
                       labelColor: Theme.of(context).primaryColor,
-                      unselectedLabelColor:Colors.black ,
+                      unselectedLabelColor: Colors.black,
                       controller: tabController,
-                      labelStyle: TextStyle(color:Theme.of(context).primaryColor ),
-                      unselectedLabelStyle: const TextStyle(color:Colors.black),
+                      labelStyle:
+                          TextStyle(color: Theme.of(context).primaryColor),
+                      unselectedLabelStyle:
+                          const TextStyle(color: Colors.black),
 
-                       // 标签指示器的颜色
-                            indicatorColor: Theme.of(context).primaryColor,
-                            // 标签的颜色
-                          
-                            // 指示器的大小
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            // 指示器的权重，即线条高度
-                            indicatorWeight: 2.0,
+                      // 标签指示器的颜色
+                      indicatorColor: Theme.of(context).primaryColor,
+                      // 标签的颜色
+
+                      // 指示器的大小
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      // 指示器的权重，即线条高度
+                      indicatorWeight: 2.0,
                       tabs: [
                         Tab(
                           // text: StringStyles.tabHome.tr,
@@ -105,22 +107,22 @@ class _HomePageState extends State
                   ),
 
                   ///间隔
-                  const Expanded(child: SizedBox()),
+                  Expanded(child: const SizedBox()),
 
                   ///搜索框
                   CustomRipple(
-                      circular: 20,
-                      onTap: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (BuildContext context) {
-                                  return const SearchPage();
-                                },
-                              ),
-                            )
-                            // Get.toNamed(Routes.searchPage)
+                    circular: 20,
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return const SearchPage();
                           },
+                        ),
+                      )
+                      // Get.toNamed(Routes.searchPage)
+                    },
                     //   child: const Padding(
                     //   padding: EdgeInsets.all(5),
                     //   child: Icon(
@@ -134,7 +136,7 @@ class _HomePageState extends State
               Expanded(
                   child: TabBarView(
                 controller: tabController,
-                children: const [
+                children: [
                   CustomScrollView(
                     physics: BouncingScrollPhysics(),
                     slivers: <Widget>[

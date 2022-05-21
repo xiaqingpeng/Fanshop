@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
+import 'package:Fanshop/custom/custom_button.dart';
 
 //搜索框
 class CustomSearch extends StatelessWidget {
-  
   // ignore: prefer_typing_uninitialized_variables
   final onChanged; //输入监听
   // ignore: prefer_typing_uninitialized_variables
@@ -12,13 +11,12 @@ class CustomSearch extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final hintText; //提示文本
   final TextInputType textInputType;
-  
-   final TextEditingController textController = TextEditingController();
+
+  final TextEditingController textController = TextEditingController();
 
   // ignore: use_key_in_widget_constructors
-    CustomSearch(
-      {
-      this.onChanged,
+  CustomSearch(
+      {this.onChanged,
       this.hintText = '请输入内容',
       this.textInputType = TextInputType.text,
       this.onClick,
@@ -101,11 +99,10 @@ class CustomSearch extends StatelessWidget {
           ),
         ),
         CustomButton(
-          width: 60,
-          height: 38,
-          title: '搜索',
-          onPressed: ()=>onClick!(textController.text)
-        )
+            width: 60,
+            height: 38,
+            title: '搜索',
+            onPressed: () => onClick!(textController.text))
       ],
     );
   }

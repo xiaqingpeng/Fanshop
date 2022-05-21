@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:kuangxianjiaoapp/api/logs.dart';
-import 'package:kuangxianjiaoapp/common/SharedPreferences.dart';
+import 'package:Fanshop/api/logs.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/custom/custom_appbar_actions.dart';
-import 'package:kuangxianjiaoapp/custom/custom_button.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/cart/cartItem.dart';
+import 'package:Fanshop/custom/custom_appbar_actions.dart';
+import 'package:Fanshop/custom/custom_button.dart';
+import 'package:Fanshop/view/tabbar/cart/cartItem.dart';
 // ignore: unused_import
-import 'package:kuangxianjiaoapp/view/checkout/checkout.dart';
-import 'package:kuangxianjiaoapp/view/tabbar/cart/emptyItem.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/cart.dart';
-import 'package:kuangxianjiaoapp/viewmodel/cart/check_out.dart';
+import 'package:Fanshop/view/checkout/checkout.dart';
+import 'package:Fanshop/view/tabbar/cart/emptyItem.dart';
+import 'package:Fanshop/viewmodel/cart/cart.dart';
+import 'package:Fanshop/viewmodel/cart/check_out.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -34,8 +34,8 @@ class _CartPageState extends State<CartPage> {
   @override
   void initState() {
     super.initState();
-     final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/cart", {});
+    final AddLogs _model = AddLogs();
+    _model.addLogs("flutter/cart", {});
   }
 
   //去结算
@@ -199,6 +199,4 @@ class _CartPageState extends State<CartPage> {
           : const EmptyItem(),
     );
   }
-
- 
 }

@@ -1,17 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kuangxianjiaoapp">
+    package="com.example.Fanshop">
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
     <uses-permission android:name="android.permission.INTERNET" /> 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
+    <uses-permission android:name="android.permission.CAMERA" />
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     
    <application
-        android:label="邝邝乐购"
+        android:label="Fanshop"
         android:requestLegacyExternalStorage="true"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -49,4 +49,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+  
+
+
 </manifest>

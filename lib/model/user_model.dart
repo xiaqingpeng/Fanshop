@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:kuangxianjiaoapp/service/dio.dart';
+import 'package:Fanshop/service/dio.dart';
 
 // 登录接口
 class Login {
@@ -48,8 +48,8 @@ class Register {
     String? telephone,
     String? password,
   ) async {
-    print(telephone.toString()+'telephone');
-    print(password.toString()+'telephone');
+    print(telephone.toString() + 'telephone');
+    print(password.toString() + 'telephone');
     return await HttpController.post("api/registered", {
       "telephone": telephone,
       "password": password,

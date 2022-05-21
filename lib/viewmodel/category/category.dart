@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:kuangxianjiaoapp/model/category_model.dart';
+import 'package:Fanshop/model/category_model.dart';
 
 class Category {
   // ignore: non_constant_identifier_names
@@ -91,7 +91,7 @@ class Product {
 
 class CategoryViewmodel extends ChangeNotifier {
   List<Product> _products = [];
-  List<Product>  get products =>_products;
+  List<Product> get products => _products;
 
   void setProducts(List<Product> products) {
     _products = products;
@@ -107,14 +107,12 @@ class CategoryViewmodel extends ChangeNotifier {
     return Product.fromJson(products);
   }
 
-
   List<Category> _categorys = [];
-  List<Category> get categorys =>_categorys;
+  List<Category> get categorys => _categorys;
 
   void setCategorys(List<Category> categorys) {
-    
     _categorys = categorys;
-  
+
     notifyListeners();
   }
 

@@ -1,4 +1,4 @@
-# kuangxianjiaoapp
+# Fanshop
 
 邝献骄
 
@@ -17,5 +17,6 @@ samples, guidance on mobile development, and a full API reference.
 
 
 # 运行
-
 flutter run --no-sound-null-safety
+# android 
+flutter run --no-sound-null-safety  --enable-software-rendering
