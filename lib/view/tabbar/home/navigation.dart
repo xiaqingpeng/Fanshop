@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 import 'package:Fanshop/view/tabbar/category/category_content.dart';
 import 'package:Fanshop/viewmodel/category/category.dart';
-import 'package:Fanshop/viewmodel/home/home.dart';
 // ignore: implementation_imports, import_of_legacy_library_into_null_safe
 import 'package:provider/src/provider.dart';
 

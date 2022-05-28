@@ -73,7 +73,7 @@ class RegisterViewmodel extends ChangeNotifier {
     }
     if (result == null) {
       WeDialog.alert(context)(
-        '手机号或密码有误，请重新正确输入test。',
+        '手机号或密码有误，请重新正确输入。',
         // theme: WeDialogTheme.android,
         // theme: WeDialogTheme.ios,
       );

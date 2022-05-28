@@ -107,7 +107,7 @@ class _HomePageState extends State
                   ),
 
                   ///间隔
-                  Expanded(child: const SizedBox()),
+                  const Expanded(child: SizedBox()),
 
                   ///搜索框
                   CustomRipple(
@@ -123,21 +123,21 @@ class _HomePageState extends State
                       )
                       // Get.toNamed(Routes.searchPage)
                     },
-                    //   child: const Padding(
-                    //   padding: EdgeInsets.all(5),
-                    //   child: Icon(
-                    //     IconData(0xe681, fontFamily: 'iconfont2'),
-                    //   ),
-                    // ),
-                    child: const Icon(Icons.search),
+                      child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        IconData(0xe602, fontFamily: 'iconfont2'),
+                      ),
+                    ),
                   ),
+                  
                 ],
               ),
               Expanded(
                   child: TabBarView(
                 controller: tabController,
                 children: [
-                  CustomScrollView(
+                  const CustomScrollView(
                     physics: BouncingScrollPhysics(),
                     slivers: <Widget>[
                       CupertinoSliverRefreshControl(),
@@ -145,8 +145,8 @@ class _HomePageState extends State
                       Recommend(),
                     ],
                   ),
-                  Text('广场'),
-                  Text('问答'),
+                  Text('square'.tr),
+                  Text('question'.tr),
                 ],
               )),
             ],

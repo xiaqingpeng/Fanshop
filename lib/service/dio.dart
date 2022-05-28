@@ -7,7 +7,7 @@ import 'package:Fanshop/common/SharedPreferences.dart';
 
 String baseUrl = PlatformUtils.isProd ==true
     ? 'http://43.138.203.36:7001/'
-    : 'http://127.0.0.1:7001/';
+    : 'http://43.138.203.36:7001/';
 
 class HttpController {
   static getAuthorization() async {

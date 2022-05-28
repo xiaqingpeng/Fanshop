@@ -4,17 +4,7 @@ import 'package:Fanshop/service/dio.dart';
 // ignore: unused_import
 import 'package:Fanshop/utils/platform.dart';
 
-// 获取平台
-String getPlatform() {
-  if (PlatformUtils.isAndroid == true) return 'android';
-  if (PlatformUtils.isWindows == true) return 'windows';
-  if (PlatformUtils.isWeb == true) return 'web';
-  if (PlatformUtils.isIOS == true) return 'ios';
-  if (PlatformUtils.isMacOS == true) return 'macos';
-  if (PlatformUtils.isLinux == true) return 'macos';
-  if (PlatformUtils.isFuchsia == true) return 'fuchsia';
-  return '平台待定';
-}
+
 
 // 获取环境
 String getEnvironment() {

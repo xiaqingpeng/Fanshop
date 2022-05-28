@@ -18,5 +18,10 @@ samples, guidance on mobile development, and a full API reference.
 
 # 运行
 flutter run --no-sound-null-safety
-# android 
+# android
+## 开发
 flutter run --no-sound-null-safety  --enable-software-rendering
+
+# build
+## web 打包
+flutter build web  --no-tree-shake-icons  --no-sound-null-safety

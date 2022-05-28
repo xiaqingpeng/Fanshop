@@ -63,3 +63,15 @@ class PlatformUtils {
 
   // static Future<bool> get isAnEmulator => _isAnEmulator(); // 判断是否是模拟器
 }
+
+// 获取平台
+String getPlatform() {
+  if (PlatformUtils.isAndroid == true) return 'android';
+  if (PlatformUtils.isWindows == true) return 'windows';
+  if (PlatformUtils.isWeb == true) return 'web';
+  if (PlatformUtils.isIOS == true) return 'ios';
+  if (PlatformUtils.isMacOS == true) return 'macos';
+  if (PlatformUtils.isLinux == true) return 'macos';
+  if (PlatformUtils.isFuchsia == true) return 'fuchsia';
+  return '平台待定';
+}

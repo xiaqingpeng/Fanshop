@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:Fanshop/api/user.dart';
 import 'package:Fanshop/getx/messages_getx.dart';
+import 'package:Fanshop/utils/platform.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // ignore: import_of_legacy_library_into_null_safe
@@ -57,9 +58,11 @@ class _ImagePickerState extends State<MyDrawer> {
                     accountEmail: Text(c.userInfo['datetime'] ?? ''),
                     currentAccountPicture: ClipOval(
                       child: InkWell(
-                          // ignore: unnecessary_null_comparison
-                          child: renderWidget(c.userInfo['images']),
-                          onTap: () async {
+                        // ignore: unnecessary_null_comparison
+                        child: renderWidget(c.userInfo['images']),
+                        onTap: () async {
+                          final String platform = getPlatform();
+                          if (platform == 'android' || platform == 'ios') {
                             final pickedFile = await picker.getImage(
                                 source: ImageSource.camera);
                             final UserInfoController userInfoController =
@@ -72,8 +75,15 @@ class _ImagePickerState extends State<MyDrawer> {
                             };
                             userInfoController.changeUserInfo(params);
                             UpdateUserInfo.updateUserInfo(
-                                params, params['_id']);
-                          }),
+                              params,
+                              params['_id'],
+                            );
+                          } else {
+                            WeToast.fail(context)(
+                                message: '$platform平台不支持相册功能');
+                          }
+                        },
+                      ),
                     ),
                   ),
                   WeCell(
@@ -88,7 +98,7 @@ class _ImagePickerState extends State<MyDrawer> {
                     label: 'theme'.tr,
                     content: '',
                     footer:
-                        const Icon(IconData(0xe593, fontFamily: 'iconfont2')),
+                        const Icon(IconData(0xe601, fontFamily: 'iconfont2')),
                     onClick: () => Navigator.of(context).pushNamed('theme'),
                   ),
                   WeCell(
