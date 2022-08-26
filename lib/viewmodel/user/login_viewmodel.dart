@@ -3,7 +3,6 @@
 import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:Fanshop/api/logs.dart';
-import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
 import 'package:Fanshop/model/user_model.dart';
 import 'package:Fanshop/common/regExp.dart';

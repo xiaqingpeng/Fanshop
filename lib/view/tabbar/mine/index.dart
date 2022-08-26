@@ -1,3 +1,4 @@
+import 'package:Fanshop/view/tabbar/mine/order.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
@@ -62,6 +63,7 @@ class _MinePageState extends State<MinePage> {
       body: ListView(
         children: <Widget>[
           const HeaderPage(),
+          TabNavigator(),
           TabList(),
         ],
       ),

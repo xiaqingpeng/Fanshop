@@ -7,7 +7,7 @@ import 'package:Fanshop/common/SharedPreferences.dart';
 
 String baseUrl = PlatformUtils.isProd ==true
     ? 'http://43.138.203.36:7001/'
-    : 'http://43.138.203.36:7001/';
+    : 'http://127.0.0.1:7001/';
 
 class HttpController {
   static getAuthorization() async {
@@ -37,7 +37,7 @@ class HttpController {
       // dio.options.contentType = ContentType.parse("application/x-www-form-urlencoded");
       response = await dio.post(baseUrl + api, data: params);
 
-      print("获取到的数据:" + (response.data).toString());
+      // print("获取到的数据:" + (response.data).toString());
 
       if (response.statusCode == 200) {
         return response.data;
@@ -51,7 +51,7 @@ class HttpController {
   }
 
   static get(api, params) async {
-    print(params.toString() + "开始获取数据");
+    // print(params.toString() + "开始获取数据");
     Response response;
     Dio dio = new Dio();
 
@@ -59,7 +59,7 @@ class HttpController {
       if (params.isNotEmpty) {
         response = await dio.get(baseUrl + api, queryParameters: params);
         // ignore: avoid_print
-        print(response);
+        // print(response);
 
         if (response.statusCode == 200) {
           return response.data;
@@ -68,8 +68,8 @@ class HttpController {
         }
       } else {
         response = await dio.get(baseUrl + api, queryParameters: params);
-        // ignore: avoid_print
-        print("$response  PPPPPPPPP");
+        // // ignore: avoid_print
+        // print("$response  PPPPPPPPP");
         if (response.statusCode == 200) {
           return response.data;
         } else {

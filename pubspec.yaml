@@ -54,7 +54,7 @@ dependencies:
   # RSA 加密
   encrypt: ^5.0.1
   # ui框架
-  weui: any
+  weui: any 
   left_scroll_actions: ^2.1.0
   # 推送
   # jpush_flutter: ^2.2.2
@@ -83,6 +83,7 @@ dependencies:
   url_launcher: ^6.0.5
   qr_flutter: ^4.0.0
   bruno: any
+  barcode_widget: any
 flutter_native_splash:
     color: "#ffffff" 
     image: assets/launcher/launcher.png

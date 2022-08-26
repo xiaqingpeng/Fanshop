@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_adapter/flutter_screen_adapter.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:Fanshop/api/logs.dart';
-import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
 import 'package:Fanshop/custom/custom_appbar_actions.dart';
 import 'package:Fanshop/custom/custom_button.dart';
 import 'package:Fanshop/view/tabbar/cart/cartItem.dart';
 // ignore: unused_import
 import 'package:Fanshop/view/checkout/checkout.dart';
-import 'package:Fanshop/view/tabbar/cart/emptyItem.dart';
+import 'package:Fanshop/widget/empty.dart';
 import 'package:Fanshop/viewmodel/cart/cart.dart';
 import 'package:Fanshop/viewmodel/cart/check_out.dart';
 // ignore: import_of_legacy_library_into_null_safe

@@ -8,17 +8,16 @@ import 'package:Fanshop/custom/custom_appbar_actions.dart';
 
 // ignore: must_be_immutable
 class IncomeDetailPage extends StatefulWidget {
-  int id;
   String name;
   // ignore: use_key_in_widget_constructors
-  IncomeDetailPage({required this.name, required this.id});
+  IncomeDetailPage({required this.name});
   @override
   // ignore: no_logic_in_create_state
-  _MyAppState createState() => _MyAppState(id: this.id, name: this.name);
+  _MyAppState createState() => _MyAppState( name: this.name);
 }
 
 class _MyAppState extends State<IncomeDetailPage> {
-  int id;
+ 
   String name;
   int count = 5;
   // ignore: non_constant_identifier_names
@@ -32,7 +31,7 @@ class _MyAppState extends State<IncomeDetailPage> {
     const Color(0xff6AA6FB),
     const Color(0xff0984F9),
   ];
-  _MyAppState({required this.name, required this.id});
+  _MyAppState({required this.name});
   @override
   void initState() {
     super.initState();

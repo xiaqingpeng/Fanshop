@@ -20,8 +20,8 @@ class MineServicePage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Container(
-            height: 150.0,
-            margin: const EdgeInsets.only(bottom: 20.0),
+            height: 80.0,
+            margin: const EdgeInsets.only(top: 20.0),
             // decoration: BoxDecoration(color:Colors.blueAccent),
             child: GridView.count(
                 physics: const NeverScrollableScrollPhysics(),
@@ -30,7 +30,7 @@ class MineServicePage extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       print('联系客服');
-                      const String url = 'https://www.baidu.com/';
+                      const String url = 'http://43.138.203.36:8086/flutter/#/';
                       if (await canLaunch(url)) {
                         await launch(url);
                       } else {
@@ -38,15 +38,16 @@ class MineServicePage extends StatelessWidget {
                       }
                     },
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
                         Icon(
                           Icons.message,
                           size: 40.0,
-                          color: Colors.pink,
+                          color: Theme.of(context).primaryColor
                         ),
-                        Text('联系客服')
+                        const Text('联系客服')
                       ],
                     ),
                   ),
@@ -62,15 +63,16 @@ class MineServicePage extends StatelessWidget {
                       }
                     },
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const <Widget>[
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
                         Icon(
                           Icons.phone,
                           size: 40.0,
-                          color: Colors.pink,
+                         color: Theme.of(context).primaryColor
                         ),
-                        Text('售后电话')
+                         const Text('售后电话')
                       ],
                     ),
                   )

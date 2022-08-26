@@ -4,8 +4,6 @@ import 'package:Fanshop/service/dio.dart';
 // ignore: unused_import
 import 'package:Fanshop/utils/platform.dart';
 
-
-
 // 获取环境
 String getEnvironment() {
   if (PlatformUtils.isProd == true) return 'production';
@@ -24,5 +22,17 @@ class AddLogs {
       "platform": getPlatform(),
       "environment": getEnvironment()
     });
+  }
+}
+
+// 获取商品分类
+class GetAllLogs {
+  static Future getAllLogs({required int limit, required int offset}) async {
+    var data = await HttpController.get("api/logs/all_logs", {
+      "limit": limit,
+      "offset": offset,
+    });
+    // print(data);
+    return data;
   }
 }

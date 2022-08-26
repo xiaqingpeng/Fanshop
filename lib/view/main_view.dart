@@ -73,6 +73,7 @@ class _MainViewState extends State<MainView> {
         : const Color(0XFFBBBBBB);
   }
 
+  @override
   Widget build(BuildContext context) {
     CartViewmodel cartProvider = Provider.of<CartViewmodel>(context);
 

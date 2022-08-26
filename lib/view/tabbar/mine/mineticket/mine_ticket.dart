@@ -36,11 +36,11 @@ class _Home2State extends State<MineTicketPage> {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: <Widget>[
             WaitUsedPage(),
-            const HasUsedPage(),
-            const LoseUsedPage(),
+            HasUsedPage(),
+            LoseUsedPage(),
           ],
         ),
       ),

@@ -1,7 +1,6 @@
 import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:flutter/material.dart';
 import 'package:Fanshop/api/logs.dart';
-import 'package:Fanshop/common/SharedPreferences.dart';
 // ignore: unused_import
 import 'package:Fanshop/model/user_model.dart';
 import 'package:Fanshop/common/regExp.dart';
@@ -53,14 +52,11 @@ class RegisterViewmodel extends ChangeNotifier {
       WeToast.fail(context)(message: message);
       return;
     }
-
-    print(telephone.toString() + 'telephone');
-    print(password.toString() + 'telephone');
     var result = await _model.register(
       telephone,
       password,
     );
-    if (result != null) {
+    if (result != null && result['code'] == 200) {
       // 登录成功返回到首页
       WeToast.success(context)(message: '注册成功');
       // await SharedPreferencesUserUtils.setUserInfo("userInfo", result['data']);
@@ -71,9 +67,11 @@ class RegisterViewmodel extends ChangeNotifier {
       _model.addLogs("flutter/register");
       Navigator.of(context).popAndPushNamed('menu');
     }
-    if (result == null) {
+    if (result['code'] == 10001) {
       WeDialog.alert(context)(
-        '手机号或密码有误，请重新正确输入。',
+        '该手机号码已注册',onConfirm: (){
+           Navigator.of(context).pushNamed('login');
+        }
         // theme: WeDialogTheme.android,
         // theme: WeDialogTheme.ios,
       );
@@ -103,13 +101,7 @@ class RegisterViewmodel extends ChangeNotifier {
     if (result != null) {
       WeToast.success(context)(message: '获取验证码成功');
     }
-    print(result.toString() + 'result');
 
-    // if (result == null) {
-    //   WeDialog.alert(context)(
-    //     '手机号有误，请重新正确输入。',
-    //   );
-    // }
     notifyListeners(); // 刷新ui
   }
 }

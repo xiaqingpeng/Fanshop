@@ -99,6 +99,7 @@ class CartViewmodel with ChangeNotifier {
 
   //全选 反选
   checkAll(value) {
+
     for (var i = 0; i < _cartList.length; i++) {
       _cartList[i]['checked'] = value;
     }
@@ -109,6 +110,8 @@ class CartViewmodel with ChangeNotifier {
 
   //判断是否全选
   isCheckedAll() {
+
+
     if (_cartList.every((element) => element['checked'])) {
       _isCheckAll = true;
     } else {

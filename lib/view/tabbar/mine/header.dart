@@ -23,6 +23,7 @@ class HeaderPage extends StatefulWidget {
 
 class _ImagePickerState extends State<HeaderPage> {
   final picker = ImagePicker();
+   final String platform = getPlatform();
   /*拍照*/
   // ignore: unused_element
   _takePhoto() async {
@@ -40,8 +41,8 @@ class _ImagePickerState extends State<HeaderPage> {
 
   /*相册*/
   _openGallery(c) async {
-    final String platform = getPlatform();
-    if (platform == 'android' || platform == 'ios' ) {
+   
+    if (platform == 'android' || platform == 'ios') {
       final pickedFile = await picker.getImage(source: ImageSource.gallery);
       final UserInfoController userInfoController = Get.put(
         UserInfoController(),
@@ -156,6 +157,14 @@ class _ImagePickerState extends State<HeaderPage> {
   }
 
   renderWidget(images) {
+    if (images != null&& platform == 'web' ) {
+      return Image.network(
+        //如成功显示用户头像
+        images, //头像地址,
+        width: 80,
+        height: 80,
+      );
+    }
     if (images != null) {
       return Image.file(
         File(images),
