@@ -1,9 +1,6 @@
-import 'package:Fanshop/view/tabbar/mine/mineorder/unpayment.dart';
+import 'package:Fanshop/view/tabbar/mine/mineorder/index.dart';
 import 'package:flutter/material.dart';
-import 'mineorder/allgoods.dart';
-import 'mineorder/undelivery.dart';
-import 'mineorder/ungoods.dart';
-import 'mineorder/unevaluate.dart';
+
 
 // ignore: must_be_immutable
 class MineOrderPage extends StatefulWidget {
@@ -21,45 +18,50 @@ class _Home2State extends State<MineOrderPage> {
       'name': '全部',
       'id': 10,
       'icon': 0xe651,
-      "widget": AllGoodsPage(
+      "widget": IndexPage(
         name: '全部',
         id: 10,
+        status: '',
       )
     },
     {
       'name': '待付款',
       'id': 20,
       'icon': 0xe60f,
-      "widget": UnPaymentPage(
+      "widget": IndexPage(
         name: '待付款',
         id: 20,
+        status: 'Cancel',
       )
     },
     {
       'name': '待发货',
       'id': 2,
       'icon': 0xe656,
-      "widget": UnDeliveryPage(
+      "widget": IndexPage(
         name: '待发货',
         id: 30,
+        status: 'Pending',
       )
     },
     {
       'name': '待收货',
       'id': 40,
       'icon': 0xe624,
-      "widget": UnGoodsPage(
+      "widget": IndexPage(
         name: '待收货',
         id: 40,
+        status: ' Delivered',
       )
     },
     {
       'name': '待评价',
       'id': 50,
       'icon': 0xe606,
-      "widget": UnEvaluatePage(
+      "widget": IndexPage(
         name: '待评价',
         id: 50,
+        status: 'Resolved',
       )
     },
   ];

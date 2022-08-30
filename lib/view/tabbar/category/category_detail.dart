@@ -213,6 +213,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage>
                       borderRadius: 0.0,
                       title: "加入购物车",
                       onPressed: () {
+                        print(widget.item);
                         context
                             .read<CartViewmodel>()
                             .setAddProduct(widget.item);

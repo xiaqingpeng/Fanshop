@@ -1,5 +1,6 @@
 // import 'package:Fanshop/common/storage.dart';
 import 'package:Fanshop/common/SharedPreferences.dart';
+import 'package:Fanshop/model/logs_model.dart';
 import 'package:Fanshop/service/dio.dart';
 // ignore: unused_import
 import 'package:Fanshop/utils/platform.dart';
@@ -33,6 +34,6 @@ class GetAllLogs {
       "offset": offset,
     });
     // print(data);
-    return data;
+    return Log.fromJson(data);
   }
 }

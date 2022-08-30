@@ -84,6 +84,7 @@ dependencies:
   qr_flutter: ^4.0.0
   bruno: any
   barcode_widget: any
+  date_format: any
 flutter_native_splash:
     color: "#ffffff" 
     image: assets/launcher/launcher.png

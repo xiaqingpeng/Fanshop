@@ -79,7 +79,7 @@ class Product {
           market_price: obj['market_price'],
           product_image: obj['product_image'],
           product_name: obj['product_name'],
-          product_id: obj['product_id'],
+          product_id: obj['id'],
         );
         _product.add(products);
       },

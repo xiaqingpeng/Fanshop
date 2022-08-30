@@ -22,6 +22,7 @@ class MyDrawer extends StatefulWidget {
 
 class _ImagePickerState extends State<MyDrawer> {
   final picker = ImagePicker();
+  final String platform = getPlatform();
   Future<void> clearSharedPreferences() async {
     await SharedPreferencesUserUtils.deleteUserInfo("userInfo");
     Navigator.of(context)
@@ -54,7 +55,7 @@ class _ImagePickerState extends State<MyDrawer> {
                 padding: EdgeInsets.zero,
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text(c.userInfo['fullname'] ?? ''),
+                    accountName: Text(c.userInfo['filename'] ?? ''),
                     accountEmail: Text(c.userInfo['datetime'] ?? ''),
                     currentAccountPicture: ClipOval(
                       child: InkWell(
@@ -130,6 +131,14 @@ class _ImagePickerState extends State<MyDrawer> {
   }
 
   renderWidget(images) {
+    if (images != null&& platform == 'web' ) {
+      return Image.network(
+        //如成功显示用户头像
+        images, //头像地址,
+        width: 80,
+        height: 80,
+      );
+    }
     if (images != null) {
       return Image.file(
         File(images),

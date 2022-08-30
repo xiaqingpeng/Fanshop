@@ -1,19 +1,15 @@
+import 'package:Fanshop/view/tabbar/mine/mineorder/index.dart';
 import 'package:flutter/material.dart';
 
-import 'mineorder/allgoods.dart';
-import 'mineorder/undelivery.dart';
-import 'mineorder/unevaluate.dart';
-import 'mineorder/ungoods.dart';
-import 'mineorder/unpayment.dart';
 
 class TabNavigator extends StatelessWidget {
   TabNavigator({Key? key}) : super(key: key);
   final List navigatorList = [
-    {'name': '全部', 'id': 1, 'icon': 0xe651},
-    {'name': '待付款', 'id': 2, 'icon': 0xe60f},
-    {'name': '待发货', 'id': 3, 'icon': 0xe656},
-    {'name': '待收货', 'id': 4, 'icon': 0xe624},
-    {'name': '待评价', 'id': 5, 'icon': 0xe606},
+    {'name': '全部', 'id': 1, 'icon': 0xe651, 'status': ''},
+    {'name': '待付款', 'id': 2, 'icon': 0xe60f, 'status': 'Cancel'},
+    {'name': '待发货', 'id': 3, 'icon': 0xe656, 'status': 'Pending'},
+    {'name': '待收货', 'id': 4, 'icon': 0xe624, 'status': 'Delivered'},
+    {'name': '待评价', 'id': 5, 'icon': 0xe606, 'status': 'Resolved'},
   ];
   Widget _gridViewItemUi(BuildContext context, item) {
     return InkWell(
@@ -22,20 +18,11 @@ class TabNavigator extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (BuildContext context) {
-              if (item['name'] == '全部') {
-                return AllGoodsPage(name: item['name'], id: item['id']);
-              } else if (item['name'] == '待付款') {
-                return UnPaymentPage(name: item['name'], id: item['id']);
-              } else if (item['name'] == '待发货') {
-                return UnDeliveryPage(name: item['name'], id: item['id']);
-              } else if (item['name'] == '待收货') {
-                return UnGoodsPage(name: item['name'], id: item['id']);
-              } else if (item['name'] == '待评价') {
-                return UnEvaluatePage(name: item['name'], id: item['id']);
-              } else {
-                print('888');
-              }
-              return Row();
+              return IndexPage(
+                name: item['name'],
+                id: item['id'],
+                status: item['status'],
+              );
             },
           ),
         );

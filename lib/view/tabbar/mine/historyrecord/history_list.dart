@@ -22,6 +22,14 @@ class _HistoryListState extends State<HistoryList> {
   bool _hasMore = true;
   // 滚动控制器
   final ScrollController _scrollController = ScrollController();
+  Map<String, int> iconPlatform = {
+    "web": 0xe7e3,
+    "android": 0xe87e,
+    "ios": 0xe62a,
+    "windows": 0xe69c,
+    "macos": 0xe640,
+    "linux": 0xe769,
+  };
   @override
   void initState() {
     super.initState();
@@ -42,9 +50,7 @@ class _HistoryListState extends State<HistoryList> {
   // 获取数据列表
   void _getData() async {
     if (this._hasMore) {
-      var result = await GetAllLogs.getAllLogs(limit: 10, offset: _page) ?? [];
-      print(result);
-      List list = (result["res"])["data"];
+      List list = await GetAllLogs.getAllLogs(limit: 10, offset: _page) ?? [];
       print(list);
       setState(() {
         // 拼接数据
@@ -121,24 +127,41 @@ class _HistoryListState extends State<HistoryList> {
                   return Column(
                     children: <Widget>[
                       ListTile(
-                          title: Text(
-                            this._list[index]["handler"] ?? "游客",
-                            maxLines: 1,
+                          leading: Icon(
+                            IconData(iconPlatform[_list[index].platform]!,
+                                fontFamily: 'iconfont2'),
+                            color: Colors.black54,
                           ),
+                          // title: Text(
+                          //   this._list[index].handler,
+                          //   maxLines: 1,
+                          // ),
                           subtitle: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(this._list[index]["desc"]),
+                              Text(this._list[index].desc),
+
                               const SizedBox(
-                                height: 5,
+                                height: 6,
                               ),
-                              Text(this._list[index]["time"]),
+                              Text(this._list[index].id),
+                              const SizedBox(
+                                height: 6,
+                              ),
+                              Text(DateTime.parse(
+                                      "${this._list[index].time.substring(0, 19)}-0800")
+                                  .toString())
                             ],
                           ),
-                          trailing:
-                              Text(this._list[index]["platform"] ?? '暂无')),
-                     
+                          trailing: const Icon(
+                            IconData(0xe6a3,
+                                fontFamily: 'iconfont2'),
+                            color: Colors.black54,
+                            size: 20,
+                          ),
+                      ),
+                      const Divider(indent: 15,endIndent: 15,),
                       // 加载提示
                       tip
                     ],
@@ -146,7 +169,8 @@ class _HistoryListState extends State<HistoryList> {
                 },
               ),
               // 下拉刷新事件
-              onRefresh: this._onRefresh),
+              onRefresh: this._onRefresh,
+            ),
     );
   }
 }
