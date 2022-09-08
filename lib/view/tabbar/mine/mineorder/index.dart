@@ -29,10 +29,12 @@ class _AllGoodsState extends State<IndexPage> {
   final ScrollController _scrollController = ScrollController();
   // status
   Map<String, String> status = {
-    "Cancel": '未支付',
-    "Delivered": '待支付',
-    "Pending": '待收货',
+    "Cancel": '已取消',
+    "Delivered": '待收货',
+    "Pending": '待发货',
     "Resolved": '待评价',
+    "Paying": '待支付',
+    "Finished": '已完成',
   };
   Map<String, int> iconPlatform = {
     "web": 0xe7e3,
@@ -62,8 +64,11 @@ class _AllGoodsState extends State<IndexPage> {
 
   // 获取数据列表
   void _getData() async {
+
     if (_hasMore) {
       final userInfo = await SharedPreferencesUserUtils.getUserInfo("userInfo");
+      print(userInfo['_id']);
+      print(widget.status);
       List list = await GetOrder.getOrder(
               user_id: userInfo['_id'], status: widget.status) ??
           [];

@@ -22,7 +22,7 @@ class _OrderDetailState extends State<OrderDetail> {
           itemCount: _list.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(5.0),
               child: Container(
                 height: ScreenAdapter.value(220),
                 padding: const EdgeInsets.all(5),

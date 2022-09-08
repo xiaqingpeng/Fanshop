@@ -13,11 +13,13 @@ String getEnvironment() {
 
 // 获取商品分类
 class AddLogs {
-  Future addLogs(String? desc, {Map<dynamic, dynamic>? data}) async {
+  Future addLogs(String? path, String? desc,
+      {Map<dynamic, dynamic>? data}) async {
     Map<dynamic, dynamic> userInfo =
         await SharedPreferencesUserUtils.getUserInfo("userInfo");
     await HttpController.post("api/add_logs", {
       "handler": userInfo['telephone'].toString(),
+      "path": path,
       "desc": desc,
       "data": data,
       "platform": getPlatform(),
@@ -35,5 +37,21 @@ class GetAllLogs {
     });
     // print(data);
     return Log.fromJson(data);
+  }
+}
+
+// 获取商品分类
+class GetInfoLogs {
+  static Future getInfoLogs(
+      {required String menuTime,
+      required String platform}) async {
+    Map<dynamic, dynamic> userInfo =
+    await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    var data = await HttpController.get("api/logs/info", {
+      "_start": menuTime,
+      "handler": userInfo['telephone'].toString(),
+      "platform": platform,
+    });
+    return data["data"]['data'];
   }
 }

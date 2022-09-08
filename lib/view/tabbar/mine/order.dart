@@ -6,10 +6,11 @@ class TabNavigator extends StatelessWidget {
   TabNavigator({Key? key}) : super(key: key);
   final List navigatorList = [
     {'name': '全部', 'id': 1, 'icon': 0xe651, 'status': ''},
-    {'name': '待付款', 'id': 2, 'icon': 0xe60f, 'status': 'Cancel'},
+    {'name': '待付款', 'id': 2, 'icon': 0xe60f, 'status': 'Paying'},
     {'name': '待发货', 'id': 3, 'icon': 0xe656, 'status': 'Pending'},
     {'name': '待收货', 'id': 4, 'icon': 0xe624, 'status': 'Delivered'},
     {'name': '待评价', 'id': 5, 'icon': 0xe606, 'status': 'Resolved'},
+    {'name': '已取消', 'id': 6, 'icon': 0xe606, 'status': 'Cancel'},
   ];
   Widget _gridViewItemUi(BuildContext context, item) {
     return InkWell(

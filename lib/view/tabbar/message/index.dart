@@ -18,7 +18,7 @@ class _MessagePageState extends State<MessagePage> {
   void initState() {
     super.initState();
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/category");
+    _model.addLogs("flutter/message",'消息');
   }
 
   @override

@@ -71,7 +71,7 @@ String getPlatform() {
   if (PlatformUtils.isWeb == true) return 'web';
   if (PlatformUtils.isIOS == true) return 'ios';
   if (PlatformUtils.isMacOS == true) return 'macos';
-  if (PlatformUtils.isLinux == true) return 'macos';
+  if (PlatformUtils.isLinux == true) return 'isLinux';
   if (PlatformUtils.isFuchsia == true) return 'fuchsia';
   return '平台待定';
 }

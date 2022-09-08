@@ -17,10 +17,10 @@ class _HistoryRecordState extends State<HistoryRecord> {
   int _currentIndex = 0;
   List<Widget> list = [
     HistoryList(
-      name: '浏览记录',
+      name: '浏览明细',
     ),
     IncomeDetailPage(
-      name: '浏览明细',
+      name: '浏览统计',
     )
   ];
 
@@ -46,9 +46,9 @@ class _HistoryRecordState extends State<HistoryRecord> {
           // ignore: prefer_const_literals_to_create_immutables
           items: [
             const BottomNavigationBarItem(
-                icon: Icon(Icons.explore), label: '浏览记录'),
+                icon: Icon(Icons.explore), label: '浏览明细'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.history), label: '浏览明细'),
+                icon: Icon(Icons.history), label: '浏览统计'),
           ],
         ));
   }

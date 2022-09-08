@@ -29,7 +29,7 @@ class _CategoryPage extends State<CategoryPage> {
     super.initState();
     context.read<CategoryViewmodel>().getCategory();
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/category");
+    _model.addLogs("flutter/category",'分类');
   }
 
   _onSelect(int index, categorys) {

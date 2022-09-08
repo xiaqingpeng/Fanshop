@@ -2,6 +2,7 @@
 class Log {
   
   late final String desc;
+  late final String path;
   // ignore: non_constant_identifier_names
   late final String time;
   late final String platform;
@@ -14,6 +15,7 @@ class Log {
    
     // ignore: non_constant_identifier_names
     required this.desc,
+    required this.path,
     // ignore: non_constant_identifier_names
     required this.time,
     // ignore: non_constant_identifier_names
@@ -38,6 +40,7 @@ class Log {
       Log logs = Log(
         desc: obj['desc'],
         time: obj['time'],
+        path: obj['path'],
         platform: obj['platform'],
         environment: obj['environment'],
         handler: obj['handler'],

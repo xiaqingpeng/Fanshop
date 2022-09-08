@@ -62,7 +62,7 @@ class LoginViewmodel extends ChangeNotifier {
           Get.put(UserInfoController()); //获取state的值
       userInfoController.changeUserInfo(result['data']); // 修改state的值
       final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/login");
+      _model.addLogs("flutter/login",'登录');
       Navigator.of(context).popAndPushNamed('menu');
     }
     if (result['data'] == null) {

@@ -31,7 +31,7 @@ class _Home2State extends State<MineOrderPage> {
       "widget": IndexPage(
         name: '待付款',
         id: 20,
-        status: 'Cancel',
+        status: 'Paying',
       )
     },
     {
@@ -62,6 +62,16 @@ class _Home2State extends State<MineOrderPage> {
         name: '待评价',
         id: 50,
         status: 'Resolved',
+      )
+    },
+    {
+      'name': '已取消',
+      'id': 60,
+      'icon': 0xe606,
+      "widget": IndexPage(
+        name: '已取消',
+        id: 60,
+        status: 'Cancel',
       )
     },
   ];

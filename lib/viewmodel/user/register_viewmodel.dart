@@ -1,6 +1,5 @@
 import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:flutter/material.dart';
-import 'package:Fanshop/api/logs.dart';
 // ignore: unused_import
 import 'package:Fanshop/model/user_model.dart';
 import 'package:Fanshop/common/regExp.dart';
@@ -63,8 +62,7 @@ class RegisterViewmodel extends ChangeNotifier {
       final UserInfoController userInfoController =
           Get.put(UserInfoController()); //获取state的值
       userInfoController.changeUserInfo(result['data']); // 修改state的值
-      final AddLogs _model = AddLogs();
-      _model.addLogs("flutter/register");
+
       Navigator.of(context).popAndPushNamed('menu');
     }
     if (result['code'] == 10001) {

@@ -80,7 +80,7 @@ dependencies:
   permission_handler: ^5.1.0+2
   barcode_scan2: any
   webview_flutter: any
-  url_launcher: ^6.0.5
+  # url_launcher: any
   qr_flutter: ^4.0.0
   bruno: any
   barcode_widget: any

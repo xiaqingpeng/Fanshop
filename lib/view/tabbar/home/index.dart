@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, import_of_legacy_library_into_null_safe
 
+import 'package:Fanshop/viewmodel/category/category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ import 'package:Fanshop/view/tabbar/home/search_page.dart';
 
 import 'package:permission_handler/permission_handler.dart';
 import 'package:Fanshop/api/logs.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -28,9 +30,11 @@ class _HomePageState extends State
   TabController? tabController;
   @override
   void initState() {
+    context.read<CategoryViewmodel>().getProduct(0);
     super.initState();
+
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/home");
+    _model.addLogs("flutter/home", '首页');
 
     if (!PlatformUtils.isWeb) {
       checkPermission();
@@ -60,6 +64,9 @@ class _HomePageState extends State
 
   @override
   Widget build(BuildContext context) {
+    List<Product> products = context.watch<CategoryViewmodel>().products;
+    print(products);
+    print("products");
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -123,26 +130,25 @@ class _HomePageState extends State
                       )
                       // Get.toNamed(Routes.searchPage)
                     },
-                      child: const Padding(
+                    child: const Padding(
                       padding: EdgeInsets.all(10),
                       child: Icon(
                         IconData(0xe602, fontFamily: 'iconfont2'),
                       ),
                     ),
                   ),
-                  
                 ],
               ),
               Expanded(
                   child: TabBarView(
                 controller: tabController,
                 children: [
-                  const CustomScrollView(
-                    physics: BouncingScrollPhysics(),
+                  CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
                     slivers: <Widget>[
-                      CupertinoSliverRefreshControl(),
-                      TopNavigation(),
-                      Recommend(),
+                      const CupertinoSliverRefreshControl(),
+                      const TopNavigation(),
+                      RecommendPage(products: products)
                     ],
                   ),
                   Text('square'.tr),

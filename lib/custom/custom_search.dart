@@ -6,6 +6,7 @@ import 'package:Fanshop/custom/custom_button.dart';
 class CustomSearch extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final onChanged; //输入监听
+  final onCancel; //取消
   // ignore: prefer_typing_uninitialized_variables
   final onSubmitted; //键盘回车监听
   // ignore: prefer_typing_uninitialized_variables
@@ -19,10 +20,12 @@ class CustomSearch extends StatelessWidget {
       {this.onChanged,
       this.hintText = '请输入内容',
       this.textInputType = TextInputType.text,
+        this.onCancel,
       this.onClick,
       this.onSubmitted});
   // 点击回调
   final Function? onClick;
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class CustomSearch extends StatelessWidget {
               focusNode: FocusNode(),
               autofocus: false,
               cursorColor: Theme.of(context).primaryColor,
+
               onChanged: onChanged ??
                   (value) {
                     // ignore: avoid_print
@@ -84,6 +88,7 @@ class CustomSearch extends StatelessWidget {
                         textController.text = "";
                       },
                     );
+                    onCancel();
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(0),

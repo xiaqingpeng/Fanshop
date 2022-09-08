@@ -34,7 +34,7 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     final AddLogs _model = AddLogs();
-    _model.addLogs("flutter/cart");
+    _model.addLogs("flutter/cart",'购物车');
   }
 
   //去结算

@@ -119,50 +119,61 @@ class _HistoryListState extends State<HistoryList> {
                 controller: _scrollController,
                 itemCount: this._list.length,
                 itemBuilder: (context, index) {
-                  Widget tip = const Text("");
+                  Widget tip =  Row();
                   // 当渲染到最后一条数据时，加载动画提示
                   if (index == this._list.length - 1) {
                     tip = _getMoreWidget();
                   }
                   return Column(
                     children: <Widget>[
-                      ListTile(
-                          leading: Icon(
-                            IconData(iconPlatform[_list[index].platform]!,
-                                fontFamily: 'iconfont2'),
-                            color: Colors.black54,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 15,
+                            child: Icon(
+                              IconData(iconPlatform[_list[index].platform]!,
+                                  fontFamily: 'iconfont2'),
+                              color: Colors.black54,
+                            ),
                           ),
-                          // title: Text(
-                          //   this._list[index].handler,
-                          //   maxLines: 1,
-                          // ),
-                          subtitle: Column(
+                          Expanded(
+                            flex: 85,
+                            child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(this._list[index].desc),
-
+                              Text("页面: ${this._list[index].desc}"),
                               const SizedBox(
-                                height: 6,
+                                height: 4,
                               ),
-                              Text(this._list[index].id),
+                              Text("日志: ${this._list[index].id}"),
                               const SizedBox(
-                                height: 6,
+                                height: 4,
                               ),
-                              Text(DateTime.parse(
+                              Text("日期:" +DateTime.parse(
                                       "${this._list[index].time.substring(0, 19)}-0800")
                                   .toString())
                             ],
                           ),
-                          trailing: const Icon(
-                            IconData(0xe6a3,
-                                fontFamily: 'iconfont2'),
-                            color: Colors.black54,
-                            size: 20,
                           ),
+                          // const Expanded(
+                          //   flex: 3,
+                          //   child: Icon(
+                          //    IconData(0xe6a3,
+                          //        fontFamily: 'iconfont2'),
+                          //    color: Colors.black54,
+                          //    size: 20,
+                          //  ),
+                          // ),
+                        ],
                       ),
-                      const Divider(indent: 15,endIndent: 15,),
-                      // 加载提示
+                      const Divider(
+                        indent: 15,
+                        endIndent: 15,
+                      ),
+                      // // 加载提示
                       tip
                     ],
                   );

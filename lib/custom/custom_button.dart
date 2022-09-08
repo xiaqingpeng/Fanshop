@@ -16,6 +16,7 @@ class CustomButton extends StatefulWidget {
     this.title = "",
     this.disable = false,
     this.backgroundColor,
+    this.overflow=  TextOverflow.ellipsis,
   }) : super(
           key: key,
         );
@@ -26,6 +27,7 @@ class CustomButton extends StatefulWidget {
   final double borderRadius;
   final double fontSize;
   final String title;
+  final TextOverflow overflow;
   final bool loading;
   final bool disable;
   final Color? backgroundColor;
@@ -70,6 +72,7 @@ class _CustomButtonState extends State<CustomButton> {
                 widget.content ??
                     Text(
                       widget.title,
+                        overflow: widget.overflow,
                       style: TextStyle(
                           color: Colors.white, fontSize: widget.fontSize),
                     ),
