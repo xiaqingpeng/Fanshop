@@ -31,9 +31,12 @@ class AddLogs {
 // 获取商品分类
 class GetAllLogs {
   static Future getAllLogs({required int limit, required int offset}) async {
+     Map<dynamic, dynamic> userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
     var data = await HttpController.get("api/logs/all_logs", {
       "limit": limit,
       "offset": offset,
+      "handler": userInfo['telephone'].toString(),
     });
     // print(data);
     return Log.fromJson(data);

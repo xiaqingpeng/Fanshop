@@ -171,13 +171,15 @@ class _MyAppState extends State<IncomeDetailPage> {
                 ),
               ],
               yAxis: ChartAxis(axisItemList: [
-                AxisItem(showText: '10'),
                 AxisItem(showText: '20'),
-                AxisItem(showText: '30')
+                AxisItem(showText: '40'),
+                AxisItem(showText: '60'),
+                AxisItem(showText: '80'),
+                AxisItem(showText: '100')
               ]),
               singleBarWidth: 30,
               barGroupSpace: 15,
-              barMaxValue: 30,
+              barMaxValue: 100,
               // onBarItemClickInterceptor:
               //     (barBundleIndex, barBundle, barGroupIndex, barItem) {
               //   return true;
