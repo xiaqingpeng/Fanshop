@@ -77,79 +77,77 @@ class _ImagePickerState extends State<HeaderPage> {
               ],
             ),
           ),
-          child: Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: 100,
-                  child: ClipOval(
-                    child: InkWell(
-                      child: renderWidget(c.userInfo['images']),
-                      onTap: () => {_openGallery(c)},
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 100,
+                width: 100,
+                child: ClipOval(
+                  child: InkWell(
+                    child: renderWidget(c.userInfo['images']),
+                    onTap: () => {_openGallery(c)},
                   ),
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
-                GestureDetector(
-                  onTap: () => {
-                    showDialog(
-                        // 传入 context
-                        context: context,
-                        barrierDismissible: false,
-                        // 构建 Dialog 的视图
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                              title: const Text('我的登录'),
-                              content: const Text('你确定登录吗？'),
-                              actions: [
-                                Row(
-                                  children: [
-                                    CustomButton(
-                                      content: const Text(
-                                        '取消',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      borderRadius: 4.0,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      width: MediaQuery.of(context).size.width *
-                                          0.5,
-                                      height: 40,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              GestureDetector(
+                onTap: () => {
+                  showDialog(
+                      // 传入 context
+                      context: context,
+                      barrierDismissible: false,
+                      // 构建 Dialog 的视图
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                            title: const Text('我的登录'),
+                            content: const Text('你确定登录吗？'),
+                            actions: [
+                              Row(
+                                children: [
+                                  CustomButton(
+                                    content: const Text(
+                                      '取消',
+                                      style: TextStyle(color: Colors.white),
                                     ),
-                                    CustomButton(
-                                      content: const Text(
-                                        '确定',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                      borderRadius: 4.0,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      width: MediaQuery.of(context).size.width *
-                                          0.5,
-                                      height: 40,
-                                    )
-                                  ],
-                                )
-                              ]);
-                        })
-                  },
-                  child: Text(
-                    c.userInfo['fullname'] ?? '',
-                    style: const TextStyle(
-                        // color: Colors.white,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                )
-              ],
-            ),
+                                    borderRadius: 4.0,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    width: MediaQuery.of(context).size.width *
+                                        0.5,
+                                    height: 40,
+                                  ),
+                                  CustomButton(
+                                    content: const Text(
+                                      '确定',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    borderRadius: 4.0,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    width: MediaQuery.of(context).size.width *
+                                        0.5,
+                                    height: 40,
+                                  )
+                                ],
+                              )
+                            ]);
+                      })
+                },
+                child: Text(
+                  c.userInfo['fullname'] ?? '',
+                  style: const TextStyle(
+                      // color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
           ),
         );
       },
