@@ -24,12 +24,18 @@ class _MyAppState extends State<IncomeDetailPage> {
   String name;
 
   List barChat = [];
-  List<Map<String,String>> popupMenuTimeList = [
+  List<Map<String, String>> popupMenuTimeList = [
     {'value': '0', 'text': '今天'},
     {'value': '7', 'text': '本周'},
     {'value': '31', 'text': '本月'},
   ];
-  List<String> popupMenuPlatformList = ['android', 'ios', 'web', 'windows', 'macos'];
+  List<String> popupMenuPlatformList = [
+    'android',
+    'ios',
+    'web',
+    'windows',
+    'macos'
+  ];
   // ignore: non_constant_identifier_names
   String menuItem = '0';
 
@@ -91,6 +97,9 @@ class _MyAppState extends State<IncomeDetailPage> {
                     icon: const Icon(Icons.expand_circle_down),
                     offset: const Offset(80, 80),
                     onSelected: (String value) async {
+                      if (platform == value) {
+                        return;
+                      }
                       setState(
                         () => {
                           dataList = [],
@@ -103,10 +112,10 @@ class _MyAppState extends State<IncomeDetailPage> {
                     itemBuilder: (BuildContext context) => popupMenuPlatformList
                         .map(
                           (e) => PopupMenuItem(
-                        value: e,
-                        child: Text(e),
-                      ),
-                    )
+                            value: e,
+                            child: Text(e),
+                          ),
+                        )
                         .toList(),
                   ),
                   Text(menuItem == '0'
@@ -127,15 +136,22 @@ class _MyAppState extends State<IncomeDetailPage> {
                           ),
                         )
                         .toList(),
-                    onSelected: ( value) async {
+                    onSelected: (value) async {
+                      if (menuItem == value) {
+                        return;
+                      }
                       var _menuItem = formatDate(
                           DateTime.fromMillisecondsSinceEpoch(
                               now.millisecondsSinceEpoch -
-                                  int.parse(value.toString()) * 60 * 60 * 24 * 1000),
+                                  int.parse(value.toString()) *
+                                      60 *
+                                      60 *
+                                      24 *
+                                      1000),
                           [yyyy, '-', mm, '-', dd]);
 
                       setState(
-                            () => {
+                        () => {
                           dataList = [],
                           menuTime = _menuItem,
                           menuItem = value.toString()
@@ -175,7 +191,7 @@ class _MyAppState extends State<IncomeDetailPage> {
                 AxisItem(showText: '40'),
                 AxisItem(showText: '60'),
                 AxisItem(showText: '80'),
-                AxisItem(showText: '100')
+                AxisItem(showText: '100'),
               ]),
               singleBarWidth: 30,
               barGroupSpace: 15,
