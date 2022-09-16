@@ -119,7 +119,7 @@ class _HistoryListState extends State<HistoryList> {
                 controller: _scrollController,
                 itemCount: this._list.length,
                 itemBuilder: (context, index) {
-                  Widget tip =  Row();
+                  Widget tip = Row();
                   // 当渲染到最后一条数据时，加载动画提示
                   if (index == this._list.length - 1) {
                     tip = _getMoreWidget();
@@ -135,28 +135,32 @@ class _HistoryListState extends State<HistoryList> {
                             child: Icon(
                               IconData(iconPlatform[_list[index].platform]!,
                                   fontFamily: 'iconfont2'),
-                              color: Colors.black54,
+                              color:
+                                  this._list[index].environment == 'development'
+                                      ? Colors.black54
+                                      : Theme.of(context).primaryColor,
                             ),
                           ),
                           Expanded(
                             flex: 85,
                             child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("页面: ${this._list[index].desc}"),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text("日志: ${this._list[index].id}"),
-                              const SizedBox(
-                                height: 4,
-                              ),
-                              Text("日期:" +DateTime.parse(
-                                      "${this._list[index].time.substring(0, 19)}-0800")
-                                  .toString())
-                            ],
-                          ),
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("页面: ${this._list[index].desc}"),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text("日志: ${this._list[index].id}"),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text("日期:" +
+                                    DateTime.parse(
+                                            "${this._list[index].time.substring(0, 19)}-0800")
+                                        .toString())
+                              ],
+                            ),
                           ),
                           // const Expanded(
                           //   flex: 3,

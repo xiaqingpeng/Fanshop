@@ -24,11 +24,14 @@ class _Home2State extends State<MineTicketPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(name),
+          backgroundColor: Theme.of(context).primaryColor,
           //配置顶部导航栏
           bottom: const TabBar(
             labelColor: Colors.white,
+            indicatorColor: Colors.white,
             isScrollable: true,
             // labelStyle: TextStyle(fontSize: 12),
+           
             tabs: <Widget>[
               Tab(text: "待使用"),
               Tab(text: "已使用"),

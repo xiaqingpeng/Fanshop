@@ -65,80 +65,84 @@ class _HomePageState extends State
   @override
   Widget build(BuildContext context) {
     List<Product> products = context.watch<CategoryViewmodel>().products;
-    print(products);
-    print("products");
     return Scaffold(
-        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          brightness: Brightness.light,
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(0.0),
+            child: Row(
+              children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                 
+                  ///导航栏
+                  child: TabBar(
+                    isScrollable: true,
+                    labelColor: Colors.white,
+                    unselectedLabelColor: Colors.black,
+                    controller: tabController,
+                    labelStyle:
+                        TextStyle(color: Theme.of(context).primaryColor),
+                    unselectedLabelStyle: const TextStyle(color: Colors.black),
+            
+                    // 标签指示器的颜色
+                    indicatorColor: Theme.of(context).primaryColor,
+                    // 标签的颜色
+            
+                    // 指示器的大小
+                    indicatorSize: TabBarIndicatorSize.tab,
+                    // 指示器的权重，即线条高度
+                    indicatorWeight: 2.0,
+                    tabs: [
+                      Tab(
+                        // text: StringStyles.tabHome.tr,
+                        text: 'home'.tr,
+                      ),
+                      Tab(
+                        text: 'square'.tr,
+                      ),
+                      Tab(
+                        // text: StringStyles.tabAsk.tr,
+                        text: 'question'.tr,
+                      )
+                    ],
+                  ),
+                ),
+            
+                ///间隔
+                const Expanded(child: SizedBox()),
+            
+                ///搜索框
+                CustomRipple(
+                  circular: 10,
+                  onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const SearchPage();
+                        },
+                      ),
+                    )
+                    // Get.toNamed(Routes.searchPage)
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      IconData(0xe602, fontFamily: 'iconfont2',),
+                      color:Colors.white
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         body: SafeArea(
           top: true,
           child: Column(
             children: [
-              Row(
-                children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-
-                    ///导航栏
-                    child: TabBar(
-                      isScrollable: true,
-                      labelColor: Theme.of(context).primaryColor,
-                      unselectedLabelColor: Colors.black,
-                      controller: tabController,
-                      labelStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
-                      unselectedLabelStyle:
-                          const TextStyle(color: Colors.black),
-
-                      // 标签指示器的颜色
-                      indicatorColor: Theme.of(context).primaryColor,
-                      // 标签的颜色
-
-                      // 指示器的大小
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      // 指示器的权重，即线条高度
-                      indicatorWeight: 2.0,
-                      tabs: [
-                        Tab(
-                          // text: StringStyles.tabHome.tr,
-                          text: 'home'.tr,
-                        ),
-                        Tab(
-                          text: 'square'.tr,
-                        ),
-                        Tab(
-                          // text: StringStyles.tabAsk.tr,
-                          text: 'question'.tr,
-                        )
-                      ],
-                    ),
-                  ),
-
-                  ///间隔
-                  const Expanded(child: SizedBox()),
-
-                  ///搜索框
-                  CustomRipple(
-                    circular: 20,
-                    onTap: () => {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return const SearchPage();
-                          },
-                        ),
-                      )
-                      // Get.toNamed(Routes.searchPage)
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Icon(
-                        IconData(0xe602, fontFamily: 'iconfont2'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Expanded(
                   child: TabBarView(
                 controller: tabController,

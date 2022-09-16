@@ -5,10 +5,11 @@ import 'package:Fanshop/utils/platform.dart';
 import 'package:dio/dio.dart';
 import 'package:Fanshop/common/SharedPreferences.dart';
 
-String baseUrl = PlatformUtils.isProd ==true
+String baseUrl = PlatformUtils.isProd == true
     ? 'http://43.138.203.36:7001/'
-    : 'http://127.0.0.1:7001/';
-    // : 'http://43.138.203.36:7001/';
+    // : 'http://10.0.2.2:7001/';
+   // : 'http://127.0.0.1:7001/';
+: 'http://43.138.203.36:7001/';
 
 class HttpController {
   static getAuthorization() async {
@@ -28,7 +29,7 @@ class HttpController {
   };
 
   static post(String api, params) async {
-    print(PlatformUtils.isProd );
+    print(PlatformUtils.isProd);
     // ignore: avoid_print
     print("开始获取数据");
     Response response;

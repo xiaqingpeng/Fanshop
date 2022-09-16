@@ -82,11 +82,13 @@ class _Home2State extends State<MineOrderPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          backgroundColor: Theme.of(context).primaryColor,
           //配置顶部导航栏
           bottom: TabBar(
             labelColor: Colors.white,
             isScrollable: true,
             indicatorSize: TabBarIndicatorSize.tab,
+            indicatorColor: Colors.white,
             labelStyle: const TextStyle(fontSize: 14),
             tabs: navigatorList
                 .map(

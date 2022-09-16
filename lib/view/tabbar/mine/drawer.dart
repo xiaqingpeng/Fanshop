@@ -43,10 +43,27 @@ class _ImagePickerState extends State<MyDrawer> {
   }
 
   @override
+  void initState() {
+    updataUserInfo();
+    super.initState();
+  }
+
+  void updataUserInfo() async {
+    Map<dynamic, dynamic> userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    final UserInfoController userInfoController = Get.put(
+      UserInfoController(),
+    ); //获取state的值
+    userInfoController.changeUserInfo(userInfo);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<UserInfoController>(
         init: UserInfoController(),
         builder: (UserInfoController c) {
+          Map<dynamic, dynamic> userInfo = c.userInfo ?? {};
+          print(userInfo);
           return Drawer(
             child: MediaQuery.removePadding(
               context: context,
@@ -55,36 +72,38 @@ class _ImagePickerState extends State<MyDrawer> {
                 padding: EdgeInsets.zero,
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text(c.userInfo['filename'] ?? ''),
-                    accountEmail: Text(c.userInfo['datetime'] ?? ''),
-                    currentAccountPicture: ClipOval(
-                      child: InkWell(
-                        // ignore: unnecessary_null_comparison
-                        child: renderWidget(c.userInfo['images']),
-                        onTap: () async {
-                          final String platform = getPlatform();
-                          if (platform == 'android' || platform == 'ios') {
-                            final pickedFile = await picker.getImage(
-                                source: ImageSource.camera);
-                            final UserInfoController userInfoController =
-                                Get.put(
-                              UserInfoController(),
-                            ); //获取state的值
-                            final Map params = {
-                              ...c.userInfo,
-                              "images": pickedFile?.path
-                            };
-                            userInfoController.changeUserInfo(params);
-                            UpdateUserInfo.updateUserInfo(
-                              params,
-                              params['_id'],
-                            );
-                          } else {
-                            WeToast.fail(context)(
-                                message: '$platform平台不支持相册功能');
-                          }
-                        },
-                      ),
+                    decoration:
+                        BoxDecoration(color: Theme.of(context).primaryColor),
+                    accountName: Text(
+                      c.userInfo['nickname'],
+                    ),
+                    accountEmail: Text(
+                      c.userInfo['uid'] ?? '',
+                    ),
+                    currentAccountPicture: InkWell(
+                      // ignore: unnecessary_null_comparison
+                      child: renderWidget(userInfo['images']),
+                      onTap: () async {
+                        final String platform = getPlatform();
+                        if (platform == 'android' || platform == 'ios') {
+                          final pickedFile =
+                              await picker.getImage(source: ImageSource.camera);
+                          final UserInfoController userInfoController = Get.put(
+                            UserInfoController(),
+                          ); //获取state的值
+                          final Map params = {
+                            ...c.userInfo,
+                            "images": pickedFile?.path
+                          };
+                          userInfoController.changeUserInfo(params);
+                          UpdateUserInfo.updateUserInfo(
+                            params,
+                            params['_id'],
+                          );
+                        } else {
+                          WeToast.fail(context)(message: '$platform平台不支持相册功能');
+                        }
+                      },
                     ),
                   ),
                   WeCell(
@@ -131,27 +150,25 @@ class _ImagePickerState extends State<MyDrawer> {
   }
 
   renderWidget(images) {
-    if (images != null&& platform == 'web' ) {
-      return Image.network(
-        //如成功显示用户头像
-        images, //头像地址,
-        width: 80,
-        height: 80,
-      );
+    if (images != null && platform == 'web') {
+      return CircleAvatar(backgroundImage: NetworkImage(images));
     }
-    if (images != null) {
+    if (images != null && images.substring(0, 4) == 'http') {
+      return CircleAvatar(backgroundImage: NetworkImage(images));
+    }
+    if (images != null && images.length > 0) {
       return Image.file(
         File(images),
         fit: BoxFit.cover,
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
       );
     }
-    return Image.asset(
-      "assets/launcher/launcher.png",
-      fit: BoxFit.cover,
-      width: 80,
-      height: 80,
+
+    return const Icon(
+      IconData(0xe638, fontFamily: 'iconfont2'),
+      color: Colors.white,
+      size: 70,
     );
   }
 }

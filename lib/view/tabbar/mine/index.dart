@@ -1,12 +1,11 @@
 import 'package:Fanshop/view/tabbar/mine/order.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:Fanshop/api/logs.dart';
-import 'package:Fanshop/custom/custom_appbar_actions.dart';
 import 'package:Fanshop/view/tabbar/mine/drawer.dart';
 import 'package:Fanshop/view/tabbar/mine/header.dart';
 import 'package:Fanshop/view/tabbar/mine/tableList.dart';
+import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 
 // ignore: must_be_immutable
@@ -19,6 +18,8 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  
+
   @override
   void initState() {
     super.initState();
@@ -29,39 +30,52 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbarActions(
-        'mine'.tr,
-        Theme.of(context).primaryColor,
-        [
-          IconButton(
-            onPressed: _onPressed,
-            icon: Badge(
-              badgeColor: Theme.of(context).primaryColor,
-              badgeContent: const Text(
-                '3',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              child: const Icon(
-                IconData(0xe681, fontFamily: 'iconfont2'),
-              ),
-            ),
-          ),
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(
-                IconData(0xe70f, fontFamily: 'iconfont2'),
-              ),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            ),
-          ),
-        ],
-      ),
+      // appBar: CustomAppbarActions(
+      //   'mine'.tr,
+      //   Theme.of(context).primaryColor,
+      //   [
+          
+      //   ],
+      // ),
+     
       endDrawer: const MyDrawer(),
       body: ListView(
         children: <Widget>[
+          Container(
+            color: Theme.of(context).primaryColor,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                IconButton(
+              onPressed: _onPressed,
+              icon: Badge(
+                badgeColor: Colors.white,
+                badgeContent:  Text(
+                  '3',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                child: const Icon(
+                  IconData(0xe681, fontFamily: 'iconfont2'),
+                   color: Colors.white,
+                ),
+              ),
+            ),
+            Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(
+                  IconData(0xe70f, fontFamily: 'iconfont2'),
+                  color: Colors.white,
+                ),
+                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              ),
+            ),
+              ],
+            ),
+          ),
           const HeaderPage(),
           TabNavigator(),
           TabList(),

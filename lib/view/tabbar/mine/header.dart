@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:Fanshop/api/user.dart';
+import 'package:Fanshop/common/SharedPreferences.dart';
 import 'package:Fanshop/getx/messages_getx.dart';
 import 'package:Fanshop/utils/platform.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class HeaderPage extends StatefulWidget {
 
 class _ImagePickerState extends State<HeaderPage> {
   final picker = ImagePicker();
-   final String platform = getPlatform();
+  final String platform = getPlatform();
   /*拍照*/
   // ignore: unused_element
   _takePhoto() async {
@@ -41,7 +42,6 @@ class _ImagePickerState extends State<HeaderPage> {
 
   /*相册*/
   _openGallery(c) async {
-   
     if (platform == 'android' || platform == 'ios') {
       final pickedFile = await picker.getImage(source: ImageSource.gallery);
       final UserInfoController userInfoController = Get.put(
@@ -59,94 +59,181 @@ class _ImagePickerState extends State<HeaderPage> {
   }
 
   @override
+  void initState() {
+    updataUserInfo();
+    super.initState();
+  }
+
+  void updataUserInfo() async {
+    Map<dynamic, dynamic> userInfo =
+        await SharedPreferencesUserUtils.getUserInfo("userInfo");
+    final UserInfoController userInfoController = Get.put(
+      UserInfoController(),
+    ); //获取state的值
+    userInfoController.changeUserInfo(userInfo);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<UserInfoController>(
       init: UserInfoController(),
       builder: (UserInfoController c) {
+        Map<dynamic, dynamic> userInfo = c.userInfo ?? {};
+        final List navigatorList = [
+          {
+            'name': '积分',
+            'id': userInfo['score'],
+          },
+          {
+            'name': '反馈',
+            'id': userInfo['feedback'],
+          },
+          {
+            'name': '收藏',
+            'id': userInfo['favorite'],
+          },
+          {
+            'name': '浏览',
+            'id': userInfo['record'],
+          },
+        ];
+
         return Container(
-          height: 200.0,
           alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
-              colors: [
-                Colors.redAccent,
-                Colors.yellowAccent,
-                Colors.blueAccent,
-              ],
-            ),
-          ),
+          decoration: BoxDecoration(
+              // gradient: LinearGradient(
+              //   begin: Alignment.bottomLeft,
+              //   end: Alignment.topRight,
+              //   colors: [
+              //     Colors.redAccent,
+              //     Colors.yellowAccent,
+              //     Colors.blueAccent,
+              //   ],
+              // ),
+              color: Theme.of(context).primaryColor),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: ClipOval(
-                  child: InkWell(
-                    child: renderWidget(c.userInfo['images']),
-                    onTap: () => {_openGallery(c)},
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ClipOval(
+                      child: InkWell(
+                        child: renderWidget(userInfo['images']),
+                        onTap: () => {_openGallery(c)},
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              GestureDetector(
-                onTap: () => {
-                  showDialog(
-                      // 传入 context
-                      context: context,
-                      barrierDismissible: false,
-                      // 构建 Dialog 的视图
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                            title: const Text('我的登录'),
-                            content: const Text('你确定登录吗？'),
-                            actions: [
-                              Row(
-                                children: [
-                                  CustomButton(
-                                    content: const Text(
-                                      '取消',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    borderRadius: 4.0,
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    width: MediaQuery.of(context).size.width *
-                                        0.5,
-                                    height: 40,
-                                  ),
-                                  CustomButton(
-                                    content: const Text(
-                                      '确定',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    borderRadius: 4.0,
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    width: MediaQuery.of(context).size.width *
-                                        0.5,
-                                    height: 40,
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  GestureDetector(
+                    onTap: () => {
+                      showDialog(
+                          // 传入 context
+                          context: context,
+                          barrierDismissible: false,
+                          // 构建 Dialog 的视图
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                title: const Text('我的登录'),
+                                content: const Text('你确定登录吗？'),
+                                actions: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      CustomButton(
+                                        content: const Text(
+                                          '取消',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        borderRadius: 4.0,
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
+                                        height: 30,
+                                      ),
+                                      const SizedBox(
+                                        width: 30,
+                                      ),
+                                      CustomButton(
+                                        content: const Text(
+                                          '确定',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        borderRadius: 4.0,
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
+                                        height: 30,
+                                      )
+                                    ],
                                   )
-                                ],
-                              )
-                            ]);
-                      })
-                },
-                child: Text(
-                  c.userInfo['fullname'] ?? '',
-                  style: const TextStyle(
-                      // color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
+                                ]);
+                          })
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          (userInfo['nickname'] ?? ''),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          userInfo['uid'] ?? '',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                height: 60.0,
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 20.0),
+                child: GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 4,
+                  children: navigatorList.map((item) {
+                    return Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          item['id'].toString(),
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(
+                          height: 4.0,
+                        ),
+                        Text(
+                          item['name'],
+                          style: const TextStyle(color: Colors.white),
+                        )
+                      ],
+                    );
+                  }).toList(),
                 ),
-              )
+              ),
             ],
           ),
         );
@@ -155,25 +242,33 @@ class _ImagePickerState extends State<HeaderPage> {
   }
 
   renderWidget(images) {
-    if (images != null&& platform == 'web' ) {
+    if (images != null && platform == 'web') {
       return Image.network(
         //如成功显示用户头像
         images, //头像地址,
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
       );
     }
-    if (images != null) {
+    if (images != null && images.substring(0, 4) == 'http') {
+      return Image.network(
+        images,
+        fit: BoxFit.cover,
+        width: 70,
+        height: 70,
+      );
+    }
+    if (images != null && images.length > 0) {
       return Image.file(
         File(images),
         fit: BoxFit.cover,
-        width: 80,
-        height: 80,
+        width: 70,
+        height: 70,
       );
     }
     return const Icon(
       IconData(0xe67c, fontFamily: 'iconfont2'),
-      size: 80,
+      size: 70,
     );
   }
 }

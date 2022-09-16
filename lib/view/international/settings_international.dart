@@ -56,13 +56,13 @@ class _SettingsInternationalState extends State<SettingsInternational> {
           padding: const EdgeInsets.all(10),
           child: GestureDetector(
             onTap: () async {
-              userInfo['language'] = international[index]['lanuage'] +
+              userInfo['language'] = international[index]['language'] +
                   '_' +
                   international[index]['mark'];
               await SharedPreferencesUserUtils.setUserInfo(
                   "userInfo", userInfo);
               languageController.language(index); // 修改state的值
-              messagesController.changeLanguage(international[index]['lanuage'],
+              messagesController.changeLanguage(international[index]['language'],
                   international[index]['mark']);
             },
             child: Container(

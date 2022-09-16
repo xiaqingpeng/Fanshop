@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // ignore: non_constant_identifier_names
 AppBar CustomAppbarActions(
     String? title, Color backgroundColor, List<Widget> actions,
@@ -10,5 +11,6 @@ AppBar CustomAppbarActions(
     backgroundColor: backgroundColor,
     centerTitle: centerTitle,
     actions: actions,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
   );
 }
